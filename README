@@ -1,0 +1,44 @@
+Installation of Serpentine first involves buildling several libraries that enable it to import accelerator lattice files.
+
+Note:  These instructions are written for a bash environment on Linux, and should be altered accordingly for alternative environments, OSes, etc.
+
+First, cd into the top-level Serpentine folder (normally called "Tracker).
+
+export BASE=`pwd`
+
+Now we will build the Xerces-C libraries
+
+cd Dep
+tar xzvf xerces-c-3.0.1.tar.gz
+cd xerces-c-3.0.1
+export XERCESCROOT=`pwd`
+./configure CC=gcc CXX=g++
+make
+
+Now for the Universal Accelerator Parser (UAP)
+
+cd ..
+export UAP_FORTRAN_COMPILER=GFORTRAN  #(You may prefer to make this G95 instead.  Leave this variable unset to use ifort.)
+tar zxvf accelerator-ml.tar.gz
+cd accelerator-ml/uap/trunk
+export UAPROOT=`pwd`
+make libs
+
+Now we will build the python module that takes care of lattice imports.  Note that the new PYTHONINCS environment variable is being set to the location of the python includes, and you should change it to the appropriate location for your system.
+
+cd $BASE/accformat/programs
+export PYTHONVERSION=`echo \`python --version 2>&1\` | awk '{print $2}' | awk -F "." '{print $1 "." $2}'`
+export PYTHONINCS=/usr/include/python$PYTHONVERSION
+python setup.py build 
+
+Finally, we add all the relevant paths to the PYTHONPATH and LD_LIBRARY_PATH environment variables.
+
+export PYTHONPATH=$PYTHONPATH:$BASE/accformat/programs/build/`for i in \`ls build\`; do echo $i | grep lib; done`
+export PYTHONPATH=$PYTHONPATH:$BASE
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XERCESCROOT/src/.libs
+
+To test:
+python examples/atf/atf2example.py
+
+Once everything is working you will want to make sure that your PYTHONPATH variable is set correctly in your .bashrc.
+
