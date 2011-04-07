@@ -23,6 +23,7 @@ from scipy.special import cbrt
 
 electron_mass = 0.51099892e6 # eV/c**2
 positron_mass = electron_mass
+proton_mass   = 938.272013e6 # eV/c**2
 c_light = 299792458 # m/s
 e_charge = 1.60217653e-19 # C
 Brho1GeV = 1e9 / c_light # T.m / GeV/c
