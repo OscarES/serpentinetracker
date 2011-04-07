@@ -18,11 +18,15 @@
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Define all the global variables here to import once
+#from numpy import sqrt
+from scipy.special import cbrt
+
 electron_mass = 0.51099892e6 # eV/c**2
 positron_mass = electron_mass
 c_light = 299792458 # m/s
 e_charge = 1.60217653e-19 # C
 Brho1GeV = 1e9 / c_light # T.m / GeV/c
+
 
 class lietrackparams:
     def __init__(self, dlengths=[], klengths=[]):
@@ -30,9 +34,9 @@ class lietrackparams:
         self.klengths = klengths
 
 lietrackarray = []
-lietrackarray.append(lietrackparams())
-lietrackarray.append(lietrackparams())
-lietrackarray.append(lietrackparams(dlengths=[0.5,0.5],klengths=1.0))
-lietrackarray.append(lietrackparams())
-lietrackarray.append(lietrackparams())
+lietrackarray.append(False)
+lietrackarray.append(lietrackparams(dlengths=[1.0],klengths=[1.0]))
+lietrackarray.append(lietrackparams(dlengths=[0.5,0.5],klengths=[1.0]))
+lietrackarray.append(False)
+lietrackarray.append(lietrackparams(dlengths=[(1/12)*(4+2*cbrt(2)+cbrt(4)),(1/2)-((1/12)*(4+2*cbrt(2)+cbrt(4))),(1/2)-((1/12)*(4+2*cbrt(2)+cbrt(4))),(1/12)*(4+2*cbrt(2)+cbrt(4))],klengths=[(1/6)*(4+2*cbrt(2)+cbrt(4)),1-((1/3)*(4+2*cbrt(2)+cbrt(4))),(1/6)*(4+2*cbrt(2)+cbrt(4))]))
 
