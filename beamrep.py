@@ -53,6 +53,30 @@ class ElectronBeam:
         plot(self.x[4,:],self.x[5,:],marker)
         xlabel('Distance / m')
         ylabel('Energy / GeV')
+        
+    def PlotXLongSpace(self,marker='bx'):
+        "Plot the y Vs. z of the bunch"
+        plot(self.x[4,:],self.x[0,:],marker)
+        xlabel('Distance / m')
+        ylabel('x Position / m')
+        
+    def PlotYLongSpace(self,marker='bx'):
+        "Plot the y Vs. z of the bunch"
+        plot(self.x[4,:],self.x[2,:],marker)
+        xlabel('Distance / m')
+        ylabel('y Position / m')
+
+    def PlotPxLongSpace(self,marker='bx'):
+        "Plot the Px Vs. z of the bunch"
+        plot(self.x[4,:],self.x[1,:],marker)
+        xlabel('Distance / m')
+        ylabel('x Angle / rad')
+        
+    def PlotPyLongSpace(self,marker='bx'):
+        "Plot the Py Vs. z of the bunch"
+        plot(self.x[4,:],self.x[3,:],marker)
+        xlabel('Distance / m')
+        ylabel('y Angle / rad')
 
 # =========================================================
 # Subclasses of 'ElectronBeam' that build the bunches

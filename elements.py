@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# Changes to BasicCav and Cavity by Gemmma Smith
+#27/01/2011
+
 #    Copyright 2009,  Stephen Molloy, Stewart Boogert
 # 
 #    This file is part of Serpentine.
@@ -28,6 +31,7 @@ from globals import *
 import matplotlib.cbook as cb
 import types
 from numpy.random import normal
+
 
 # Twiss object class for addition to the Element superclass
 class Twiss:
@@ -182,13 +186,21 @@ class BasicMag(Element):
 
 class BasicCav(Element):
     def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',
-        is_diag=False,egain=0,designQ=1e9,phi=0,loading=0,freq=1e9,slices=1):
+        is_diag=False,phi=0,freq=1e9,numdrift=2,egain=0,designQ=1e9,slices=1,loading=0):
 
-        self.egain = egain
-        self.designQ = designQ
+        self.P = P
         self.phi = phi
         self.restmass = electron_mass
         self.freq = freq
+        self.egain = egain
+        self.numdrift = numdrift
+        self.energy0 = sqrt((P*1e9)**2 + self.restmass**2)
+        self.gamma0 = self.energy0/self.restmass
+        self.beta0 = sqrt(1 - 1/(self.gamma0**2))
+        self.alpha = self.egain / (P*1e9)
+        self.k = self.freq*2*pi/c_light
+        
+        self.designQ = designQ
         self.slices = slices
         self.loading = loading
         Element.__init__(self, name, L, P, S, aper, apershape, is_diag)
@@ -196,6 +208,7 @@ class BasicCav(Element):
 class BasicDiag(Element):
     def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',
         is_diag=True,res=array([0,0])):
+   
         if type(res)==int or type(res)==float or type(res)==double:
             self.res = array([res, res])
         else:
@@ -353,7 +366,7 @@ class Sbend(BasicMag):
         is_diag=False,B=array([0,0]),e_angle=0,e_curve=0,h_gap=0,h_int=0):
         self.e_angle = SplitParams(e_angle)
         self.e_curve = SplitParams(e_curve)
-        self.h_gap = SplitParams(h_gap)
+        self.h_gap = S  
         self.h_int = SplitParams(h_int)
         if array(B).size==1:
             B = array([B,0])
@@ -419,7 +432,16 @@ class Sbend(BasicMag):
         else:
             Cy = 1
             Sy = 0
-            Syoverky = self.L
+            Syoverky = self.L     
+            gamma0 = self.gamma0
+            beta0 = self.beta0
+            alpha = self.egain / P
+            phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
+            phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
+            C_perp = cos(phi_perp)
+            S_perp = sin(phi_perp)
+            C_para = cos(phi_para)
+            S_para = sin(phi_para)
             signky = 0
 
         main_r = array([
@@ -455,7 +477,8 @@ class Sbend(BasicMag):
         rho = Brho1GeV * P * self.L / self.B[0]
         h = 1/rho
         n = -self.B[1] / (h*(self.B[0]/self.L))
-        phi_in = self.h_int[0] * \
+        phi_in = \
+            self.h_int[0] * \
             self.h_gap[0] * h * \
             (1+(sin(self.e_angle[0])**2)) / cos(self.e_angle[0])
         phi_out = \
@@ -513,7 +536,7 @@ class Sbend(BasicMag):
         if self.is_diag:
             self.DiagOut.centroid = mean(beam_out.x,1)
         beam_out.x = dot(r_in,beam_out.x)
-
+        self.alpha = self.egain / P
         doflist = range(6)
         zeromat = zeros((6,6,6))
 
@@ -529,7 +552,7 @@ class Sbend(BasicMag):
                                 beam_in.x[Tdof2,partnum]
         
         for partnum in range(beam_out.x.shape[1]):
-            self.CalcRmat((beam_out.x[5,partnum] * self.P) + self.P)
+            self.CalcRmat((beam_out.x[5,partnumrflambda] * self.P) + self.P)
             beam_out.x[:,partnum] = dot(self.R,beam_out.x[:,partnum])
 
         for partnum in range(beam_out.x.shape[1]):
@@ -555,7 +578,7 @@ class AccCav(BasicCav):
     def CalcRmat(self, P=-1, L=-1, z=0):
         from globals import electron_mass, c_light, e_charge
         if P==-1:
-            P = self.P*1e9
+            P = self.P*1e9         
         if L==-1:
             L = self.L
         if z==0:
@@ -564,17 +587,17 @@ class AccCav(BasicCav):
             rflambda = c_light/self.freq
             phi = self.phi + (z/rflambda)*2*pi 
 
-        energy0 = sqrt(P**2 + self.restmass**2)
-        gamma0 = energy0/self.restmass
-        beta0 = sqrt(1 - 1/(gamma0**2))
-        alpha = self.egain / P
+        energy0 = self.energy0
+        gamma0 = self.gamma0
+        beta0 = self.beta0
+        alpha = self.alpha
         phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
         phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
         C_perp = cos(phi_perp)
         S_perp = sin(phi_perp)
         C_para = cos(phi_para)
         S_para = sin(phi_para)
-
+    
         if not hasattr(self,'R'):
             self.R = zeros((6,6))
 
@@ -591,135 +614,86 @@ class AccCav(BasicCav):
         self.R[4,4] = C_para
         self.R[4,5] = (1/(beta0**2 * gamma0**2)) * (L/phi_para) * S_para
         self.R[5,4] = -(beta0**2 * gamma0**2) * (phi_para/L) * S_para
-        self.R[5,5] = C_para
 
+    def DriftMap(self,beam_in,DistDrift,P):
+         beam_out = deepcopy(beam_in)
+         print P
+     
+         x = beam_in.x[0]
+         P_x = beam_in.x[1]
+         y = beam_in.x[2]
+         P_y = beam_in.x[3]
+         z = beam_in.x[4]
+         delta = beam_in.x[5]
+         
+         L = self.L*DistDrift
+         energy0 = sqrt((P*1e9)**2 + self.restmass**2)
+         gamma0 = energy0/self.restmass
+         beta0 = sqrt(1 - 1/(gamma0**2))
+ 
+         P_s = sqrt((((1/beta0)+delta)**2) - P_x**2 - P_y**2 - (1/((beta0**2)*(gamma0**2))))
+         
+         beam_out.x[0] = x + L*(P_x/P_s)
+         beam_out.x[2] = y + L*(P_y/P_s)
+         beam_out.x[4] = z + L*((1/beta0)-((delta+(1/beta0))/P_s))
+         print 'Drift'
+         return beam_out
+
+    def KickMap(self,beam_in,DistKick,P):
+        from scipy.special import jn
+        beam_out = deepcopy(beam_in)
+        
+        x = beam_in.x[0]
+        P_x = beam_in.x[1]
+        y = beam_in.x[2]
+        P_y = beam_in.x[3]
+        z = beam_in.x[4]
+        delta = beam_in.x[5]
+        
+        rho = sqrt(x**2 + y**2)
+        phi0 = self.phi
+        k = self.k
+        A = DistKick*(self.egain/(self.P*1e9))
+
+        for partnum in xrange(beam_out.x.shape[1]):
+            if (rho[partnum] != 0):
+                beam_out.x[1] = P_x - A*(x/rho)*jn(1,(k*rho))*cos(phi0-(k*z))
+                beam_out.x[3] = P_y - A*(y/rho)*jn(1,(k*rho))*cos(phi0-(k*z))
+                beam_out.x[5] = delta + A*jn(0,(k*rho))*sin(phi0-(k*z))
+            else:
+                beam_out.x[5] = delta + A*jn(0,(k*rho))*sin(phi0-(k*z))
+
+        P = P + A*jn(0,0)*sin(phi0)
+        print 'Kick'
+        
+        return beam_out, P
+
+   
     def TrackThruEle(self,beam_in):
-        from scipy.interpolate import splrep, splev
-        # from globals import restmass, c_light
+        from globals import lietrackarray
         intermed_beam = deepcopy(beam_in)
+        try:
+            DistDrift = lietrackarray[self.numdrift].dlengths
+            DistKick = lietrackarray[self.numdrift].klengths    
+        except IndexError:
+            raise IndexError('Go play with Lie Algebra as this drift number doesnt not yet exist')
+        except AttributeError:
+            raise AttributeError('Go play with Lie Algebra as this drift number is not defined ')
 
-        # Slice up the cavity in order to correctly calculate wakefield effects
-        self.egain /= self.slices
-        self.L /= self.slices
-        for slicenum in xrange(self.slices):
-            # Sort the beam.x matrix on the length parameter
-            # This will allow us to track them in the order they arrive
-            sortinds = argsort(intermed_beam.x[4,:])
-            intermed_beam.x = intermed_beam.x[:,sortinds]
-            if not type(intermed_beam.Q)==float:
-                intermed_beam.Q = intermed_beam.Q[sortinds]
-
-            # Propagate each ray through the R-matrix for this slice of the cavity
-            P = self.P + (slicenum*self.egain)
-            for partnum in xrange(intermed_beam.x.shape[1]):
-                # Remember that this matrix multiplication doesn't actually add any energy
-                # so we add it by hand
-                mom = (intermed_beam.x[5,partnum]*self.P) + self.P
-                mom *= 1e9
-                gamma = sqrt(mom**2 + self.restmass**2) / self.restmass
-                beta = sqrt(1 - (1/gamma**2))
-                timelag = intermed_beam.x[4,partnum] / (beta * c_light)
-                rfperiod = 1 / self.freq
-                phi = self.phi + (timelag * 2 * pi / rfperiod)
-                alpha = self.egain/(self.P*1e9)
-                phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma * beta)
-                delta_P = alpha * (sin(phi_para)/phi_para) * sin(phi)
-
-                self.CalcRmat(P=mom, L=self.L,z=intermed_beam.x[4,partnum])
-                intermed_beam.x[:,partnum] = dot(self.R,intermed_beam.x[:,partnum])
-
-                intermed_beam.x[5,partnum] += (delta_P)
-
-            beam_out = deepcopy(intermed_beam)
-
-            # if this element has a TSRW, then do the necessary calculations
-            if hasattr(self,'TSRW'):
-                # Loop over the different wakes
-                if len(self.TSRW.k.shape)==1:
-                    self.TSRW.k.shape = (1,self.TSRW.k.shape[0])
-                    self.TSRW.l.shape = (1,self.TSRW.l.shape[0])
-                for wakenum in xrange(self.TSRW.k.shape[0]):
-                    # Prepare an interpolator
-                    tckTSRW = splrep(self.TSRW.l[wakenum,:], self.TSRW.k[wakenum,:])
-                    # Loop over the rays
-                    for partnum in xrange(len(intermed_beam.Q)):
-                        sumkicks_x = 0
-                        sumkicks_y = 0
-                        if partnum==0:
-                            # fundamental theorem of beam loading
-                            fundtheory_x = 0.5 * self.TSRW.k[wakenum,0] * intermed_beam.Q[partnum] * \
-                                intermed_beam.x[0,partnum] * self.L
-                            fundtheory_y = 0.5 * self.TSRW.k[wakenum,0] * intermed_beam.Q[partnum] * \
-                                intermed_beam.x[2,partnum] * self.L
-                            sumkicks_x += fundtheory_x
-                            sumkicks_y += fundtheory_y
-                        else:
-                            for prevparts in xrange(partnum):
-                                z_dist = intermed_beam.x[4,partnum] - intermed_beam.x[4,prevparts]
-                                wake_str_x = splev(z_dist, tckTSRW) * intermed_beam.Q[prevparts] * \
-                                    intermed_beam.x[0,prevparts] * self.L
-                                wake_str_y = splev(z_dist, tckTSRW) * intermed_beam.Q[prevparts] * \
-                                    intermed_beam.x[2,prevparts] * self.L
-                                sumkicks_x += wake_str_x
-                                sumkicks_y += wake_str_y
-                            # fundamental theorem of beam loading
-                            fundtheory_x = 0.5 * self.TSRW.k[wakenum,0] * intermed_beam.Q[partnum] * \
-                                intermed_beam.x[0,partnum] * self.L
-                            fundtheory_y = 0.5 * self.TSRW.k[wakenum,0] * intermed_beam.Q[partnum] * \
-                                intermed_beam.x[2,partnum] * self.L
-                            sumkicks_x += fundtheory_x
-                            sumkicks_y += fundtheory_y
-
-                        # Now normalise the kick by the particle momentum
-                        kick_mag_x = \
-                            sumkicks_x / (((self.P*1e9)*intermed_beam.x[5,partnum]) + (self.P)*1e9)
-                        kick_mag_y = \
-                            sumkicks_y / (((self.P*1e9)*intermed_beam.x[5,partnum]) + (self.P)*1e9)
-                        # Add the kick to the x' and y' fields
-                        # Propagate by self.L/2 and add to x and y
-                        beam_out.x[1,partnum] += kick_mag_x
-                        beam_out.x[0,partnum] += kick_mag_x*self.L/2.0
-                        beam_out.x[3,partnum] += kick_mag_y
-                        beam_out.x[2,partnum] += kick_mag_y*self.L/2.0
-
-            # if this element has a LSRW, then do the necessary calculations
-            if hasattr(self,'LSRW'):
-                # Loop over the different wakes
-                if len(self.LSRW.k.shape)==1:
-                    self.LSRW.k.shape = (1,self.LSRW.k.shape[0])
-                    self.LSRW.l.shape = (1,self.LSRW.l.shape[0])
-                for wakenum in xrange(self.LSRW.k.shape[0]):
-                    # Prepare an interpolator
-                    tckLSRW = splrep(self.LSRW.l[wakenum,:], self.LSRW.k[wakenum,:])
-                    # Loop over the rays
-                    for partnum in xrange(len(beam_out.Q)):
-                        sumkicks = 0
-                        if partnum==0:
-                            # fundamental theorem of beam loading
-                            fundtheory = 0.5 * self.LSRW.k[wakenum,0] * beam_out.Q[partnum] * \
-                                beam_out.x[0,partnum] * self.L
-                            sumkicks += fundtheory
-                        else:
-                            for prevparts in xrange(partnum):
-                                z_dist = beam_out.x[4,partnum] - beam_out.x[4,prevparts]
-                                wake_str = splev(z_dist, tckLSRW) * beam_out.Q[prevparts] * \
-                                    beam_out.x[0,prevparts] * self.L
-                                sumkicks += wake_str
-                            # fundamental theorem of beam loading
-                            fundtheory = 0.5 * self.LSRW.k[wakenum,0] * beam_out.Q[partnum] * \
-                                beam_out.x[0,partnum] * self.L
-                            sumkicks += fundtheory
-
-                        # Now normalise the kick by the particle momentum
-                        kick_mag = \
-                            sumkicks / ((self.P*beam_out.x[5,partnum])+beam_out.x[5,partnum])
-                        beam_out.x[5,partnum] -= kick_mag
-
-        self.egain *= self.slices
-        self.L *= self.slices
-        self.CalcRmat()
-
+        N = 0
+        M = 0
+        P = self.P
+        beam_out = self.DriftMap(intermed_beam,DistDrift[N],P)
+     #   beam_out = self.KickMap(beam_out,DistKick[M])
+        N += 1
+        while N < self.numdrift:
+            beam_out,P = self.KickMap(beam_out,DistKick[M],P)
+            beam_out = self.DriftMap(beam_out,DistDrift[N],P)
+            N += 1
+            M += 1
+    
         return beam_out
+
 
 class TCav(BasicCav):
     pass
