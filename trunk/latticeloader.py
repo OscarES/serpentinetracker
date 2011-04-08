@@ -26,7 +26,12 @@ import accformat
 def LoadLatFile(name=None):
     if name==None:
         raise "Must specify a filename."
-    filestr = accformat.latticereader(name)
+    try:
+        filestr = accformat.latticereader(name)
+    except IOError:
+        if name.split('.')[-1]=='dat':
+            filestr = MakeTraceWinStr(name)
+        else: raise
     beamline = LoadLat(filestr)
     return beamline
 
@@ -197,6 +202,31 @@ def ExtractSbend(node,P,L):
 
 def GetDesignFromEle(elename,node):
     return node.getElementsByTagName(elename)[-1].getAttribute('design')
+
+def MakeTraceWinStr(name):
+    f = open(name)
+    contents = f.readlines()
+    data = [i.replace('\n','').split() for i in contents if not (i[0]==';' or i[0]=='\n')]
+
+    for ele in data:
+
+class TraceWinEle:
+    def __init__(self,ele):
+        self.freq = None
+        if ele[0].upper()   == 'DRIFT':  self.makedrift()
+        elif ele[0].upper() == 'QUAD':   self.makequad()
+        elif ele[0].upper() == 'NCELLS': self.makecav()
+        elif ele[0].upper() == 'FREQ':   self.freq = float(ele[1]) * 1e6 # MHz-->Hz
+        elif ele[0].upper() == 'END':    break
+
+    def makedrift():
+        pass
+
+    def makequad():
+        self.makedrift()
+        
+    def makecav():
+        self.makedrift()
 
 if __name__ == '__main__':
     beamline = LoadFlatLatFile('tempfile.txt')
