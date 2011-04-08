@@ -226,6 +226,8 @@ class TraceWinStr:
             elif ele[0].upper() == 'NCELLS': self.makecav(ele)
             elif ele[0].upper() == 'FREQ':   self.freq = float(ele[1]) * 1e6 # MHz-->Hz
             elif ele[0].upper() == 'END':    break
+            elif ele[0].upper() == 'SET_ADV': pass
+            elif ele[0].upper() == 'LATTICE': pass
             else: self.makedrift(ele)
 
     def makedrift(self,ele):
