@@ -244,6 +244,18 @@ class TraceWinStr:
 
     def makequad(self,ele):
         self.makedrift(ele)
+        tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
+        elenode = tlatticenode.childNodes[-1]
+        elenode.setAttribute('name','quad')
+
+        quadnode = minidom.Document().createElement("quadrupole")
+        knode    = minidom.Document().createElement("k")
+        knode.setAttribute('design',ele[1])
+        knode.setAttribute('actual',ele[1])
+
+        quadnode.appendChild(knode)
+        elenode.appendChild(quadnode)
+        tlatticenode.appendChild(elenode)
         
     def makecav(self,ele):
         self.makedrift(ele)
