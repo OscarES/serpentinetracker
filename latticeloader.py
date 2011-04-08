@@ -249,7 +249,7 @@ class TraceWinStr:
         elenode.setAttribute('name','quad')
 
         quadnode = minidom.Document().createElement("quadrupole")
-        knode    = minidom.Document().createElement("k")
+        knode    = minidom.Document().createElement("k_u")
         knode.setAttribute('design',ele[1])
         knode.setAttribute('actual',ele[1])
 
