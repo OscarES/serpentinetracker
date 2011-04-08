@@ -31,10 +31,17 @@ class ElectronBeam:
     def MakePositrons(self):
         "Convert the bunch species to positrons"
         self.chargesign = 1
+        self.restmass   = electron_mass
 
     def MakeElectrons(self):
         "Convert the bunch species to electrons"
         self.chargesign = -1
+        self.restmass   = electron_mass
+
+    def MakeProtons(self):
+        "Convert the bunch species to electrons"
+        self.chargesign = 1
+        self.restmass   = proton_mass
 
     def PlotXSpace(self,marker='bx'):
         "Plot the x phase-space of the bunch"
