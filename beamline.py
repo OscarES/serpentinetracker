@@ -106,6 +106,7 @@ class Line(list):
             
     def FindEleByObj(self, obj):
         """Returns the index at which the object 'obj' can be found in self."""
+        from serpentine import Serpentine
         for i in range(len(self)):
             if isinstance(self[i],Serpentine):
                 intern_list = self[i].beamline.FindEleByObj(obj)
