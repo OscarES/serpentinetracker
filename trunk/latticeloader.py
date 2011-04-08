@@ -30,7 +30,7 @@ def LoadLatFile(name=None):
         filestr = accformat.latticereader(name)
     except IOError:
         if name.split('.')[-1]=='dat':
-            filestr = MakeTraceWinStr(name)
+            filestr = TraceWinStr(name).printstr()
         else: raise
     beamline = LoadLat(filestr)
     return beamline
@@ -203,30 +203,51 @@ def ExtractSbend(node,P,L):
 def GetDesignFromEle(elename,node):
     return node.getElementsByTagName(elename)[-1].getAttribute('design')
 
-def MakeTraceWinStr(name):
-    f = open(name)
-    contents = f.readlines()
-    data = [i.replace('\n','').split() for i in contents if not (i[0]==';' or i[0]=='\n')]
+class TraceWinStr:
+    def __init__(self,name):
+        doc = minidom.Document()
 
-    for ele in data:
+        f = open(name)
+        contents = f.readlines()
+        data = [i.replace('\n','').split() for i in contents if not (i[0]==';' or i[0]=='\n')]
 
-class TraceWinEle:
-    def __init__(self,ele):
+        machine = doc.createElement("machine")
+        machine.appendChild(doc.createElement("tracking_lattice"))
+        machine.appendChild(doc.createElement("master_list"))
+        machine.appendChild(doc.createElement("beam"))
+        machine.appendChild(doc.createElement("lattice"))
+        self.machine = machine
+
         self.freq = None
-        if ele[0].upper()   == 'DRIFT':  self.makedrift()
-        elif ele[0].upper() == 'QUAD':   self.makequad()
-        elif ele[0].upper() == 'NCELLS': self.makecav()
-        elif ele[0].upper() == 'FREQ':   self.freq = float(ele[1]) * 1e6 # MHz-->Hz
-        elif ele[0].upper() == 'END':    break
 
-    def makedrift():
-        pass
+        for ele in data:
+            if ele[0].upper()   == 'DRIFT':  self.makedrift(ele)
+            elif ele[0].upper() == 'QUAD':   self.makequad(ele)
+            elif ele[0].upper() == 'NCELLS': self.makecav(ele)
+            elif ele[0].upper() == 'FREQ':   self.freq = float(ele[1]) * 1e6 # MHz-->Hz
+            elif ele[0].upper() == 'END':    break
+            else: self.makedrift(ele)
 
-    def makequad():
-        self.makedrift()
+    def makedrift(self,ele):
+        tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
+        elenode = minidom.Document().createElement("element")
+        elenode.setAttribute('name','drift')
+
+        lengthnode = minidom.Document().createElement("length")
+        lengthnode.setAttribute('design',str(float(ele[1])*1e-3))
+        lengthnode.setAttribute('actual',str(float(ele[1])*1e-3))
+        elenode.appendChild(lengthnode)
+
+        tlatticenode.appendChild(elenode)
+
+    def makequad(self,ele):
+        self.makedrift(ele)
         
-    def makecav():
-        self.makedrift()
+    def makecav(self,ele):
+        self.makedrift(ele)
+
+    def printstr(self):
+        return self.machine.toprettyxml()
 
 if __name__ == '__main__':
     beamline = LoadFlatLatFile('tempfile.txt')
