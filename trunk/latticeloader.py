@@ -31,7 +31,6 @@ def LoadLatFile(name=None):
     except IOError:
         if name.split('.')[-1]=='dat':
             filestr = TraceWinStr(name).printstr()
-            print filestr
         else: raise
     beamline = LoadLat(filestr)
     return beamline
@@ -307,5 +306,5 @@ class TraceWinStr:
 
 if __name__ == '__main__':
     from serpentine import Serpentine
-    blah = Serpentine(line="test.dat")
-    print blah.beamline[-2]
+    blah = Serpentine(line="C.SQ.DCR.2.50mA.(3.3.6).dat")
+
