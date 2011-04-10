@@ -31,6 +31,7 @@ def LoadLatFile(name=None):
     except IOError:
         if name.split('.')[-1]=='dat':
             filestr = TraceWinStr(name).printstr()
+            print filestr
         else: raise
     beamline = LoadLat(filestr)
     return beamline
@@ -93,10 +94,8 @@ def MakeElement(node,P,beamline):
         if not i1.nodeType==i1.ELEMENT_NODE:
             i1.parentNode.removeChild(i1)
 
-    try:
-        L = float(GetDesignFromEle('length',node))
-    except IndexError:
-        L = 0
+    try: L = float(GetDesignFromEle('length',node))
+    except IndexError: L = 0
 
     # Now loop over the elements and try to assign them
     for i1 in node.childNodes:
@@ -126,20 +125,19 @@ def MakeElement(node,P,beamline):
                 beamline.append(Xcor(name=elename,L=L,P=P,B=xnode))
             elif not ynode==None:
                 beamline.append(Ycor(name=elename,L=L,P=P,B=ynode))
-        elif i1.localName=='multipole':
-            pass
-        elif i1.localName=='octupole':
-            pass
-        elif i1.localName=='rf_cavity':
-            pass
+        elif i1.localName=='multipole': pass
+        elif i1.localName=='octupole': pass
+        elif i1.localName=='linac_cavity':
+            gradient = float(GetDesignFromEle('gradient',i1))
+            phase    = float(GetDesignFromEle('phase0',i1))
+            freq     = float(GetDesignFromEle('rf_freq',i1))
+            beamline.append(AccCav(name=elename,L=L,P=P,phi=phase,numdrift=2,egain=gradient*L))
         elif i1.localName=='sextupole':
             B = ExtractB(i1,P)
             B *= L
             beamline.append(Sext(name=elename,L=L,P=P,B=B))
-        elif i1.localName=='solenoid':
-            pass
-        elif i1.localName=='wiggler':
-            pass
+        elif i1.localName=='solenoid': pass
+        elif i1.localName=='wiggler': pass
         elif i1.localName=='instrument':
             if i1.getAttribute('type')=='INST' or i1.getAttribute('type')=='MONI':
                 beamline.append(BPM(name=elename,L=L,P=P))
@@ -151,8 +149,7 @@ def MakeElement(node,P,beamline):
                 beamline.append(WireScanner(name=elename,L=L,P=P))
     
     # If we haven't assigned anything yet, assign a drift
-    if len(beamline)==numeles:
-        beamline.append(Drift(name=elename,L=L,P=P))
+    if len(beamline)==numeles: beamline.append(Drift(name=elename,L=L,P=P))
 
     return beamline
 
@@ -258,11 +255,57 @@ class TraceWinStr:
         tlatticenode.appendChild(elenode)
         
     def makecav(self,ele):
+        if not ele[1]=='1': raise ValueError("Only pi-mode cavities are supported")
+        doc = minidom.Document()
+
+        Bgeo = float(ele[3])
+        halfbetalambda = 0.5 * Bgeo * (c_light/self.freq)
+        length = (halfbetalambda * int(ele[2])) + float(ele[10])/1e3 + float(ele[11])/1e3
+        egain = float(ele[4])
+        phi = float(ele[5])
+        aper = float(ele[6])
         self.makedrift(ele)
+        tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
+        elenode = tlatticenode.childNodes[-1]
+        elenode.setAttribute('name','TM010cav')
+
+        lengthnode = elenode.getElementsByTagName("length")[-1]
+        lengthnode.setAttribute('design',str(length))
+        lengthnode.setAttribute('actual',str(length))
+
+        gradnode = doc.createElement("gradient")
+        gradnode.setAttribute('design',str(egain/length))
+        gradnode.setAttribute('actual',str(egain/length))
+
+        freqnode = doc.createElement("rf_freq")
+        freqnode.setAttribute('design',str(self.freq))
+        freqnode.setAttribute('actual',str(self.freq))
+
+        phasenode = doc.createElement("phase0")
+        phasenode.setAttribute('design',str(phi))
+        phasenode.setAttribute('actual',str(phi))
+
+        betageonode = doc.createElement("beta_geo")
+        betageonode.setAttribute('design',str(Bgeo))
+        betageonode.setAttribute('actual',str(Bgeo))
+
+        betapartnode = doc.createElement("beta_particle")
+        betapartnode.setAttribute('design',ele[12])
+        betapartnode.setAttribute('actual',ele[12])
+
+        cavnode = doc.createElement("linac_cavity")
+        cavnode.appendChild(freqnode)
+        cavnode.appendChild(gradnode)
+        cavnode.appendChild(phasenode)
+        cavnode.appendChild(betageonode)
+        cavnode.appendChild(betapartnode)
+
+        elenode.appendChild(cavnode)
 
     def printstr(self):
         return self.machine.toprettyxml()
 
 if __name__ == '__main__':
-    beamline = LoadFlatLatFile('tempfile.txt')
-    print beamline
+    from serpentine import Serpentine
+    blah = Serpentine(line="test.dat")
+    print blah.beamline[-2]
