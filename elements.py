@@ -188,21 +188,20 @@ class BasicCav(Element):
     def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',
         is_diag=False,phi=0,freq=1e9,numdrift=2,egain=0,designQ=1e9,slices=1,loading=0):
 
-        self.P = P
-        self.phi = phi
+        self.P        = P
+        self.phi      = phi
         self.restmass = electron_mass
-        self.freq = freq
-        self.egain = egain
+        self.freq     = freq
+        self.egain    = egain
         self.numdrift = numdrift
-        self.energy0 = sqrt((P*1e9)**2 + self.restmass**2)
-        self.gamma0 = self.energy0/self.restmass
-        self.beta0 = sqrt(1 - 1/(self.gamma0**2))
-        self.alpha = self.egain / (P*1e9)
-        self.k = self.freq*2*pi/c_light
-        
-        self.designQ = designQ
-        self.slices = slices
-        self.loading = loading
+        self.energy0  = sqrt((P*1e9)**2 + self.restmass**2)
+        self.gamma0   = self.energy0/self.restmass
+        self.beta0    = sqrt(1 - 1/(self.gamma0**2))
+        self.alpha    = self.egain / (P*1e9)
+        self.k        = self.freq*2*pi/c_light
+        self.designQ  = designQ
+        self.slices   = slices
+        self.loading  = loading
         Element.__init__(self, name, L, P, S, aper, apershape, is_diag)
     
 class BasicDiag(Element):
@@ -668,7 +667,6 @@ class AccCav(BasicCav):
         
         return beam_out, P
 
-   
     def TrackThruEle(self,beam_in):
         from globals import lietrackarray
         intermed_beam = deepcopy(beam_in)
@@ -693,7 +691,6 @@ class AccCav(BasicCav):
             M += 1
     
         return beam_out
-
 
 class TCav(BasicCav):
     pass
