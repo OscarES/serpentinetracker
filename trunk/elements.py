@@ -31,6 +31,7 @@ from globals import *
 import matplotlib.cbook as cb
 import types
 from numpy.random import normal
+from globals import electron_mass, c_light, e_charge
 
 
 # Twiss object class for addition to the Element superclass
@@ -185,12 +186,12 @@ class BasicMag(Element):
         return beam_out
 
 class BasicCav(Element):
-    def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',
-        is_diag=False,phi=0,freq=1e9,numdrift=2,egain=0,designQ=1e9,slices=1,loading=0):
+    def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',is_diag=False,phi=0,
+        freq=1e9,numdrift=2,egain=0,designQ=1e9,slices=1,loading=0,restmass=electron_mass):
 
         self.P        = P
         self.phi      = phi
-        self.restmass = electron_mass
+        self.restmass = restmass
         self.freq     = freq
         self.egain    = egain
         self.numdrift = numdrift
@@ -432,16 +433,16 @@ class Sbend(BasicMag):
             Cy = 1
             Sy = 0
             Syoverky = self.L     
-            gamma0 = self.gamma0
-            beta0 = self.beta0
-            alpha = self.egain / P
-            phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
-            phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
-            C_perp = cos(phi_perp)
-            S_perp = sin(phi_perp)
-            C_para = cos(phi_para)
-            S_para = sin(phi_para)
             signky = 0
+            #gamma0 = self.gamma0
+            #beta0 = self.beta0
+            #alpha = self.egain / P
+            #phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
+            #phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
+            #C_perp = cos(phi_perp)
+            #S_perp = sin(phi_perp)
+            #C_para = cos(phi_para)
+            #S_para = sin(phi_para)
 
         main_r = array([
             [Cx,Sxoverkx,0,0,0,(h/kx**2)*(1-Cx)],
@@ -575,20 +576,16 @@ class Sbend(BasicMag):
 # Each cavity type is a subclass of BasicCav
 class AccCav(BasicCav):
     def CalcRmat(self, P=-1, L=-1, z=0):
-        from globals import electron_mass, c_light, e_charge
-        if P==-1:
-            P = self.P*1e9         
-        if L==-1:
-            L = self.L
-        if z==0:
-            phi = self.phi
+        if P==-1: P = self.P*1e9         
+        if L==-1: L = self.L
+        if z==0:  phi = self.phi
         else:
             rflambda = c_light/self.freq
             phi = self.phi + (z/rflambda)*2*pi 
 
         energy0 = self.energy0
-        gamma0 = self.gamma0
-        beta0 = self.beta0
+        gamma0  = self.gamma0
+        beta0   = self.beta0
         alpha = self.alpha
         phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
         phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
@@ -626,8 +623,8 @@ class AccCav(BasicCav):
          delta = beam_in.x[5]
          
          L = self.L*DistDrift
-         energy0 = sqrt((P*1e9)**2 + self.restmass**2)
-         gamma0 = energy0/self.restmass
+         energy0 = sqrt((P*1e9)**2 + beam_in.restmass**2)
+         gamma0 = energy0/beam_in.restmass
          beta0 = sqrt(1 - 1/(gamma0**2))
  
          P_s = sqrt((((1/beta0)+delta)**2) - P_x**2 - P_y**2 - (1/((beta0**2)*(gamma0**2))))
@@ -635,7 +632,6 @@ class AccCav(BasicCav):
          beam_out.x[0] = x + L*(P_x/P_s)
          beam_out.x[2] = y + L*(P_y/P_s)
          beam_out.x[4] = z + L*((1/beta0)-((delta+(1/beta0))/P_s))
-         print 'Drift'
          return beam_out
 
     def KickMap(self,beam_in,DistKick,P):
@@ -663,7 +659,6 @@ class AccCav(BasicCav):
                 beam_out.x[5] = delta + A*jn(0,(k*rho))*sin(phi0-(k*z))
 
         P = P + A*jn(0,0)*sin(phi0)
-        print 'Kick'
         
         return beam_out, P
 
@@ -674,9 +669,9 @@ class AccCav(BasicCav):
             DistDrift = lietrackarray[self.numdrift].dlengths
             DistKick = lietrackarray[self.numdrift].klengths    
         except IndexError:
-            raise IndexError('Go play with Lie Algebra as this drift number doesnt not yet exist')
+            raise IndexError('Yoshida factorisation for numdrift=%i is not defined' % numdrift)
         except AttributeError:
-            raise AttributeError('Go play with Lie Algebra as this drift number is not defined ')
+            raise AttributeError('Yoshida factorisation for numdrift=%i is not defined' % numdrift)
 
         N = 0
         M = 0
@@ -838,6 +833,4 @@ if __name__ == '__main__':
     mybeam = Beam(x=array([0,0,0,0,0,1.3]))
     beamout = templine.Track(mybeam)
     print beamout.x
-
-
 
