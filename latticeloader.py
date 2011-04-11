@@ -23,6 +23,7 @@ from beamrep import *
 import xml.dom.minidom as minidom
 import accformat
 from globals import Brho1GeV
+from numpy import radians
 
 def LoadLatFile(name=None, P=None):
     if name==None:
@@ -137,7 +138,7 @@ def MakeElement(node,P,beamline,parttype):
         elif i1.localName=='octupole': pass
         elif i1.localName=='linac_cavity':
             gradient = float(GetDesignFromEle('gradient',i1))
-            phase    = float(GetDesignFromEle('phase0',i1))
+            phase    = radians(float(GetDesignFromEle('phase0',i1)) + 90)
             freq     = float(GetDesignFromEle('rf_freq',i1))
             if parttype.upper()   =='PROTON'  : restmass = proton_mass
             elif parttype.upper() =='ELECTRON': restmass = electron_mass
@@ -326,6 +327,10 @@ class TraceWinStr:
 
 if __name__ == '__main__':
     from serpentine import Serpentine
+    import matplotlib.pyplot as plt
     execfile('ESSTwiss.py')
-    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss)
+    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=50e6)
+    blah.beamline.SetMomProfile()
+    blah.beamline.PlotMomProfile()
+    plt.show()
 
