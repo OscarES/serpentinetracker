@@ -366,7 +366,7 @@ class Sbend(BasicMag):
         is_diag=False,B=array([0,0]),e_angle=0,e_curve=0,h_gap=0,h_int=0):
         self.e_angle = SplitParams(e_angle)
         self.e_curve = SplitParams(e_curve)
-        self.h_gap = S  
+        self.h_gap = SplitParams(h_gap)
         self.h_int = SplitParams(h_int)
         if array(B).size==1:
             B = array([B,0])
@@ -536,7 +536,6 @@ class Sbend(BasicMag):
         if self.is_diag:
             self.DiagOut.centroid = mean(beam_out.x,1)
         beam_out.x = dot(r_in,beam_out.x)
-        self.alpha = self.egain / P
         doflist = range(6)
         zeromat = zeros((6,6,6))
 
@@ -552,7 +551,7 @@ class Sbend(BasicMag):
                                 beam_in.x[Tdof2,partnum]
         
         for partnum in range(beam_out.x.shape[1]):
-            self.CalcRmat((beam_out.x[5,partnumrflambda] * self.P) + self.P)
+            self.CalcRmat((beam_out.x[5,partnum] * self.P) + self.P)
             beam_out.x[:,partnum] = dot(self.R,beam_out.x[:,partnum])
 
         for partnum in range(beam_out.x.shape[1]):
@@ -610,6 +609,7 @@ class AccCav(BasicCav):
         self.R[4,4] = C_para
         self.R[4,5] = (1/(beta0**2 * gamma0**2)) * (L/phi_para) * S_para
         self.R[5,4] = -(beta0**2 * gamma0**2) * (phi_para/L) * S_para
+        self.R[5,5] = C_para
 
     def DriftMap(self,beam_in,DistDrift,P):
          beam_out = deepcopy(beam_in)
