@@ -117,12 +117,13 @@ class GaussBeam(ElectronBeam):
 class TwissGaussBeam(ElectronBeam,GaussBeam):
     def __init__(self, twiss, N=1000, pos=array([0,0,0,0,0,1]), Q=1e-9, chargesign=-1,restmass=electron_mass):
         P = pos[5]
-        relgamma = (P*1e9)/electron_mass
+        gammasquared = ( (P*1e9)**2 + restmass**2 ) / restmass**2
+        betagamma = sqrt(gammasquared - 1)
         sig=zeros(6)
-        sig[0] = sqrt((twiss.nemitx/relgamma) * twiss.betax)
-        sig[1] = sqrt((twiss.nemitx/relgamma) / twiss.betax)
-        sig[2] = sqrt((twiss.nemity/relgamma) * twiss.betay)
-        sig[3] = sqrt((twiss.nemity/relgamma) / twiss.betay)
+        sig[0] = sqrt((twiss.nemitx/betagamma) * twiss.betax)
+        sig[1] = sqrt((twiss.nemitx/betagamma) / twiss.betax)
+        sig[2] = sqrt((twiss.nemity/betagamma) * twiss.betay)
+        sig[3] = sqrt((twiss.nemity/betagamma) / twiss.betay)
         sig[4] = twiss.sigz
         sig[5] = twiss.sigP
         
