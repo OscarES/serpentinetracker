@@ -270,7 +270,6 @@ class Line(list):
                 continue
             i.S = cum_s
             cum_s += i.L
-        from serpentine import Serpentine
 
     def TwissProp(self, ini_twiss):
         """Propagates an initial twiss object ('ini_twiss') through the lattice.
