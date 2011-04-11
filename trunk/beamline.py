@@ -271,6 +271,19 @@ class Line(list):
             i.S = cum_s
             cum_s += i.L
 
+    def SetMomProfile(self,ini_p=None):
+        from serpentine import Serpentine
+        from scipy import sin
+        if ini_p==None: ini_p = self[0].P*1e9
+        cum_p = ini_p
+        for i in self:
+            if isinstance(i,Serpentine):
+                i.beamline.SetSPos(ini_p=cum_p)
+                continue
+            i.P = cum_p
+            if i.__class__.__name__ == 'AccCav':
+                cum_p += i.egain * sin(i.phi)
+
     def TwissProp(self, ini_twiss):
         """Propagates an initial twiss object ('ini_twiss') through the lattice.
 
@@ -362,6 +375,13 @@ class Line(list):
             S[self.index(ele)] = ele.S
             Rparam[self.index(ele)] = ele.R[param1-1,param2-1]
         plot(S,Rparam,'-x')
+    
+    def PlotMomProfile(self):
+        S,P = zeros(len(self)),zeros(len(self))
+        for ele in self:
+            S[self.index(ele)] = ele.S
+            P[self.index(ele)] = ele.P
+        plot(S,P,'-x')
 
     def XRmat(self,ind=0):
         """Print the 2x2 block of the R matrix corresponding to the horizontal transverse space.
