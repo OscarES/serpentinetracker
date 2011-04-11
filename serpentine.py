@@ -68,6 +68,24 @@ class Serpentine:
 
     def PlotTwiss(self,bx=1,by=1,ax=0,ay=0,px=0,py=0):
         self.beamline.PlotTwiss(bx=bx,by=by,ax=ax,ay=ay,px=px,py=py)
+
+    def SetMomProfile(self,ini_p=None):
+        from serpentine import Serpentine
+        from scipy import sin
+        if ini_p==None: ini_p = self.beamline[0].P*1e9
+        cum_p = ini_p
+        for i in self.beamline:
+            if isinstance(i,Serpentine):
+                i.SetMomProfile(ini_p=cum_p)
+                continue
+            i.P = cum_p
+            if i.__class__.__name__ == 'AccCav':
+                cum_p += i.egain * sin(i.phi)
+
+        for ele in self.beamline:
+            ele.CalcRmat()
+
+        self.TwissProp()
         
     def Track(self):
         self.beamline.offset = self.offset

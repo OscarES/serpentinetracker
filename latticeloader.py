@@ -330,7 +330,7 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     execfile('ESSTwiss.py')
     blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=50e6)
-    blah.beamline.SetMomProfile()
+    blah.SetMomProfile()
     plt.figure()
     blah.beamline.PlotMomProfile()
     plt.figure()

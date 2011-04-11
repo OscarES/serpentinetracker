@@ -271,19 +271,6 @@ class Line(list):
             i.S = cum_s
             cum_s += i.L
 
-    def SetMomProfile(self,ini_p=None):
-        from serpentine import Serpentine
-        from scipy import sin
-        if ini_p==None: ini_p = self[0].P*1e9
-        cum_p = ini_p
-        for i in self:
-            if isinstance(i,Serpentine):
-                i.beamline.SetSPos(ini_p=cum_p)
-                continue
-            i.P = cum_p
-            if i.__class__.__name__ == 'AccCav':
-                cum_p += i.egain * sin(i.phi)
-
     def TwissProp(self, ini_twiss):
         """Propagates an initial twiss object ('ini_twiss') through the lattice.
 
