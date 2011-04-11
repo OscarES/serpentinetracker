@@ -22,6 +22,7 @@ from elements import *
 from beamrep import *
 import xml.dom.minidom as minidom
 import accformat
+from globals import Brho1GeV
 
 def LoadLatFile(name=None):
     if name==None:
@@ -63,29 +64,28 @@ def LoadLat(filestr):
     # Get the beam node.  Resort to defaults if non-existent
     try:
         beamroot = machineroot.getElementsByTagName('beam')[-1]
-        positionroot = beamroot.getElementsByTagName('position')[-1]
+        parttype = beamroot.getElementsByTagName('particle')[-1].getAttribute('type')
     except IndexError:
+        parttype = 'ELECTRON'
         print "No beam node.  Using defaults."
 
     # Get the lattice node.  Resort to defaults if non-existent
     try:
         latticeroot = machineroot.getElementsByTagName('lattice')[-1]
         P = float(GetDesignFromEle('pc',latticeroot))/1e9
-        print P
     except IndexError:
         print "No lattice node.  Using P = 1 GeV."
-        P = 1
+        P = 1.0
 
     # Now loop around the childNodes and extract each element
     beamline = Line()
     for i1 in trackingroot.childNodes:
         if i1.nodeType == i1.ELEMENT_NODE:
-            beamline = MakeElement(i1,P,beamline)
+            beamline = MakeElement(i1,P,beamline,parttype)
 
     return beamline
 
-def MakeElement(node,P,beamline):
-    from globals import Brho1GeV
+def MakeElement(node,P,beamline,parttype):
     numeles = len(beamline)
     Brho = Brho1GeV * P
     elename = node.getAttribute('name')
@@ -130,7 +130,9 @@ def MakeElement(node,P,beamline):
             gradient = float(GetDesignFromEle('gradient',i1))
             phase    = float(GetDesignFromEle('phase0',i1))
             freq     = float(GetDesignFromEle('rf_freq',i1))
-            beamline.append(AccCav(name=elename,L=L,P=P,phi=phase,numdrift=2,egain=gradient*L))
+            if parttype.upper()   =='PROTON'  : restmass = proton_mass
+            elif parttype.upper() =='ELECTRON': restmass = electron_mass
+            beamline.append(AccCav(name=elename,L=L,P=P,phi=phase,numdrift=2,egain=gradient*L,restmass=restmass))
         elif i1.localName=='sextupole':
             B = ExtractB(i1,P)
             B *= L
@@ -214,6 +216,8 @@ class TraceWinStr:
         machine.appendChild(doc.createElement("lattice"))
         self.machine = machine
 
+        self.makebeam()
+
         self.freq = None
 
         for ele in data:
@@ -225,6 +229,13 @@ class TraceWinStr:
             elif ele[0].upper() == 'SET_ADV': pass
             elif ele[0].upper() == 'LATTICE': pass
             else: self.makedrift(ele)
+
+    def makebeam(self):
+        doc = minidom.Document()
+        beamnode = self.machine.getElementsByTagName('beam')[-1]
+        particlenode = doc.createElement("particle")
+        particlenode.setAttribute('type','PROTON')
+        beamnode.appendChild(particlenode)
 
     def makedrift(self,ele):
         tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
@@ -306,5 +317,6 @@ class TraceWinStr:
 
 if __name__ == '__main__':
     from serpentine import Serpentine
-    blah = Serpentine(line="C.SQ.DCR.2.50mA.(3.3.6).dat")
+    execfile('ESSTwiss.py')
+    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss)
 
