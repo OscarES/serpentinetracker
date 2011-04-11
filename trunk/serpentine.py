@@ -26,14 +26,14 @@ from pylab import plot, subplot, figure, xlabel, ylabel
 from globals import electron_mass
 
 class Serpentine:
-    def __init__(self,line, twiss=None, beam=None):
+    def __init__(self,line, twiss=None, beam=None, P=None):
         self.offset = zeros(6)
 
         if not (isinstance(line, basestring) or isinstance(line, beamline.Line)):
             raise "Must provide a beamline or a path to an AML file."
 
         if isinstance(line, basestring):
-            self.beamline = LL.LoadLatFile(line)
+            self.beamline = LL.LoadLatFile(line,P=P)
         elif isinstance(line, beamline.Line):
             self.beamline = line
         self.beamline.SetSPos()
