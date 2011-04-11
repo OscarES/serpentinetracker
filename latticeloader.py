@@ -24,7 +24,7 @@ import xml.dom.minidom as minidom
 import accformat
 from globals import Brho1GeV
 
-def LoadLatFile(name=None):
+def LoadLatFile(name=None, P=None):
     if name==None:
         raise "Must specify a filename."
     try:
@@ -33,6 +33,15 @@ def LoadLatFile(name=None):
         if name.split('.')[-1]=='dat':
             filestr = TraceWinStr(name).printstr()
         else: raise
+    if not P==None:
+        fileroot = minidom.parseString(filestr)
+        machineroot = fileroot.getElementsByTagName('machine')[-1]
+        latticeroot = machineroot.getElementsByTagName('lattice')[-1]
+        pcnode = minidom.Document().createElement('pc')
+        pcnode.setAttribute('design',str(P))
+        latticeroot.appendChild(pcnode)
+        filestr = fileroot.toprettyxml()
+
     beamline = LoadLat(filestr)
     return beamline
 
