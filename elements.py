@@ -588,10 +588,16 @@ class AccCav(BasicCav):
         alpha = self.alpha
         phi_perp = sqrt(abs(pi * alpha * cos(phi)) / 2.0)
         phi_para = sqrt(abs(pi * alpha * cos(phi))) / (gamma0 * beta0)
-        C_perp = cos(phi_perp)
-        S_perp = sin(phi_perp)
-        C_para = cos(phi_para)
-        S_para = sin(phi_para)
+        if cos(phi)>=0:
+            C_perp = cos(phi_perp)
+            S_perp = sin(phi_perp)
+            C_para = cos(phi_para)
+            S_para = sin(phi_para)
+        else:
+            C_perp = cosh(phi_perp)
+            S_perp = sinh(phi_perp)
+            C_para = cosh(phi_para)
+            S_para = sinh(phi_para)
     
         if not hasattr(self,'R'):
             self.R = zeros((6,6))
