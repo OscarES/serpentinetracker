@@ -619,7 +619,6 @@ class AccCav(BasicCav):
 
     def DriftMap(self,beam_in,DistDrift,P):
          beam_out = deepcopy(beam_in)
-         print P
      
          x = beam_in.x[0]
          P_x = beam_in.x[1]
