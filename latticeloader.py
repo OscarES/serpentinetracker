@@ -332,7 +332,7 @@ if __name__ == '__main__':
     blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=50e6)
     blah.SetMomProfile()
     plt.figure()
-    blah.beamline.PlotMomProfile()
+    blah.PlotEkProfile()
     plt.figure()
     blah.PlotTwiss()
     plt.show()

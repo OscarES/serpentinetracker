@@ -370,6 +370,13 @@ class Line(list):
             P[self.index(ele)] = ele.P
         plot(S,P,'-x')
 
+    def PlotEkProfile(self,restmass):
+        S,Ek = zeros(len(self)),zeros(len(self))
+        for ele in self:
+            S[self.index(ele)] = ele.S
+            Ek[self.index(ele)] = sqrt(ele.P**2 + restmass**2)
+        plot(S,Ek,'-x')
+
     def XRmat(self,ind=0):
         """Print the 2x2 block of the R matrix corresponding to the horizontal transverse space.
         'ind' is the element for which the value is printed."""
