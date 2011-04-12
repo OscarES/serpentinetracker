@@ -103,7 +103,13 @@ class Serpentine:
 
     def PlotEkProfile(self,formatstr='-x'):
         self.beamline.PlotEkProfile(restmass=self.beam_in.restmass,formatstr=formatstr)
-        
+
+    def GetRFPhases(self):
+        return self.beamline.GetRFPhases()
+    
+    def PlotRFPhases(self):
+        self.beamline.PlotRFPhases()
+
     def Track(self):
         self.beamline.offset = self.offset
         if hasattr(self,'Mover'):
