@@ -51,11 +51,12 @@ class Serpentine:
             self.twiss = BL.Twiss()
             self.twiss_out = BL.Twiss()
         if parttype.upper()=='PROTON':
-            self.beam_in.MakeProtons()
+            try: self.beam_in.MakeProtons()
+            except AttributeError: pass
         elif parttype.upper()=='POSITRONS':
-            self.beam_in.MakePositrons()
-        elif parttype.upper()=='ELECTRONS':
-            pass
+            try: self.beam_in.MakePositrons()
+            except AttributeError: pass
+        elif parttype.upper()=='ELECTRONS': pass
         else:
             raise ValueError('Unrecognised particle species: %s' % parttype)
 
