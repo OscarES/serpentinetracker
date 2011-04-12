@@ -142,7 +142,7 @@ def MakeElement(node,P,beamline,parttype):
             freq     = float(GetDesignFromEle('rf_freq',i1))
             if parttype.upper()   =='PROTON'  : restmass = proton_mass
             elif parttype.upper() =='ELECTRON': restmass = electron_mass
-            beamline.append(AccCav(name=elename,L=L,P=P,phi=phase,numdrift=2,egain=gradient*L,restmass=restmass))
+            beamline.append(AccCav(name=elename,L=L,P=P,freq=freq,phi=phase,numdrift=2,egain=gradient*L,restmass=restmass))
         elif i1.localName=='sextupole':
             B = ExtractB(i1,P)
             B *= L
