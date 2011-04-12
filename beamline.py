@@ -381,6 +381,13 @@ class Line(list):
         S,Ek = self.GetEkProfile(restmass)
         plot(S,Ek,formatstr)
 
+    def GetRFPhases(self):
+        AccCavs = self.GetEleByType('AccCav')
+        return [ele.phi for ele in AccCavs]
+        
+    def PlotRFPhases(self):
+        plot(self.GetRFPhases(),'x')
+
     def XRmat(self,ind=0):
         """Print the 2x2 block of the R matrix corresponding to the horizontal transverse space.
         'ind' is the element for which the value is printed."""
