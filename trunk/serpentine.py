@@ -71,7 +71,7 @@ class Serpentine:
 
     def SetMomProfile(self,ini_p=None):
         from serpentine import Serpentine
-        from scipy import sin
+        from scipy import sin,sqrt
         if ini_p==None: ini_p = self.beamline[0].P*1e9
         cum_p = ini_p
         for i in self.beamline:
@@ -80,12 +80,20 @@ class Serpentine:
                 continue
             i.P = cum_p
             if i.__class__.__name__ == 'AccCav':
-                cum_p += i.egain * sin(i.phi)
+                energy = sqrt(cum_p**2 + self.beam_in.restmass**2)
+                energy += i.egain * sin(i.phi)
+                cum_p = sqrt(energy**2 - self.beam_in.restmass**2)
 
         for ele in self.beamline:
             ele.CalcRmat()
 
         self.TwissProp()
+
+    def PlotMomProfile(self):
+        self.beamline.PlotMomProfile()
+
+    def PlotEkProfile(self):
+        self.beamline.PlotEkProfile(restmass=self.beam_in.restmass)
         
     def Track(self):
         self.beamline.offset = self.offset
