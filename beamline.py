@@ -362,20 +362,24 @@ class Line(list):
             S[self.index(ele)] = ele.S
             Rparam[self.index(ele)] = ele.R[param1-1,param2-1]
         plot(S,Rparam,'-x')
-    
-    def PlotMomProfile(self):
-        S,P = zeros(len(self)),zeros(len(self))
-        for ele in self:
-            S[self.index(ele)] = ele.S
-            P[self.index(ele)] = ele.P
-        plot(S,P,'-x')
 
-    def PlotEkProfile(self,restmass):
-        S,Ek = zeros(len(self)),zeros(len(self))
-        for ele in self:
-            S[self.index(ele)] = ele.S
-            Ek[self.index(ele)] = sqrt(ele.P**2 + restmass**2)
-        plot(S,Ek,'-x')
+    def GetMomProfile(self):
+        S = [ele.S for ele in self]
+        P = [ele.P for ele in self]
+        return (S,P)
+    
+    def PlotMomProfile(self,formatstr='-x'):
+        S,P = self.GetMomProfile()
+        plot(S,P,formatstr)
+
+    def GetEkProfile(self,restmass):
+        S  = [ele.S for ele in self]
+        Ek = [sqrt(ele.P**2+restmass**2)-restmass for ele in self]
+        return (S,Ek)
+
+    def PlotEkProfile(self,restmass,formatstr='-x'):
+        S,Ek = self.GetEkProfile(restmass)
+        plot(S,Ek,formatstr)
 
     def XRmat(self,ind=0):
         """Print the 2x2 block of the R matrix corresponding to the horizontal transverse space.

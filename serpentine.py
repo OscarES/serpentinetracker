@@ -33,7 +33,7 @@ class Serpentine:
             raise "Must provide a beamline or a path to an AML file."
 
         if isinstance(line, basestring):
-            self.beamline = LL.LoadLatFile(line,P=P)
+            self.beamline,parttype = LL.LoadLatFile(line,P=P)
         elif isinstance(line, beamline.Line):
             self.beamline = line
         self.beamline.SetSPos()
@@ -50,6 +50,14 @@ class Serpentine:
             self.beam_out = None
             self.twiss = BL.Twiss()
             self.twiss_out = BL.Twiss()
+        if parttype.upper()=='PROTON':
+            self.beam_in.MakeProtons()
+        elif parttype.upper()=='POSITRONS':
+            self.beam_in.MakePositrons()
+        elif parttype.upper()=='ELECTRONS':
+            pass
+        else:
+            raise ValueError('Unrecognised particle species: %s' % parttype)
 
     def SingleParticle(self, P=1, Q=1e-9, chargesign=-1,restmass=electron_mass):
         self.beam_in = beamrep.Beam(P, Q, chargesign, restmass)
@@ -89,11 +97,11 @@ class Serpentine:
 
         self.TwissProp()
 
-    def PlotMomProfile(self):
-        self.beamline.PlotMomProfile()
+    def PlotMomProfile(self,formatstr='-x'):
+        self.beamline.PlotMomProfile(formatstr)
 
-    def PlotEkProfile(self):
-        self.beamline.PlotEkProfile(restmass=self.beam_in.restmass)
+    def PlotEkProfile(self,formatstr='-x'):
+        self.beamline.PlotEkProfile(restmass=self.beam_in.restmass,formatstr=formatstr)
         
     def Track(self):
         self.beamline.offset = self.offset
