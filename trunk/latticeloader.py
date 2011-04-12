@@ -43,8 +43,8 @@ def LoadLatFile(name=None, P=None):
         latticeroot.appendChild(pcnode)
         filestr = fileroot.toprettyxml()
 
-    beamline = LoadLat(filestr)
-    return beamline
+    beamline,parttype = LoadLat(filestr)
+    return (beamline,parttype)
 
 def LoadFlatLatFile(name=None):
     if name==None:
@@ -93,7 +93,7 @@ def LoadLat(filestr):
         if i1.nodeType == i1.ELEMENT_NODE:
             beamline = MakeElement(i1,P,beamline,parttype)
 
-    return beamline
+    return (beamline,parttype)
 
 def MakeElement(node,P,beamline,parttype):
     numeles = len(beamline)
@@ -328,11 +328,15 @@ class TraceWinStr:
 if __name__ == '__main__':
     from serpentine import Serpentine
     import matplotlib.pyplot as plt
+    from scipy import sqrt
     execfile('ESSTwiss.py')
-    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=50e6)
+    in_energy = 50e6
+    inP = sqrt((in_energy+proton_mass)**2 - proton_mass**2)
+    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=inP)
     blah.SetMomProfile()
     plt.figure()
-    blah.PlotEkProfile()
+    blah.PlotMomProfile(formatstr='-rx')
+    blah.PlotEkProfile(formatstr='-bo')
     plt.figure()
     blah.PlotTwiss()
     plt.show()
