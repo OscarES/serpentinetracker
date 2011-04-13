@@ -39,5 +39,19 @@ lietrackarray.append(False)
 lietrackarray.append(lietrackparams(dlengths=[1.0],klengths=[1.0]))
 lietrackarray.append(lietrackparams(dlengths=[0.5,0.5],klengths=[1.0]))
 lietrackarray.append(False)
-lietrackarray.append(lietrackparams(dlengths=[(1/12)*(4+2*cbrt(2)+cbrt(4)),(1/2)-((1/12)*(4+2*cbrt(2)+cbrt(4))),(1/2)-((1/12)*(4+2*cbrt(2)+cbrt(4))),(1/12)*(4+2*cbrt(2)+cbrt(4))],klengths=[(1/6)*(4+2*cbrt(2)+cbrt(4)),1-((1/3)*(4+2*cbrt(2)+cbrt(4))),(1/6)*(4+2*cbrt(2)+cbrt(4))]))
+lietrackarray.append(
+    lietrackparams(
+        dlengths=[
+            (1./12)*(4+2*cbrt(2.)+cbrt(4.)),
+            (1./2)-((1/12)*(4+2*cbrt(2.)+cbrt(4.))),
+            (1./2)-((1/12)*(4+2*cbrt(2.)+cbrt(4.))),
+            (1./12)*(4+2*cbrt(2.)+cbrt(4.))
+            ],
+        klengths=[
+            (1./6)*(4+2*cbrt(2.)+cbrt(4.)),
+            1-((1./3)*(4+2*cbrt(2.)+cbrt(4.))),
+            (1./6)*(4+2*cbrt(2.)+cbrt(4.))
+            ]
+        )
+    )
 
