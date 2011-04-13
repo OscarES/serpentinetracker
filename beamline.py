@@ -20,10 +20,13 @@
 # Define the physics functions and classes (e.g. tracking, Rmat calcs, etc.)
 
 # numpy arrays will be useful here
-from numpy import *
-from matplotlib.pylab import *
-from elements import *
-from scipy import weave
+#from numpy import *
+import numpy as np
+from matplotlib.pylab import plot, subplot, xlabel, ylabel, legend
+#from elements import *
+#from scipy import weave
+from elements import RotMats
+import copy
 
 # ===============================================================
 # Lists of beamline components are almost, but not quite, the right
@@ -39,7 +42,7 @@ class Line(list):
         """Allows multiplication of a small lattice subset by an integer in order to easily
         define a repeated section"""
         new_Line = Line()
-        for f in range(fact): new_Line.extend(deepcopy(self))
+        for f in range(fact): new_Line.extend(copy.deepcopy(self))
         return new_Line
 
     def __repr__(self):
@@ -54,16 +57,15 @@ class Line(list):
         return fixedlist
 
     def _FindEleByName(self,name):
-        from serpentine import Serpentine
         indlist = list()
         for i in range(len(self)):
-            if isinstance(self[i],Serpentine):
+            if self[i].__class__.__name__=='Serpentine':
                 intern_list = self[i].beamline.FindEleByName(name)
                 try:
                     for int_i in intern_list:
                         indlist.append([i,int_i])
                 except TypeError:
-                    indlist.append(inter_list)
+                    indlist.append(intern_list)
             elif self[i].name == name:
                 indlist.append(i)
         return indlist
@@ -77,10 +79,9 @@ class Line(list):
         return fixedlist
 
     def _FindEleByType(self,classname):
-        from serpentine import Serpentine
         indlist = list()
         for i in range(len(self)):
-            if isinstance(self[i],Serpentine):
+            if self[i].__class__.__name__=='Serpentine':
                 intern_list = self[i].beamline._FindEleByType(classname)
                 for int_i in intern_list:
                     indlist.append([i,int_i])
@@ -106,9 +107,8 @@ class Line(list):
             
     def FindEleByObj(self, obj):
         """Returns the index at which the object 'obj' can be found in self."""
-        from serpentine import Serpentine
         for i in range(len(self)):
-            if isinstance(self[i],Serpentine):
+            if self[i].__class__.__name__=='Serpentine':
                 intern_list = self[i].beamline.FindEleByObj(obj)
                 eledict = dict()
                 eledict[i] = intern_list
@@ -135,9 +135,9 @@ class Line(list):
 
     def RmatAtoB(self, first, last):
         """Returns the 6D R-matrix between the entrance of self[first], and the exit of self[last]."""
-        R = eye(6)
+        R = np.eye(6)
         for i in self[first:last+1]:
-            R = dot(i.R, R)
+            R = np.dot(i.R, R)
         return R
     
     def Track(self,Beam):
@@ -157,12 +157,11 @@ class Line(list):
         inherits from that class).
         
         Track returns the beam that results from tracking through the lattice."""
-        from serpentine import Serpentine
         prog = progressBar(0,len(self),77)
-        beam_out = deepcopy(Beam)
+        beam_out = copy.deepcopy(Beam)
         # Beam momentum is defined as absolute, whereas the R matrices expect delta_P/P
         for ele in self:
-            if isinstance(ele, Serpentine):
+            if ele.__class__.__name__=='Serpentine':
                 ele.beam_in = beam_out
                 ele.Track()
                 beam_out = ele.beam_out
@@ -201,7 +200,7 @@ class Line(list):
         beam_out.x[1,:] -= delta_xp
         beam_out.x[2,:] -= delta_y
         beam_out.x[3,:] -= delta_yp
-        beam_out.x = dot(r_in,beam_out.x)
+        beam_out.x = np.dot(r_in,beam_out.x)
         return beam_out.x
 
     def _ReAdjustBeamByLineOffset(self,ele,beam_out):
@@ -217,7 +216,7 @@ class Line(list):
         beam_out.x[1,:] += delta_xp
         beam_out.x[2,:] += delta_y
         beam_out.x[3,:] += delta_yp
-        beam_out.x = dot(r_out,beam_out.x)
+        beam_out.x = np.dot(r_out,beam_out.x)
         return beam_out.x
 
     def _AdjustBeamByOffset(self,ele,beam_out):
@@ -226,7 +225,7 @@ class Line(list):
         beam_out.x[1,:] = beam_out.x[1,:] - ele.offset[1]
         beam_out.x[2,:] = beam_out.x[2,:] - ele.offset[2]
         beam_out.x[3,:] = beam_out.x[3,:] - ele.offset[3]
-        beam_out.x = dot(r_in,beam_out.x)
+        beam_out.x = np.dot(r_in,beam_out.x)
         return beam_out.x
     
     def _ReAdjustBeamByOffset(self,ele,beam_out):
@@ -235,7 +234,7 @@ class Line(list):
         beam_out.x[1,:] = beam_out.x[1,:] + ele.offset[1]
         beam_out.x[2,:] = beam_out.x[2,:] + ele.offset[2]
         beam_out.x[3,:] = beam_out.x[3,:] + ele.offset[3]
-        beam_out.x = dot(r_out,beam_out.x)
+        beam_out.x = np.dot(r_out,beam_out.x)
         return beam_out.x
     
     def _AdjustBeamWithMover(self,ele,beam_out):
@@ -245,7 +244,7 @@ class Line(list):
         beam_out.x[1,:] = beam_out.x[1,:] - moverpos[1]
         beam_out.x[2,:] = beam_out.x[2,:] - moverpos[2]
         beam_out.x[3,:] = beam_out.x[3,:] - moverpos[3]
-        beam_out.x = dot(r_in,beam_out.x)
+        beam_out.x = np.dot(r_in,beam_out.x)
         return beam_out.x
     
     def _ReAdjustBeamWithMover(self,ele,beam_out):
@@ -255,17 +254,16 @@ class Line(list):
         beam_out.x[1,:] = beam_out.x[1,:] + moverpos[1]
         beam_out.x[2,:] = beam_out.x[2,:] + moverpos[2]
         beam_out.x[3,:] = beam_out.x[3,:] + moverpos[3]
-        beam_out.x = dot(r_out,beam_out.x)
+        beam_out.x = np.dot(r_out,beam_out.x)
         return beam_out.x
     
     def SetSPos(self,ini_s=0):
         """Sets the longitudinal position of each element based on an initial value
         that defines the location of the upstream end of the first element (ini_s),
         and the length of each subsequent element."""
-        from serpentine import Serpentine
         cum_s = ini_s
         for i in self:
-            if isinstance(i,Serpentine):
+            if i.__class__.__name__=='Serpentine':
                 i.beamline.SetSPos(ini_s=cum_s)
                 continue
             i.S = cum_s
@@ -277,10 +275,6 @@ class Line(list):
         For each element, the twiss calculated at its downstream end are stored as an
         attribute of that element.  The twiss output at the end of the lattice are
         returned from this function."""
-        from serpentine import Serpentine
-        from elements import Twiss
-        import copy
-
         sum_phix,sum_phiy = 0,0
         final_twiss = copy.deepcopy(ini_twiss)
         finalgammax = (1+ini_twiss.alphax**2) / ini_twiss.betax
@@ -289,16 +283,16 @@ class Line(list):
         for ele in self:
             ele.twiss = copy.deepcopy(final_twiss)
 
-            if isinstance(ele, Serpentine):
+            if ele.__class__.__name__=='Serpentine':
                 ele.TwissProp()
                 continue
 
-            det_x = det(ele.R[0:2,0:2])
-            det_y = det(ele.R[2:4,2:4])
+            det_x = np.linalg.det(ele.R[0:2,0:2])
+            det_y = np.linalg.det(ele.R[2:4,2:4])
 
-            deltaphix = arctan(ele.R[0,1] / \
+            deltaphix = np.arctan(ele.R[0,1] / \
                 (final_twiss.betax*ele.R[0,0] - final_twiss.alphax*ele.R[0,1]))
-            deltaphiy = arctan(ele.R[2,3] / \
+            deltaphiy = np.arctan(ele.R[2,3] / \
                 (final_twiss.betay*ele.R[2,2] - final_twiss.alphay*ele.R[2,3]))
             sum_phix += deltaphix
             sum_phiy += deltaphiy
@@ -356,8 +350,8 @@ class Line(list):
         
         Note that param1 and param2 use 'Matlab-style' indexing, rather than 'Python-style'.
         i.e. they can be any integer between 1 and 6 inclusive."""
-        S = zeros(len(self))
-        Rparam = ones(len(self))
+        S = np.zeros(len(self))
+        Rparam = np.ones(len(self))
         for ele in self:
             S[self.index(ele)] = ele.S
             Rparam[self.index(ele)] = ele.R[param1-1,param2-1]
@@ -374,7 +368,7 @@ class Line(list):
 
     def GetEkProfile(self,restmass):
         S  = [ele.S for ele in self]
-        Ek = [sqrt(ele.P**2+restmass**2)-restmass for ele in self]
+        Ek = [np.sqrt(ele.P**2+restmass**2)-restmass for ele in self]
         return (S,Ek)
 
     def PlotEkProfile(self,restmass,formatstr='-x'):
@@ -407,7 +401,6 @@ class Line(list):
         print self[ind].R[4:6,4:6]
 
     def GetTwiss(self):
-        from serpentine import Serpentine
         twiss_dict = {}
         twiss_dict['S'] = []
         twiss_dict['betax'] = []
@@ -421,7 +414,7 @@ class Line(list):
         twiss_dict['etapx'] = []
         twiss_dict['etapy'] = []
         for ele in self:
-            if isinstance(ele,Serpentine):
+            if ele.__class__.__name__=='Serpentine':
                 subtwiss_dict = ele.beamline.GetTwiss()
                 twiss_dict['S'].extend(subtwiss_dict['S'])
                 twiss_dict['betax'].extend(subtwiss_dict['betax'])
@@ -541,9 +534,9 @@ def FixBorkedList(borkedlist):
     
 # A test suite
 if __name__ == '__main__':
-    from elements import *
-    from beamrep import *
-    from matplotlib.pylab import *
+    from elements import Drift, Quad
+    import beamrep
+    import matplotlib.pylab as plt
     import profile
 
     Shortline = Line()
@@ -572,25 +565,31 @@ if __name__ == '__main__':
     print "="*20
     print "    TwissProp"
     print "="*20
-    ini_twiss = {}
-    ini_twiss['betax'] = 1
-    ini_twiss['alphax'] = 0
-    ini_twiss['betay'] = 2
-    ini_twiss['alphay'] = 0
+    i_twiss = {}
+    i_twiss['betax'] = 1
+    i_twiss['alphax'] = 0
+    i_twiss['betay'] = 2
+    i_twiss['alphay'] = 0
 
-    final_twiss = beamline.TwissProp(ini_twiss)
-    figure(1);PlotTwiss(final_twiss,ax=1,ay=1,px=1,py=1)
+    f_twiss = beamline.TwissProp(i_twiss)
+    plt.figure(1)
+    PlotTwiss(f_twiss,ax=1,ay=1,px=1,py=1)
 
     print "Assigning beam..."
-    beamin = GaussBeam(N=1e4)
+    beamin = beamrep.GaussBeam(N=1e4)
     print "Starting tracking..."
     # profile.run('beamout = elements.Tracking(beamin)')
-    profile.run('beamout = beamline.Track(beamin)')
+    # profile.run('beamout = beamline.Track(beamin)')
+    beamout = beamline.Track(beamin)
     print "Done.  Now printing figures."
-    figure(2)
-    subplot(121);plot(beamin.x[0,:],beamin.x[1,:],'bx')
-    subplot(121);plot(beamout.x[0,:],beamout.x[1,:],'r.')
-    subplot(122);plot(beamin.x[2,:],beamin.x[3,:],'bx')
-    subplot(122);plot(beamout.x[2,:],beamout.x[3,:],'r.')
+    plt.figure(2)
+    plt.subplot(121)
+    plt.plot(beamin.x[0,:], beamin.x[1,:],'bx')
+    plt.subplot(121)
+    plt.plot(beamout.x[0,:], beamout.x[1,:],'r.')
+    plt.subplot(122)
+    plt.plot(beamin.x[2,:], beamin.x[3,:],'bx')
+    plt.subplot(122)
+    plt.plot(beamout.x[2,:], beamout.x[3,:],'r.')
 
-    show()
+    plt.show()
