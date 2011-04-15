@@ -28,7 +28,7 @@ from copy import deepcopy
 import matplotlib.cbook as cb
 import types
 from numpy.random import normal
-from globals import electron_mass, c_light, e_charge, lietrackarray
+from globals import electron_mass, c_light, e_charge, lietrackarray, Brho1GeV, lietracknp
 from scipy.special import jn
 
 # Twiss object class for addition to the Element superclass
@@ -75,10 +75,10 @@ class Element:
         self.CalcTmat()
 
     def SetOffset(self, o) :
-        if type(o) == array:
+        if type(o) == np.array:
             self.offset = o
         elif type(o) == list:
-            self.offset = array(o)
+            self.offset = np.array(o)
 
     def GetOffset(self) :
         return self.offset.copy()
@@ -161,7 +161,7 @@ class BasicMag(Element):
         [r_in,r_out] = RotMats(-self.tilt)
         beam_out = deepcopy(beam_in)
         if self.is_diag:
-            self.DiagOut.centroid = mean(beam_out.x,1)
+            self.DiagOut.centroid = np.mean(beam_out.x,1)
         beam_out.x = np.dot(r_in,beam_out.x)
         doflist = range(6)
         zeromat = np.zeros((6,6,6))
@@ -195,11 +195,11 @@ class BasicCav(Element):
         self.freq     = freq
         self.egain    = egain
         self.numdrift = numdrift
-        self.energy0  = sqrt((P*1e9)**2 + self.restmass**2)
+        self.energy0  = np.sqrt((P*1e9)**2 + self.restmass**2)
         self.gamma0   = self.energy0/self.restmass
-        self.beta0    = sqrt(1 - 1/(self.gamma0**2))
+        self.beta0    = np.sqrt(1 - 1/(self.gamma0**2))
         self.alpha    = self.egain / (P*1e9)
-        self.k        = self.freq*2*pi/c_light
+        self.k        = self.freq*2*np.pi/c_light
         self.designQ  = designQ
         self.slices   = slices
         self.loading  = loading
@@ -209,7 +209,7 @@ class BasicDiag(Element):
     def __init__(self,name,L=1,P=1,S=0,aper=0,apershape='ELLIPTICAL',
         is_diag=True,res=np.array([0,0])):
    
-        if type(res)==int or type(res)==float or type(res)==double:
+        if type(res)==int or type(res)==float or type(res)==np.double:
             self.res = np.array([res, res])
         else:
             self.res = res
@@ -231,7 +231,7 @@ class Xcor(BasicMag):
         beam_out = deepcopy(beam_in)
         if self.is_diag:
             self.DiagOut.centroid = np.mean(beam_out.x,1)
-        beam_out.x = dot(DriftRmat(self.L/2.),beam_out.x)
+        beam_out.x = np.dot(DriftRmat(self.L/2.),beam_out.x)
         for partnum in range(beam_in.x.shape[1]):
             momentum = (beam_in.x[5,partnum] * self.P) + self.P
             Brho = Brho1GeV * momentum
@@ -368,8 +368,8 @@ class Sbend(BasicMag):
         self.e_curve = SplitParams(e_curve)
         self.h_gap = SplitParams(h_gap)
         self.h_int = SplitParams(h_int)
-        if array(B).size==1:
-            B = array([B,0])
+        if np.array(B).size==1:
+            B = np.array([B,0])
         BasicMag.__init__(self, name, L, P, S, aper, apershape, is_diag, B)
         self.B = B
         try:
@@ -444,7 +444,7 @@ class Sbend(BasicMag):
             #C_para = cos(phi_para)
             #S_para = sin(phi_para)
 
-        main_r = array([
+        main_r = np.array([
             [Cx,Sxoverkx,0,0,0,(h/kx**2)*(1-Cx)],
             [-signkx*kx*Sx,Cx,0,0,0,(h/kx)*Sx],
             [0,0,Cy,Syoverky,0,0],
@@ -672,9 +672,9 @@ class AccCav(BasicCav):
             DistDrift = lietracknp.array[self.numdrift].dlengths
             DistKick = lietracknp.array[self.numdrift].klengths    
         except IndexError:
-            raise IndexError('Yoshida factorisation for numdrift=%i is not defined' % numdrift)
+            raise IndexError('Yoshida factorisation for numdrift=%i is not defined' % self.numdrift)
         except AttributeError:
-            raise AttributeError('Yoshida factorisation for numdrift=%i is not defined' % numdrift)
+            raise AttributeError('Yoshida factorisation for numdrift=%i is not defined' % self.numdrift)
 
         N = 0
         M = 0
@@ -830,9 +830,9 @@ def RotMats(alpha):
 # ===============================================================
 # Test suite
 if __name__ == '__main__':
-    from latticeloader import LoadFlatLatFile
+    from latticeloader import loadflatlatfile
 
-    templine = Line(LoadFlatLatFile('tempfile.txt')[1155:])
+    templine = Line(loadflatlatfile('tempfile.txt')[1155:])
     mybeam = Beam(x=np.array([0,0,0,0,0,1.3]))
     beamout = templine.Track(mybeam)
     print beamout.x

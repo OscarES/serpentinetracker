@@ -17,74 +17,108 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
-import elements as BL
+
+"""The main class for the Serpentine code.
+All analyses will use Serpentine, or a class derived from it, as their base."""
+
+import elements as EL
 import beamline
 import beamrep
 import latticeloader as LL
-from numpy import array, zeros, mean, std
+from numpy import array, zeros, std, concatenate, loadtxt
 from pylab import plot, subplot, figure, xlabel, ylabel
 from globals import electron_mass
+from scipy import sin, sqrt
 
 class Serpentine:
-    def __init__(self,line, twiss=None, beam=None, P=None):
+    """The primary class for this tracking code"""
+    def __init__(self, line, twiss=None, beam=None, P=None):
         self.offset = zeros(6)
 
-        if not (isinstance(line, basestring) or isinstance(line, beamline.Line)):
-            raise "Must provide a beamline or a path to an AML file."
+        if not (isinstance(line, basestring) or 
+            isinstance(line, beamline.Line)):
+            raise ValueError(
+                "Must provide a beamline or a path to an AML file.")
 
         if isinstance(line, basestring):
-            self.beamline,parttype = LL.LoadLatFile(line,P=P)
+            self.beamline, parttype = LL.loadlatfile(line, P=P)
         elif isinstance(line, beamline.Line):
             self.beamline = line
         self.beamline.SetSPos()
 
-        if (isinstance(twiss, BL.Twiss) and isinstance(beam, beamrep.ElectronBeam)):
-            raise "Only give twiss *or* beam, not both!"
-        elif isinstance(twiss, BL.Twiss):
+        if (isinstance(twiss, EL.Twiss) and isinstance(beam, beamrep.Beam)):
+            raise ValueError("Only give twiss *or* beam, not both!")
+        elif isinstance(twiss, EL.Twiss):
             self.twiss = twiss
             self.twiss_out = self.beamline.TwissProp(twiss)
             self.SingleParticle(P=self.beamline[0].P)
             self.beam_out = None
-        elif isinstance(beam, beamrep.ElectronBeam):
+        elif isinstance(beam, beamrep.Beam):
             self.beam_in = beam
             self.beam_out = None
-            self.twiss = BL.Twiss()
-            self.twiss_out = BL.Twiss()
+            self.twiss = EL.Twiss()
+            self.twiss_out = EL.Twiss()
         if parttype.upper()=='PROTON':
-            try: self.beam_in.MakeProtons()
-            except AttributeError: pass
+            try:
+                self.beam_in.MakeProtons()
+            except AttributeError:
+                pass
         elif parttype.upper()=='POSITRONS':
-            try: self.beam_in.MakePositrons()
-            except AttributeError: pass
-        elif parttype.upper()=='ELECTRONS': pass
+            try:
+                self.beam_in.MakePositrons()
+            except AttributeError:
+                pass
+        elif parttype.upper()=='ELECTRONS':
+            pass
         else:
             raise ValueError('Unrecognised particle species: %s' % parttype)
 
-    def SingleParticle(self, P=1, Q=1e-9, chargesign=-1,restmass=electron_mass):
+        self.mover = EL.Mover()
+
+    def SingleParticle(self, P=1, Q=1e-9, chargesign=-1, 
+        restmass=electron_mass):
+        """Create a single particle beam as an attribute of the
+        Serpentine class."""
         self.beam_in = beamrep.Beam(P, Q, chargesign, restmass)
 
-    def MakeGaussBeam(self,N=10000,Q=1e-9,pos=array([0,0,0,0,0,1]),
-        sig=array([1e-3,1e-3,1e-3,1e-3,1e-3,0.01]),chargesign=-1,
+    def MakeGaussBeam(self, N=10000, Q=1e-9, pos=array([0, 0, 0, 0, 0, 1]),
+        sig=array([1e-3, 1e-3, 1e-3, 1e-3, 1e-3, 0.01]), chargesign=-1,
         restmass=electron_mass):
-        self.beam_in = beamrep.GaussBeam(N,Q,pos,sig,chargesign,restmass)
+        """Create a multi-particle beam with a Gaussian spread in each
+        degree of freedom."""
+        self.beam_in = beamrep.GaussBeam(N, Q, pos, sig, chargesign, restmass)
 
-    def TwissGaussBeam(self, N=10000, Q=1e-9, chargesign=-1,restmass=electron_mass):
-        pos = array([0,0,0,0,0,self.beamline[0].P])
-        self.beam_in = beamrep.TwissGaussBeam(self.twiss,N,pos,Q,chargesign,restmass)
+    def TwissGaussBeam(self, N=10000, Q=1e-9, chargesign=-1, 
+        restmass=electron_mass):
+        """Create a multi-particle beam with a Gaussian spread in each
+        degree of freedom.  The statistics """
+        pos = array([0, 0, 0, 0, 0, self.beamline[0].P])
+        self.beam_in = beamrep.TwissGaussBeam(self.twiss, 
+            N, pos, Q, chargesign, restmass)
 
     def TwissProp(self):
+        """Propagate the input Twiss parameters down the length of the
+        lattice.  The output is stored as an attribute of self, and the Twiss
+        parameters on the exit of each element are stored as attributes
+        of that element."""
         self.twiss_out = self.beamline.TwissProp(self.twiss)
 
-    def PlotTwiss(self,bx=1,by=1,ax=0,ay=0,px=0,py=0):
-        self.beamline.PlotTwiss(bx=bx,by=by,ax=ax,ay=ay,px=px,py=py)
+    def PlotTwiss(self, betax=1, betay=1):
+        """Plot the Twiss parameters.  This actually calls the equivalent
+        method in self.beamline."""
+        self.beamline.PlotTwiss(betax=betax, betay=betay)
 
-    def SetMomProfile(self,ini_p=None):
-        from serpentine import Serpentine
-        from scipy import sin,sqrt
-        if ini_p==None: ini_p = self.beamline[0].P*1e9
+    def SetMomProfile(self, ini_p=None):
+        """Given an initial momentum value (ini_p or the P attribute of the
+        first element in the lattice), this computes and stores the expected
+        design momentum at the entrance of each element.
+        Currently the only element that changes the momentum are AccCav
+        instances."""
+        if ini_p == None:
+            ini_p = self.beamline[0].P*1e9
         cum_p = ini_p
         for i in self.beamline:
-            if isinstance(i,Serpentine):
+            if isinstance(i, Serpentine):
                 i.SetMomProfile(ini_p=cum_p)
                 continue
             i.P = cum_p
@@ -98,71 +132,88 @@ class Serpentine:
 
         self.TwissProp()
 
-    def PlotMomProfile(self,formatstr='-x'):
+    def PlotMomProfile(self, formatstr='-x'):
+        """Plots the momentum profile over the lattice."""
         self.beamline.PlotMomProfile(formatstr)
 
-    def PlotEkProfile(self,formatstr='-x'):
-        self.beamline.PlotEkProfile(restmass=self.beam_in.restmass,formatstr=formatstr)
+    def PlotEkProfile(self, formatstr='-x'):
+        """Plots the kinetic energy profile over the lattice."""
+        self.beamline.PlotEkProfile(restmass=self.beam_in.restmass, 
+            formatstr=formatstr)
 
     def GetRFPhases(self):
+        """Returns the phases of any RF elements in the lattice"""
         return self.beamline.GetRFPhases()
     
     def PlotRFPhases(self):
+        """Plots the phases of any RF elements in the lattice"""
         self.beamline.PlotRFPhases()
 
     def Track(self):
-        self.beamline.offset = self.offset
-        if hasattr(self,'Mover'):
-            self.beamline.offset += self.Mover.GetAct()
-        self.beam_out = self.beamline.Track(self.beam_in)
-        if hasattr(self,'Mover'):
-            self.beamline.offset -= self.Mover.GetAct()
-        del self.beamline.offset
+        """The tracking method. Adjusts the beam to take account of
+        any global mover setting, calls the Track() method of self.beamline,
+        and then resets the changes made due to the mover settings."""
+        offset = self.offset
+        if hasattr(self, 'mover'):
+            offset += self.mover.GetAct()
+        self.beam_out = self.beamline.Track(self.beam_in, offset)
+        if hasattr(self, 'mover'):
+            offset -= self.mover.GetAct()
 
     def GroupElesByName(self):
+        """Finds any groups of consecuctive elements that share the same
+        name, and bundles these together into an internal Serpentine object."""
         group_list = list()
         for ele in self.beamline:
-            if isinstance(ele,Serpentine):
+            if isinstance(ele, Serpentine):
                 continue
             base_name = ele.name
             for newele in self.beamline[self.beamline.index(ele)+1:]:
-                if (base_name.find(newele.name)>-1) or ((newele.name).find(base_name)>-1):
-                    group_list.append(array([self.beamline.index(ele),1 + self.beamline.index(newele)]))
+                if ((base_name.find(newele.name)>-1) or 
+                        ((newele.name).find(base_name)>-1)):
+                    group_list.append(array([self.beamline.index(ele), 1 + 
+                        self.beamline.index(newele)]))
                     break
         newline = beamline.Line(self.beamline[:group_list[0][0]])
         for i in xrange(len(group_list[:-1])):
-            mid_line = beamline.Line(self.beamline[group_list[i][0]:group_list[i][1]])
-            end_line = beamline.Line(self.beamline[group_list[i][1]:group_list[i+1][0]])
+            mid_line = beamline.Line(
+                self.beamline[group_list[i][0]:group_list[i][1]])
+            end_line = beamline.Line(
+                self.beamline[group_list[i][1]:group_list[i+1][0]])
             newline.append(Serpentine(line=mid_line))
             newline = beamline.Line(newline + end_line)
         self.beamline = newline
         self.beamline.SetSPos()
 
-    def AddMoversToGroups(self,dof=array([0,2,5])):
+    def AddMoversToGroups(self, dof=array([0, 2, 5])):
+        """Adds a mover to any grouped elements (i.e. any elements
+        that are Serpentine objects)."""
         for ele in self.beamline:
-            if isinstance(ele,Serpentine):
-                self.AddMovers(self.beamline.index(ele),dof)
+            if isinstance(ele, Serpentine):
+                self.AddMovers(self.beamline.index(ele), dof)
 
-    def AddMovers(self,elelist,dof=array([0,2,5])):
-        if isinstance(elelist,int) or isinstance(elelist,float):
-            self.beamline[elelist].Mover = BL.Mover(dof)
+    def AddMovers(self, elelist, dof=array([0, 2, 5])):
+        """Add movers to a list of elements."""
+        if isinstance(elelist, int) or isinstance(elelist, float):
+            self.beamline[elelist].mover = EL.Mover(dof)
         else:
             for ind in elelist:
-                self.beamline[ind].Mover = BL.Mover(dof)
+                self.beamline[ind].mover = EL.Mover(dof)
 
     def GetBPMReadings(self):
+        """Return an array of BPM readings from the most recent tracking
+        operation"""
         bpms = self.beamline.GetEleByType('BPM')
-        S,x,y,xp,yp = [],[],[],[],[]
-        readings = zeros((3,len(bpms)))
+        S, x, y, xp, yp = [], [], [], [], []
         for ele in bpms:
-            if isinstance(ele,dict):
+            if isinstance(ele, dict):
                 line_readings = self[ele.keys()[-1]].GetBPMReadings
                 print line_readings
-                S  = concatenate((S,line_readings[0,:]))
-                x  = concatenate((S,line_readings[1,:]))
-                y  = concatenate((S,line_readings[2,:]))
-                xp = concatenate((S,line_readings[3,:]))
-                yp = concatenate((S,line_readings[4,:]))
+                S  = concatenate((S, line_readings[0, :]))
+                x  = concatenate((S, line_readings[1, :]))
+                y  = concatenate((S, line_readings[2, :]))
+                xp = concatenate((S, line_readings[3, :]))
+                yp = concatenate((S, line_readings[4, :]))
                 continue
             S.append(ele.DiagOut.S_pos)
             x.append(ele.DiagOut.x_centroid)
@@ -170,58 +221,70 @@ class Serpentine:
             xp.append(ele.DiagOut.xp_centroid)
             yp.append(ele.DiagOut.yp_centroid)
 
-        return array([S,x,y,xp,yp])
+        return array([S, x, y, xp, yp])
         
-    def PlotBPMReadings(self,str):
+    def PlotBPMReadings(self, formatstr):
+        """Plot the BPM readings from the most recent tracking operation"""
         readings = self.GetBPMReadings()
-        subplot(211); plot(readings[0,:],readings[1,:],'x'+str)
+        subplot(211)
+        plot(readings[0, :], readings[1, :], 'x'+formatstr)
         xlabel('S / m')
         ylabel('x / m')
-        subplot(212); plot(readings[0,:],readings[2,:],'x'+str)
+        subplot(212)
+        plot(readings[0, :], readings[2, :], 'x'+formatstr)
         xlabel('S / m')
         ylabel('y / m')
 
     def GetScreenReadings(self):
-        Screens = self.beamline.GetEleByType('Screen')
-        beam_dist,xstd,ystd = [],[],[]
-        for ele in Screens:
+        """Return Screen() data from the most recent tracking operation"""
+        screens = self.beamline.GetEleByType('Screen')
+        beam_dist, xstd, ystd = [], [], []
+        for ele in screens:
             beam_dist.append(ele.DiagOut.beam_dist)
-            xstd.append(std(ele.DiagOut.beam_dist[0,:]))
-            ystd.append(std(ele.DiagOut.beam_dist[1,:]))
+            xstd.append(std(ele.DiagOut.beam_dist[0, :]))
+            ystd.append(std(ele.DiagOut.beam_dist[1, :]))
         return beam_dist, xstd, ystd
 
     def PlotScreenReadings(self):
-        Screens = self.beamline.GetEleByType('Screen')
-        (beam_dist, xstd, ystd) = self.GetScreenReadings()
-        for ele in Screens:
-            i = Screens.index(ele)
+        """Plot Screen() data from the most recent tracking operation"""
+        screens = self.beamline.GetEleByType('Screen')
+        beam_dist = self.GetScreenReadings()[0]
+        for ele in screens:
+            i = screens.index(ele)
             figure(i)
-            plot(beam_dist[i][0,:]*1e6,beam_dist[i][1,:],'x')
+            plot(beam_dist[i][0, :]*1e6, beam_dist[i][1, :], 'x')
 
     def AddEmitScreensToBPMs(self):
+        """Adds Screen objects to any BPM objects by creating a single 
+        Serpentine object containing both objects"""
         for ele in self.beamline:
             if isinstance(ele, Serpentine):
                 ele.AddEmitScreensToBPMs()
-            elif isinstance(ele,BL.BPM):
-                newline = beamline.Line((BL.EmitScreen(name="S"+ele.name,L=0),ele))
+            elif isinstance(ele, EL.BPM):
+                newline = beamline.Line(
+                    (EL.EmitScreen(name="S"+ele.name, L=0), ele))
                 ind = self.beamline.index(ele)
                 self.beamline[ind] = Serpentine(line=newline)
         self.beamline.SetSPos()
 
-    def AddEleToEle(self,ele1,ele2):
+    def AddEleToEle(self, ele1, ele2):
+        """Replace any instance of ele2 in self.beamline with a 
+        Serpentine object consisting of ele1 and ele2"""
         for ele in self.beamline:
             if isinstance(ele, Serpentine):
-                ele.AddEleToEle(ele1,ele2)
-            elif isinstance(ele,ele2):
-                newline = beamline.Line((ele1(name="S"+ele.name,L=0),ele))
+                ele.AddEleToEle(ele1, ele2)
+            elif isinstance(ele, ele2):
+                newline = beamline.Line((ele1(name="S"+ele.name, L=0), ele))
                 ind = self.beamline.index(ele)
                 self.beamline[ind] = Serpentine(line=newline)
         self.beamline.SetSPos()
 
-    def AddWakesToAccCavs(self,file):
-        l,k = load(file, usecols=(1,2), skiprows=3, unpack=True)
+    def AddWakesToAccCavs(self, fname):
+        """Extracts data from a CSV file to create a Wake() object to add
+        to each AccCav element"""
+        l, k = loadtxt(fname, usecols=(1, 2), skiprows=3, unpack=True)
         acccavs = self.beamline.GetEleByType('AccCav')
         for ele in acccavs:
-            ele.TSRW = Wake()
+            ele.TSRW = EL.Wake()
             ele.TSRW.l = l
             ele.TSRW.k = k
