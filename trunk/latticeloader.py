@@ -1,4 +1,6 @@
 #!/usr/bin/python
+"""A module to allow importing/exporting of various lattice formats
+into the base format of Serpentine."""
 
 #    Copyright 2009,  Stephen Molloy, Stewart Boogert
 # 
@@ -17,64 +19,74 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
-from beamline import *
-from elements import *
-from beamrep import *
+from beamline import Line
+import elements
 import xml.dom.minidom as minidom
 import accformat
-from globals import Brho1GeV
-from numpy import radians
+from globals import Brho1GeV, electron_mass, proton_mass, c_light
+from numpy import radians, array
 
-def LoadLatFile(name=None, P=None):
-    if name==None:
-        raise "Must specify a filename."
+def loadlatfile(name=None, ini_mom=None):
+    """def loadlatfile(name=None, ini_mom=None)
+    Load a lattice file in any format understood by Serpentine.
+    name is the filename of the lattice
+    ini_mom is the initial momentum of the lattice, unless it is specified
+        in the lattice file."""
+    if name == None:
+        raise ValueError("Must specify a filename.")
     try:
         filestr = accformat.latticereader(name)
     except IOError:
-        if name.split('.')[-1]=='dat':
+        if name.split('.')[-1] == 'dat':
             filestr = TraceWinStr(name).printstr()
         else: raise
-    if not P==None:
+    if not ini_mom == None:
         fileroot = minidom.parseString(filestr)
         machineroot = fileroot.getElementsByTagName('machine')[-1]
         latticeroot = machineroot.getElementsByTagName('lattice')[-1]
         pcnode = minidom.Document().createElement('pc')
-        pcnode.setAttribute('design',str(P))
+        pcnode.setAttribute('design', str(ini_mom))
         latticeroot.appendChild(pcnode)
         filestr = fileroot.toprettyxml()
 
-    beamline,parttype = LoadLat(filestr)
-    return (beamline,parttype)
+    beamline, parttype = loadlat(filestr)
+    return (beamline, parttype)
 
-def LoadFlatLatFile(name=None):
-    if name==None:
-        raise "Must specify a filename."
+def loadflatlatfile(name=None):
+    """def loadflatlatfile(name=None)
+    Loads a "flat file".  i.e. one that has already been expanded by UAP.
+    name is the filename of the flat lattice."""
+    if name == None:
+        raise ValueError("Must specify a filename.")
     filehand = open(name)
     filestr = filehand.read()
     filehand.close()
-    beamline = LoadLat(filestr)
+    beamline = loadlat(filestr)
     return beamline
 
-def LoadLat(filestr):
+def loadlat(filestr):
+    """Takes a lattice as an expanded AML string, and returns
+    a beamline and a string specifying the particle type."""
     fileroot = minidom.parseString(filestr)
-    positionroot,beamroot,latticeroot = None,None,None
+    beamroot, latticeroot = None, None
 
     # Get the machine node.  It is an error if this doesn't exist
     try:
         machineroot = fileroot.getElementsByTagName('machine')[-1]
     except IndexError:
-        raise "No machine node found in this file."
+        raise ValueError("No machine node found in this file.")
 
     # Get the tracking_lattice.  It is an error if this doesn't exist
     try:
         trackingroot = machineroot.getElementsByTagName('tracking_lattice')[-1]
     except IndexError:
-        raise "No tracking_lattice node found in this file."
+        raise ValueError("No tracking_lattice node found in this file.")
 
     # Get the beam node.  Resort to defaults if non-existent
     try:
         beamroot = machineroot.getElementsByTagName('beam')[-1]
-        parttype = beamroot.getElementsByTagName('particle')[-1].getAttribute('type')
+        partroot = beamroot.getElementsByTagName('particle')[-1]
+        parttype = partroot.getAttribute('type')
     except IndexError:
         parttype = 'ELECTRON'
         print "No beam node.  Using defaults."
@@ -82,142 +94,188 @@ def LoadLat(filestr):
     # Get the lattice node.  Resort to defaults if non-existent
     try:
         latticeroot = machineroot.getElementsByTagName('lattice')[-1]
-        P = float(GetDesignFromEle('pc',latticeroot))/1e9
+        mom = float(get_design('pc', latticeroot))/1e9
     except IndexError:
         print "No lattice node.  Using P = 1 GeV."
-        P = 1.0
+        mom = 1.0
 
     # Now loop around the childNodes and extract each element
     beamline = Line()
-    for i1 in trackingroot.childNodes:
-        if i1.nodeType == i1.ELEMENT_NODE:
-            beamline = MakeElement(i1,P,beamline,parttype)
+    for child in trackingroot.childNodes:
+        if child.nodeType == child.ELEMENT_NODE:
+            beamline = make_element(child, mom, beamline, parttype)
 
-    return (beamline,parttype)
+    return (beamline, parttype)
 
-def MakeElement(node,P,beamline,parttype):
-    numeles = len(beamline)
-    Brho = Brho1GeV * P
+def make_element(node, mom, beamline, parttype):
+    """make_element(node, mom, beamline, parttype)
+    Takes a single XML node, a momentum (mom), a beamline, and a string
+    indicating the particle type.
+    The data in the node is then extracted to create a new element.  This
+    is then appended to beamline.  The new beamline is returned."""
+    rigidity = Brho1GeV * mom
     elename = node.getAttribute('name')
-    for i1 in node.childNodes:
-        if not i1.nodeType==i1.ELEMENT_NODE:
-            i1.parentNode.removeChild(i1)
+    for child in node.childNodes:
+        if not child.nodeType == child.ELEMENT_NODE:
+            child.parentNode.removeChild(child)
 
-    try: L = float(GetDesignFromEle('length',node))
-    except IndexError: L = 0
+    try:
+        length = float(get_design('length', node))
+    except IndexError:
+        length = 0
 
     # Now loop over the elements and try to assign them
-    for i1 in node.childNodes:
-        if i1.localName=='quadrupole':
-            B = ExtractB(i1,P)
-            beamline.append(Quad(name=elename,L=L,P=P,B=B*L))
-        elif i1.localName=='bend':
-            B = ExtractSbend(i1,P,L)
-            beamline.append(Sbend(name=elename,L=L,P=P,B=B*L))
-        elif i1.localName=='kicker':
-            xnode,ynode = None,None
+    for child in node.childNodes:
+        if child.localName == 'quadrupole':
+            bfield = extract_bfield(child, mom)
+            beamline.append(
+                elements.Quad(name=elename, L=length, P=mom, B=bfield*length)
+                )
+        elif child.localName == 'bend':
+            bfield = extract_sbend(child, mom, length)
+            beamline.append(
+                elements.Sbend(name=elename, L=length, P=mom, B=bfield*length)
+                )
+        elif child.localName == 'kicker':
+            xnode, ynode = None, None
             try:
-                xnode = float(GetDesignFromEle('x_kick',i1))
-                xnode *= Brho
-                xnode *= L
+                xnode = float(get_design('x_kick', child))
+                xnode *= rigidity
+                xnode *= length
             except IndexError:
                 pass
             try:
-                ynode = float(GetDesignFromEle('y_kick',i1))
-                ynode *= Brho
-                ynode *= L
+                ynode = float(get_design('y_kick', child))
+                ynode *= rigidity
+                ynode *= length
             except IndexError:
                 pass
-            if not xnode==None and not ynode==None:
-                beamline.append(XYcor(name=elename,L=L,P=P,B=([xnode,ynode])))
-            elif not xnode==None:
-                beamline.append(Xcor(name=elename,L=L,P=P,B=xnode))
-            elif not ynode==None:
-                beamline.append(Ycor(name=elename,L=L,P=P,B=ynode))
-        elif i1.localName=='multipole': pass
-        elif i1.localName=='octupole': pass
-        elif i1.localName=='linac_cavity':
-            gradient = float(GetDesignFromEle('gradient',i1))
-            phase    = radians(float(GetDesignFromEle('phase0',i1)) + 90)
-            freq     = float(GetDesignFromEle('rf_freq',i1))
-            if parttype.upper()   =='PROTON'  : restmass = proton_mass
-            elif parttype.upper() =='ELECTRON': restmass = electron_mass
-            beamline.append(AccCav(name=elename,L=L,P=P,freq=freq,phi=phase,numdrift=2,egain=gradient*L,restmass=restmass))
-        elif i1.localName=='sextupole':
-            B = ExtractB(i1,P)
-            B *= L
-            beamline.append(Sext(name=elename,L=L,P=P,B=B))
-        elif i1.localName=='solenoid': pass
-        elif i1.localName=='wiggler': pass
-        elif i1.localName=='instrument':
-            if i1.getAttribute('type')=='INST' or i1.getAttribute('type')=='MONI':
-                beamline.append(BPM(name=elename,L=L,P=P))
-            elif i1.getAttribute('type')=='IMON':
-                beamline.append(ICT(name=elename,L=L,P=P))
-            elif i1.getAttribute('type')=='PROF':
-                beamline.append(Screen(name=elename,L=L,P=P))
-            elif i1.getAttribute('type')=='WIRE':
-                beamline.append(WireScanner(name=elename,L=L,P=P))
+            if not xnode == None and not ynode == None:
+                beamline.append(
+                    elements.XYcor(
+                        name=elename, L=length, P=mom, B=([xnode, ynode])
+                        )
+                    )
+            elif not xnode == None:
+                beamline.append(
+                    elements.Xcor(name=elename, L=length, P=mom, B=xnode)
+                    )
+            elif not ynode == None:
+                beamline.append(
+                    elements.Ycor(name=elename, L=length, P=mom, B=ynode)
+                    )
+        elif child.localName == 'multipole':
+            pass
+        elif child.localName == 'octupole':
+            pass
+        elif child.localName == 'linac_cavity':
+            if parttype.upper()   == 'PROTON'  :
+                restmass = proton_mass
+            elif parttype.upper() == 'ELECTRON':
+                restmass = electron_mass
+            beamline.append(
+                elements.AccCav(
+                    name     = elename,
+                    L        = length,
+                    P        = mom,
+                    freq     = float(get_design('rf_freq', child)),
+                    phi      = radians(float(get_design('phase0', child)) + 90),
+                    numdrift = 2,
+                    egain    = float(get_design('gradient', child)) * length,
+                    restmass = restmass
+                    )
+                )
+        elif child.localName == 'sextupole':
+            bfield = extract_bfield(child, mom)
+            bfield *= length
+            beamline.append(
+                elements.Sext(name=elename, L=length, P=mom, B=bfield)
+                )
+        elif child.localName == 'solenoid':
+            pass
+        elif child.localName == 'wiggler':
+            pass
+        elif child.localName == 'instrument':
+            if child.getAttribute('type') == 'INST':
+                beamline.append(elements.BPM(name=elename, L=length, P=mom))
+            elif child.getAttribute('type') == 'MONI':
+                beamline.append(elements.BPM(name=elename, L=length, P=mom))
+            elif child.getAttribute('type') == 'IMON':
+                beamline.append(elements.ICT(name=elename, L=length, P=mom))
+            elif child.getAttribute('type') == 'PROF':
+                beamline.append(elements.Screen(name=elename, L=length, P=mom))
+            elif child.getAttribute('type') == 'WIRE':
+                beamline.append(
+                    elements.WireScanner(name=elename, L=length, P=mom)
+                    )
     
     # If we haven't assigned anything yet, assign a drift
-    if len(beamline)==numeles: beamline.append(Drift(name=elename,L=L,P=P))
+    if len(beamline) == len(beamline):
+        beamline.append(elements.Drift(name=elename, L=length, P=mom))
 
     return beamline
 
-def ExtractB(node,P):
-    from globals import Brho1GeV
-    k,ku = None,None
+def extract_bfield(node, mom):
+    """Extracts the magnetic field from node, and performs the appropriate
+    calculations to convert it to a Serpentine B field.
+    This value is returned."""
+    kval, kuval = None, None
     try:
-        k = GetDesignFromEle('k',node)
+        kval = get_design('k', node)
     except IndexError:
         try:
-            ku = GetDesignFromEle('k_u',node)
+            kuval = get_design('k_u', node)
         except IndexError:
             pass
-    Brho = Brho1GeV * P
-    if not k==None:
-        B = float(k) * Brho
-    elif not ku==None:
-        B = float(ku)
-    return B
+    rigidity = Brho1GeV * mom
+    if not kval == None:
+        bfield = float(kval) * rigidity
+    elif not kuval == None:
+        bfield = float(kuval)
+    return bfield
 
-def ExtractSbend(node,P,L):
-    from globals import Brho1GeV
-    B = array([0.0,0.0])
-    g,gu = None,None
+def extract_sbend(node, mom):
+    """Extracts the field strength of a sector bend."""
+    bfield = array([0.0, 0.0])
+    gval, guval = None, None
     g_node = node.getElementsByTagName('g')
     try:
-        g = g_node[-1].getAttribute('design')
+        gval = g_node[-1].getAttribute('design')
     except IndexError:
         gu_node = node.getElementsByTagName('g_u')
         try:
-            gu = gu_node[-1].getAttribute('design')
+            guval = gu_node[-1].getAttribute('design')
         except IndexError:
             pass
-    Brho = Brho1GeV * P
-    if not g==None:
-        B[0] = float(g) * Brho
-    elif not gu==None:
-        B[0] = float(gu)
+    rigidity = Brho1GeV * mom
+    if not gval == None:
+        bfield[0] = float(gval) * rigidity
+    elif not guval == None:
+        bfield[0] = float(guval)
     mult_node = node.getElementsByTagName('scaled_multipole')
     try:
         k_coef_node = mult_node[-1].getElementsByTagName('k_coef')
         k_coef = k_coef_node[-1].getAttribute('design')
-        B[1] = float(k_coef) * B[0]
+        bfield[1] = float(k_coef) * bfield[0]
     except IndexError:
         pass
-    return B
+    return bfield
 
-def GetDesignFromEle(elename,node):
+def get_design(elename, node):
+    """Returns the design attribute from an element."""
     return node.getElementsByTagName(elename)[-1].getAttribute('design')
 
 class TraceWinStr:
-    def __init__(self,name):
+    """A class to allow extraction of a lattice from a TraceWine file."""
+    def __init__(self, name):
         doc = minidom.Document()
 
-        f = open(name)
-        contents = f.readlines()
-        data = [i.replace('\n','').split() for i in contents if not (i[0]==';' or i[0]=='\n')]
+        fobj = open(name)
+        contents = fobj.readlines()
+        data = [
+            i.replace('\n', '').split() 
+            for i in contents 
+            if not (i[0] == ';' or i[0] == '\n')]
 
         machine = doc.createElement("machine")
         machine.appendChild(doc.createElement("tracking_lattice"))
@@ -231,108 +289,149 @@ class TraceWinStr:
         self.freq = None
 
         for ele in data:
-            if ele[0].upper()   == 'DRIFT':  self.makedrift(ele)
-            elif ele[0].upper() == 'QUAD':   self.makequad(ele)
-            elif ele[0].upper() == 'NCELLS': self.makecav(ele)
-            elif ele[0].upper() == 'FREQ':   self.freq = float(ele[1]) * 1e6 # MHz-->Hz
-            elif ele[0].upper() == 'END':    break
-            elif ele[0].upper() == 'SET_ADV': pass
-            elif ele[0].upper() == 'LATTICE': pass
-            else: self.makedrift(ele)
+            if ele[0].upper()   == 'DRIFT':
+                self.makedrift(ele)
+            elif ele[0].upper() == 'QUAD':
+                self.makequad(ele)
+            elif ele[0].upper() == 'NCELLS':
+                self.makecav(ele)
+            elif ele[0].upper() == 'FREQ':
+                self.freq = float(ele[1]) * 1e6 # MHz-->Hz
+            elif ele[0].upper() == 'END':
+                break
+            elif ele[0].upper() == 'SET_ADV':
+                pass
+            elif ele[0].upper() == 'LATTICE':
+                pass
+            else:
+                self.makedrift(ele)
 
     def makebeam(self):
+        """Since this is for TraceWin files, assume protons.
+        Make a beam node specifying this."""
         doc = minidom.Document()
         beamnode = self.machine.getElementsByTagName('beam')[-1]
         particlenode = doc.createElement("particle")
-        particlenode.setAttribute('type','PROTON')
+        particlenode.setAttribute('type', 'PROTON')
         beamnode.appendChild(particlenode)
 
-    def makedrift(self,ele):
+    def makedrift(self, ele):
+        """Makes a drift node in AML format"""
         tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
         elenode = minidom.Document().createElement("element")
-        elenode.setAttribute('name','drift')
+        elenode.setAttribute('name', 'drift')
 
         lengthnode = minidom.Document().createElement("length")
-        lengthnode.setAttribute('design',str(float(ele[1])*1e-3))
-        lengthnode.setAttribute('actual',str(float(ele[1])*1e-3))
+        lengthnode.setAttribute('design', str(float(ele[1])*1e-3))
+        lengthnode.setAttribute('actual', str(float(ele[1])*1e-3))
         elenode.appendChild(lengthnode)
 
         tlatticenode.appendChild(elenode)
 
-    def makequad(self,ele):
+    def makequad(self, ele):
+        """Makes a quad node in AML format"""
         self.makedrift(ele)
         tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
         elenode = tlatticenode.childNodes[-1]
-        elenode.setAttribute('name','quad')
+        elenode.setAttribute('name', 'quad')
 
         quadnode = minidom.Document().createElement("quadrupole")
         knode    = minidom.Document().createElement("k_u")
-        knode.setAttribute('design',ele[1])
-        knode.setAttribute('actual',ele[1])
+        knode.setAttribute('design', ele[1])
+        knode.setAttribute('actual', ele[1])
 
         quadnode.appendChild(knode)
         elenode.appendChild(quadnode)
         tlatticenode.appendChild(elenode)
         
-    def makecav(self,ele):
-        if not ele[1]=='1': raise ValueError("Only pi-mode cavities are supported")
+    def makecav(self, ele):
+        """Makes a cavity node in AML format"""
+        if not ele[1] == '1':
+            raise ValueError("Only pi-mode cavities are supported")
         doc = minidom.Document()
 
-        Bgeo = float(ele[3])
-        halfbetalambda = 0.5 * Bgeo * (c_light/self.freq)
-        length = (halfbetalambda * int(ele[2])) + float(ele[10])/1e3 + float(ele[11])/1e3
+        length = (
+            (0.5 * float(ele[3]) * (c_light/self.freq) * int(ele[2])) + 
+            float(ele[10])/1e3 + 
+            float(ele[11])/1e3
+            )
         egain = float(ele[4])
-        phi = float(ele[5])
-        aper = float(ele[6])
         self.makedrift(ele)
         tlatticenode = self.machine.getElementsByTagName("tracking_lattice")[-1]
         elenode = tlatticenode.childNodes[-1]
-        elenode.setAttribute('name','TM010cav')
+        elenode.setAttribute('name', 'TM010cav')
 
         lengthnode = elenode.getElementsByTagName("length")[-1]
-        lengthnode.setAttribute('design',str(length))
-        lengthnode.setAttribute('actual',str(length))
+        lengthnode.setAttribute('design', str(length))
+        lengthnode.setAttribute('actual', str(length))
 
-        gradnode = doc.createElement("gradient")
-        gradnode.setAttribute('design',str(egain/length))
-        gradnode.setAttribute('actual',str(egain/length))
-
-        freqnode = doc.createElement("rf_freq")
-        freqnode.setAttribute('design',str(self.freq))
-        freqnode.setAttribute('actual',str(self.freq))
-
-        phasenode = doc.createElement("phase0")
-        phasenode.setAttribute('design',str(phi))
-        phasenode.setAttribute('actual',str(phi))
-
-        betageonode = doc.createElement("beta_geo")
-        betageonode.setAttribute('design',str(Bgeo))
-        betageonode.setAttribute('actual',str(Bgeo))
-
-        betapartnode = doc.createElement("beta_particle")
-        betapartnode.setAttribute('design',ele[12])
-        betapartnode.setAttribute('actual',ele[12])
+        apernode = doc.createElement("aperture")
+        apernode.setAttribute("at", "BOTH")
+        apernode.setAttribute("shape", "CIRCLE")
+        apernode.appendChild(createdesignnode("xy_limit", ele[6]))
 
         cavnode = doc.createElement("linac_cavity")
-        cavnode.appendChild(freqnode)
-        cavnode.appendChild(gradnode)
-        cavnode.appendChild(phasenode)
-        cavnode.appendChild(betageonode)
-        cavnode.appendChild(betapartnode)
+        cavnode.appendChild(createdesignnode("rf_freq", self.freq))
+        cavnode.appendChild(createdesignnode("gradient", egain/length))
+        cavnode.appendChild(createdesignnode("phase0", ele[5]))
+        cavnode.appendChild(createdesignnode("beta_geo", ele[3]))
+        cavnode.appendChild(createdesignnode("beta_particle", ele[12]))
 
         elenode.appendChild(cavnode)
 
     def printstr(self):
+        """Returns the machine node of AML (basically the whole thing)
+        as a pretty-printed XML string."""
         return self.machine.toprettyxml()
+
+def createdesignnode(name, val):
+    """Returns an AML node with the specified name, and the design|actual
+    attributes set to val."""
+    doc = minidom.Document()
+    node = doc.createElement(name)
+    node.setAttribute("design", str(val))
+    node.setAttribute("actual", str(val))
+    return node
 
 if __name__ == '__main__':
     from serpentine import Serpentine
+    from elements import Twiss
     import matplotlib.pyplot as plt
-    from scipy import sqrt
-    execfile('ESSTwiss.py')
-    in_energy = 50e6
-    inP = sqrt((in_energy+proton_mass)**2 - proton_mass**2)
-    blah = Serpentine(line="C.CQ.DCR.5.Step.dat",twiss=mytwiss,P=inP)
+    from scipy import sqrt, pi
+    mytwiss = Twiss()
+    mytwiss.betax  = 14.4755754890
+    mytwiss.alphax = -4.3155742015
+    mytwiss.etax   = 0
+    mytwiss.etaxp  = 0
+    
+    mytwiss.betay  = 5.1520133054
+    mytwiss.alphay = -0.4908428984
+    mytwiss.etay   = 0
+    mytwiss.etayp  = 0
+    
+    Ek = 49.5e6 # MeV
+    m0 = proton_mass
+    Et = Ek + m0
+    gamma0 = Et/m0
+    betagamma = sqrt(gamma0**2 - 1)
+    
+    mytwiss.nemitx = pi * 0.23e-006# * betagamma
+    mytwiss.nemity = pi * 0.23e-006# * betagamma
+    
+    betaz  = 6.6758214228
+    alphaz = 0.0163358142
+    nemitz = pi * 0.31e-006# * betagamma
+    
+    mytwiss.sigz = sqrt((nemitz/betagamma) * betaz)
+    mytwiss.sigP = sqrt((nemitz/betagamma) / betaz)
+    mytwiss.pz_cor = 0
+    
+    lambda352 = c_light/352.21e6
+    onedegat352 = lambda352/360
+
+    IEnergy = 50e6
+    inP = sqrt((IEnergy+proton_mass)**2 - proton_mass**2)
+    blah = Serpentine(line="C.CQ.DCR.5.Step.dat", twiss=mytwiss, P=inP)
     blah.SetMomProfile()
     plt.figure()
     blah.PlotMomProfile(formatstr='-rx')

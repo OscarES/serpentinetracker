@@ -30,7 +30,7 @@ Brho1GeV = 1e9 / c_light # T.m / GeV/c
 
 
 class lietrackparams:
-    def __init__(self, dlengths=[], klengths=[]):
+    def __init__(self, dlengths=None, klengths=None):
         self.dlengths = dlengths
         self.klengths = klengths
 
