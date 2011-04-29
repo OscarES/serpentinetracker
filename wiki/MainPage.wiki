@@ -7,5 +7,5 @@ Build instructions, todo lists, other
 = Details =
 
 Add your content here.  Format your content with:
-  * [[MacBuild][mac build instructions]]
+  * [MacBuild]
   * Boogert to do list
