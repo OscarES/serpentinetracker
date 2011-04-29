@@ -11,4 +11,4 @@ Required mac ports
   * gfortran (4.2.1) otherwise install dmg from 
   * install python_select from macports
   * python_select pythonXX (version you wish to use) 
-  * Modify Dep/accelerator-ml/uap/trunk/Makefile, include the -m64 flag for gfortran
+  * run install.sh 
