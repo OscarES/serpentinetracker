@@ -8,7 +8,7 @@ Required mac ports
 = 10.6.7 =
 
   * Check for macports xercesc 
-  * gfortran (4.2.1) otherwise install dmg from 
+  * gfortran (4.2.1) otherwise install dmg from [http://r.research.att.com/tools/]
   * install python_select from macports
   * python_select pythonXX (version you wish to use) 
   * run install.sh 
