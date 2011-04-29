@@ -1,0 +1,14 @@
+#summary Build for Mac OXS 10.6.7 :
+
+= Introduction =
+
+  * Requires mac ports
+  * gfortran installation (matching 4.2.1) 
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
