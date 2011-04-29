@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Modified mac build instructions will be merged with standard linux installation
+Modified mac build instructions will be merged with standard linux installation.
 Required mac ports 
 
 = 10.6.7 =
@@ -11,4 +11,4 @@ Required mac ports
   * gfortran (4.2.1) otherwise install dmg from 
   * install python_select from macports
   * python_select pythonXX (version you wish to use) 
-  * Modify 
+  * Modify Deps/
