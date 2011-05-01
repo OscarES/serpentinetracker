@@ -32,7 +32,7 @@ from globals import electron_mass, c_light, Brho1GeV, lietrackarray
 from scipy.special import jn
 import beamline as BL
 import beamrep
-from utilities import DriftRmat, DriftTmat, SplitParams
+from utilities import DriftRmat, DriftTmat, SplitParams, RotMats
 
 # Twiss object class for addition to the Element superclass
 class Twiss:
@@ -143,12 +143,12 @@ class Element:
                 retstr += i+' = '+iattr+"\n"
         return retstr
 
-    def CalcRmat(self):
+    def CalcRmat(self, P=None):
         """Calculate and set the R matrix of the element.
         Assumes a drift matrix for this default element."""
         self.R = DriftRmat(self.L)
 
-    def CalcTmat(self):
+    def CalcTmat(self, P=None):
         """Calculate and set the T matrix of the element.
         Assumes a drift matrix for this default element."""
         self.T = DriftTmat()
@@ -202,7 +202,7 @@ class BasicMag(Element):
 
             beam_out.x[:, partnum] = np.dot(self.R, beam_out.x[:, partnum])
 
-            if not all(self.T == zeromat):
+            if not np.allclose(self.T, zeromat):
                 for dof in doflist:
                     for Tdof1 in doflist:
                         for Tdof2 in doflist:
@@ -324,7 +324,7 @@ class Quad(BasicMag):
             SH = np.sinh(K*L)
             C = np.cos(K*L)
             S = np.sin(K*L)
-            if hasattr(self, 'R'):
+            if hasattr(self, 'R') and not self.R==None:
                 self.R -= self.R
                 self.R[0, 0] = CH
                 self.R[0, 1] = SH/K
@@ -350,7 +350,7 @@ class Quad(BasicMag):
             SH = np.sinh(K*L)
             C = np.cos(K*L)
             S = np.sin(K*L)
-            if hasattr(self, 'R'):
+            if hasattr(self, 'R') and not self.R==None:
                 self.R -= self.R
                 self.R[0, 0] = C
                 self.R[0, 1] = S/K
@@ -606,7 +606,7 @@ class Sbend(BasicMag):
 
         for partnum in range(beam_out.x.shape[1]):
             self.CalcTmat((beam_out.x[5, partnum] * self.P) + self.P)
-            if not all(self.Tin == zeromat):
+            if not np.allclose(self.Tin, zeromat):
                 for dof in doflist:
                     for Tdof1 in doflist:
                         for Tdof2 in doflist:
@@ -621,7 +621,7 @@ class Sbend(BasicMag):
 
         for partnum in range(beam_out.x.shape[1]):
             self.CalcTmat((beam_out.x[5, partnum] * self.P) + self.P)
-            if not all(self.Tout == zeromat):
+            if not np.allclose(self.Tout, zeromat):
                 for dof in doflist:
                     for Tdof1 in doflist:
                         for Tdof2 in doflist:

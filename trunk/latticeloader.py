@@ -113,8 +113,10 @@ def make_element(node, mom, beamline, parttype):
     indicating the particle type.
     The data in the node is then extracted to create a new element.  This
     is then appended to beamline.  The new beamline is returned."""
+    numeles = len(beamline)
     rigidity = Brho1GeV * mom
     elename = node.getAttribute('name')
+    print elename
     for child in node.childNodes:
         if not child.nodeType == child.ELEMENT_NODE:
             child.parentNode.removeChild(child)
@@ -132,7 +134,7 @@ def make_element(node, mom, beamline, parttype):
                 elements.Quad(name=elename, L=length, P=mom, B=bfield*length)
                 )
         elif child.localName == 'bend':
-            bfield = extract_sbend(child, mom, length)
+            bfield = extract_sbend(child, mom)
             beamline.append(
                 elements.Sbend(name=elename, L=length, P=mom, B=bfield*length)
                 )
@@ -210,7 +212,7 @@ def make_element(node, mom, beamline, parttype):
                     )
     
     # If we haven't assigned anything yet, assign a drift
-    if len(beamline) == len(beamline):
+    if len(beamline) == numeles:
         beamline.append(elements.Drift(name=elename, L=length, P=mom))
 
     return beamline

@@ -18,8 +18,9 @@
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
 from utilities import RotMats
+import numpy as np
 
-def AdjustBeamByOffset(self, ele, beam_out):
+def AdjustBeamByOffset(ele, beam_out):
     [r_in, r_out] = RotMats(-ele.offset[5])
     beam_out.x[0, :] = beam_out.x[0, :] - ele.offset[0]
     beam_out.x[1, :] = beam_out.x[1, :] - ele.offset[1]
@@ -28,7 +29,7 @@ def AdjustBeamByOffset(self, ele, beam_out):
     beam_out.x = np.dot(r_in, beam_out.x)
     return beam_out.x
 
-def ReAdjustBeamByOffset(self, ele, beam_out):
+def ReAdjustBeamByOffset(ele, beam_out):
     [r_in, r_out] = RotMats(-ele.offset[5])
     beam_out.x[0, :] = beam_out.x[0, :] + ele.offset[0]
     beam_out.x[1, :] = beam_out.x[1, :] + ele.offset[1]
@@ -37,7 +38,7 @@ def ReAdjustBeamByOffset(self, ele, beam_out):
     beam_out.x = np.dot(r_out, beam_out.x)
     return beam_out.x
 
-def AdjustBeamWithMover(self, ele, beam_out):
+def AdjustBeamWithMover(ele, beam_out):
     moverpos = ele.Mover.GetAct()
     [r_in, r_out] = RotMats(-moverpos[5])
     beam_out.x[0, :] = beam_out.x[0, :] - moverpos[0]
@@ -47,7 +48,7 @@ def AdjustBeamWithMover(self, ele, beam_out):
     beam_out.x = np.dot(r_in, beam_out.x)
     return beam_out.x
 
-def ReAdjustBeamWithMover(self, ele, beam_out):
+def ReAdjustBeamWithMover(ele, beam_out):
     moverpos = ele.Mover.GetAct()
     [r_in, r_out] = RotMats(-moverpos[5])
     beam_out.x[0, :] = beam_out.x[0, :] + moverpos[0]
