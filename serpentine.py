@@ -32,7 +32,7 @@ from scipy import sin, sqrt
 
 class Serpentine:
     """The primary class for this tracking code"""
-    def __init__(self, line, twiss=None, beam=None, P=None):
+    def __init__(self, line, twiss=None, beam=None, ini_mom=None, parttype='ELECTRON'):
         self.offset = zeros(6)
 
         if not (isinstance(line, basestring) or 
@@ -41,7 +41,9 @@ class Serpentine:
                 "Must provide a beamline or a path to an AML file.")
 
         if isinstance(line, basestring):
-            self.beamline, parttype = LL.loadlatfile(line, P=P)
+            self.beamline, retparttype = LL.loadlatfile(line, ini_mom=ini_mom)
+	    if not retparttype==parttype:
+	        parttype = retparttype
         elif isinstance(line, beamline.Line):
             self.beamline = line
         self.beamline.SetSPos()
@@ -63,12 +65,12 @@ class Serpentine:
                 self.beam_in.MakeProtons()
             except AttributeError:
                 pass
-        elif parttype.upper()=='POSITRONS':
+        elif parttype.upper()=='POSITRON':
             try:
                 self.beam_in.MakePositrons()
             except AttributeError:
                 pass
-        elif parttype.upper()=='ELECTRONS':
+        elif parttype.upper()=='ELECTRON':
             pass
         else:
             raise ValueError('Unrecognised particle species: %s' % parttype)

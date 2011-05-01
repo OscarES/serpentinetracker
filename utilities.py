@@ -21,6 +21,8 @@
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
 """A few useful functions"""
+import numpy as np
+
 def DriftRmat(L):
     """Return the R matrix for a drift"""
     R = np.array([
