@@ -3,6 +3,7 @@ import scipy as sp
 
 from serpentine import *
 from elements import *
+import visualize as vis
 
 class AtfExt :
     def __init__(self) :
@@ -36,10 +37,12 @@ class AtfExt :
         readings = self.atfExt.GetBPMReadings()
         
         figure(1)
-        self.atfExt.PlotBPMReadings()
+        self.atfExt.PlotBPMReadings('b')
         figure(2)
         self.atfExt.PlotTwiss()
-
+        figure(3)
+        vis.matplotlib2D(self.atfExt)
+                
     def setMagnet(self,name, value) :
         ei = self.atfExt.beamline.FindEleByName(name)
         print ei
