@@ -32,6 +32,7 @@ from globals import electron_mass, c_light, Brho1GeV, lietrackarray
 from scipy.special import jn
 import beamline as BL
 import beamrep
+from utilities import DriftRmat, DriftTmat, SplitParams
 
 # Twiss object class for addition to the Element superclass
 class Twiss:
@@ -875,59 +876,59 @@ class Wake:
         self.k = None
 
 # ===============================================================
-# A few useful functions
-def DriftRmat(L):
-    """Return the R matrix for a drift"""
-    R = np.array([
-        [1, L, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 0],
-        [0, 0, 1, L, 0, 0],
-        [0, 0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 1, 0],
-        [0, 0, 0, 0, 0, 1],
-        ])
-    return R
-
-def DriftTmat():
-    """Return the T matrix for a drift"""
-    T = np.zeros((6, 6, 6))
-    return T
-
-def SplitParams(param):
-    """Split a parameter into a 1x2 np.array"""
-    outparam = np.array([0.0, 0.0])
-    if np.array(param).size == 1:
-        outparam[0] = param
-        outparam[1] = param
-    elif np.array(param).size > 1:
-        outparam[0] = param[0]
-        outparam[1] = param[1]
-    return outparam
-
-def RotMats(alpha):
-    """Calculate the matrix required to rotate the beam by a
-    particular angle"""
-    C = np.cos(-alpha)
-    S = np.sin(-alpha)
-    r_inrot = np.array([
-        [C , 0 , S , 0 , 0 , 0],
-        [0 , C , 0 , S , 0 , 0],
-        [-S, 0 , C , 0 , 0 , 0],
-        [0 , -S, 0 , C , 0 , 0],
-        [0 , 0 , 0 , 0 , 1 , 0],
-        [0 , 0 , 0 , 0 , 0 , 1],
-        ])
-    C = np.cos(alpha)
-    S = np.sin(alpha)
-    r_outrot = np.array([
-        [C , 0 , S , 0 , 0 , 0],
-        [0 , C , 0 , S , 0 , 0],
-        [-S, 0 , C , 0 , 0 , 0],
-        [0 , -S, 0 , C , 0 , 0],
-        [0 , 0 , 0 , 0 , 1 , 0],
-        [0 , 0 , 0 , 0 , 0 , 1],
-        ])
-    return r_inrot, r_outrot
+## A few useful functions
+#def DriftRmat(L):
+#    """Return the R matrix for a drift"""
+#    R = np.array([
+#        [1, L, 0, 0, 0, 0],
+#        [0, 1, 0, 0, 0, 0],
+#        [0, 0, 1, L, 0, 0],
+#        [0, 0, 0, 1, 0, 0],
+#        [0, 0, 0, 0, 1, 0],
+#        [0, 0, 0, 0, 0, 1],
+#        ])
+#    return R
+#
+#def DriftTmat():
+#    """Return the T matrix for a drift"""
+#    T = np.zeros((6, 6, 6))
+#    return T
+#
+#def SplitParams(param):
+#    """Split a parameter into a 1x2 np.array"""
+#    outparam = np.array([0.0, 0.0])
+#    if np.array(param).size == 1:
+#        outparam[0] = param
+#        outparam[1] = param
+#    elif np.array(param).size > 1:
+#        outparam[0] = param[0]
+#        outparam[1] = param[1]
+#    return outparam
+#
+#def RotMats(alpha):
+#    """Calculate the matrix required to rotate the beam by a
+#    particular angle"""
+#    C = np.cos(-alpha)
+#    S = np.sin(-alpha)
+#    r_inrot = np.array([
+#        [C , 0 , S , 0 , 0 , 0],
+#        [0 , C , 0 , S , 0 , 0],
+#        [-S, 0 , C , 0 , 0 , 0],
+#        [0 , -S, 0 , C , 0 , 0],
+#        [0 , 0 , 0 , 0 , 1 , 0],
+#        [0 , 0 , 0 , 0 , 0 , 1],
+#        ])
+#    C = np.cos(alpha)
+#    S = np.sin(alpha)
+#    r_outrot = np.array([
+#        [C , 0 , S , 0 , 0 , 0],
+#        [0 , C , 0 , S , 0 , 0],
+#        [-S, 0 , C , 0 , 0 , 0],
+#        [0 , -S, 0 , C , 0 , 0],
+#        [0 , 0 , 0 , 0 , 1 , 0],
+#        [0 , 0 , 0 , 0 , 0 , 1],
+#        ])
+#    return r_inrot, r_outrot
 
 # ===============================================================
 # Test suite

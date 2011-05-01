@@ -26,7 +26,7 @@ import numpy as np
 from matplotlib.pylab import plot, subplot, xlabel, ylabel, legend
 #from elements import *
 #from scipy import weave
-from elements import RotMats
+from utilities import RotMats
 import beamadjust
 import copy
 from itertools import repeat
