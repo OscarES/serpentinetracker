@@ -68,12 +68,12 @@ class Element:
     inherit from this class"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL', 
         is_diag=False):
-        self.name = name
-        self.L = L
-        self.P = P
-        self.S = S
+        self.name = name                                         # Element name
+        self.L = L                                               # Element length
+        self.P = P                                               # Design momentum 
+        self.S = S                                               # S position of start of element
         self.aper = aper
-        self.offset = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+        self.offset = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])   # (x,px,y,py,z,P) 
         self.is_diag = is_diag
         if self.is_diag:
             self.DiagOut = DiagOut()
