@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
 #
-from elements import RotMats
+from utilities import RotMats
 
 def AdjustBeamByOffset(self, ele, beam_out):
     [r_in, r_out] = RotMats(-ele.offset[5])
