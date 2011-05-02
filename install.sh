@@ -43,7 +43,7 @@ Python setup.py build
 cd $BASE/Dep
 tar zxvf baseR3.14.10.tar.gz
 cd $BASE/Dep/base-3.14.10
-export EPICS_HOST_ARCH=`./startup/EpicsHostArch.pl`
+export EPICS_HOST_ARCH=`./startup/EpicsHostArch`
 export EPICS_BASE=`pwd`
 make
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$EPICS_BASE/lib/$EPICS_HOST_ARCH
