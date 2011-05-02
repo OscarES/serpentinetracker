@@ -61,7 +61,11 @@ python setup.py build
 echo " "
 echo "Please add the following lines to your shell configuration (.tcshrc .cshrc. .bashrc .profile)"
 cd $BASE/accformat/programs
-echo export PYTHONPATH=\$PYTHONPATH:$BASE/accformat/programs/build/`for i in \`ls build\`; do echo $i | grep lib; done`
+for i in `ls build/ | grep lib`
+do
+    echo export PYTHONPATH="$"PYTHONPATH:$BASE/accformat/programs/$i
+done
+#echo export PYTHONPATH=\$PYTHONPATH:$BASE/accformat/programs/build/`for i in \`ls build\`; do echo $i | grep lib; done`
 cd $BASE/Dep/pyminuit
 echo export PYTHONPATH=\$PYTHONPATH:$BASE/Dep/pyminuit/build/`for i in \`ls build\`; do echo $i | grep lib; done`
 cd $BASE/Dep/pyepics-pyepics-32c56ae
