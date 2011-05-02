@@ -1,3 +1,21 @@
+#    Copyright 2009,  Stephen Molloy
+# 
+#    This file is part of Serpentine.
+#
+#    Serpentine is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    Serpentine is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with Serpentine.  If not, see <http://www.gnu.org/licenses/>.
+#
+
 from matplotlib.path import Path
 from matplotlib.patches import PathPatch
 from matplotlib.patches import Rectangle
@@ -53,7 +71,7 @@ def matplotlib2D(so, projection='sx', options = '') :
                 rect = Rectangle((e.S,0),e.L,-0.05,facecolor='green')
             axe.add_patch(rect)            
         elif e.__class__.__name__ == "Sbend" :
-            rect = Rectangle((e.S,-0.05),e.L,0.1,facecolor='red')
+            rect = Rectangle((e.S,-0.025),e.L,0.05,facecolor='red')
             axe.add_patch(rect)
 
     plt.show()

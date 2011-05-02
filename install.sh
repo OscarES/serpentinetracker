@@ -38,14 +38,21 @@ make
 cd $BASE/Dep
 tar zxvf pyminuit-1.1.1.tgz
 cd $BASE/Dep/pyminuit
-python setup.py build
+Python setup.py build
+
+cd $BASE/Dep/base-3.14.12
+export EPICS_HOST_ARCH=`./startup/EpicsHostArch.pl`
+make
 
 echo " "
 echo "Please add the following lines to your shell configuration (.tcshrc .cshrc. .bashrc .profile)"
+cd $BASE/accformat/programs
 echo export PYTHONPATH=\$PYTHONPATH:$BASE/accformat/programs/build/`for i in \`ls build\`; do echo $i | grep lib; done`
+cd $BASE/Dep/pyminuit
 echo export PYTHONPATH=\$PYTHONPATH:$BASE/Deps/pyminuit/build/`for i in \`ls build\`; do echo $i | grep lib; done`
 echo export PYTHONPATH=\$PYTHONPATH:$BASE
 echo export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:$XERCESCROOT/src/.libs:$MINUITROOT/src/.libs:
 if [ "$STOS" == "Darwin" ]; then
     echo export DYLD_LIBRARY_PATH=\$DYLD_LIBRARY_PATH:$XERCESCROOT/src/.libs:$MINUITROOT/src/.libs
 fi 
+echo export EPICS_HOST_ARCH=$EPICS_HOST_ARCH
