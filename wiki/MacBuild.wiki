@@ -12,3 +12,5 @@ Required mac ports
   * install python_select from macports
   * python_select pythonXX (version you wish to use) 
   * run install.sh 
+
+  * EPICS (readline-5)
