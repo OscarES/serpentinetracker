@@ -53,7 +53,7 @@ echo export EPICS_HOST_ARCH=$EPICS_HOST_ARCH
 echo export PATH=$PATH:$EPICS_BASE/bin/$EPICS_HOST_ARCH/
 
 cd $BASE/Dep/
-tar zxvf pyepics-pyepics-3.1.2-0-g32c56ae.tar
+tar zxvf pyepics-pyepics-3.1.2-0-g32c56ae.tar.gz
 cd $BASE/Dep/pyepics-pyepics-32c56ae/
 python setup.py build
 
