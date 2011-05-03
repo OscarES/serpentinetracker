@@ -87,7 +87,7 @@ class Element:
 
     def SetOffset(self, offset):
         """Set the offset parameter of the element"""
-        if type(offset) == np.array:
+        if type(offset) == np.ndarray:
             self.offset = offset
         elif type(offset) == list:
             self.offset = np.array(offset)
