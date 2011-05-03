@@ -116,7 +116,6 @@ def make_element(node, mom, beamline, parttype):
     numeles = len(beamline)
     rigidity = Brho1GeV * mom
     elename = node.getAttribute('name')
-    print elename
     for child in node.childNodes:
         if not child.nodeType == child.ELEMENT_NODE:
             child.parentNode.removeChild(child)
