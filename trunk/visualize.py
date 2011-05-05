@@ -118,6 +118,7 @@ def matplotlib2D(so, projection='sx', options = '', label = False) :
 
     
 def visualizeTest() :
+    pass
     # make ATF2 figure 
     
     

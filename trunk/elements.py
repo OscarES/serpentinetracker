@@ -35,35 +35,47 @@ import beamrep
 from utilities import DriftRmat, DriftTmat, SplitParams, RotMats
 
 # Twiss object class for addition to the Element superclass
-class Twiss:
+class Twiss(object):
     """A class to hold Twiss parameters"""
-    def __init__(self):
-        self.betax = None
-        self.betay = None
+    def __init__(self, 
+                 betax  = None,  betay = None, 
+                 alphax = None, alphay = None,
+                 etax   = None,   etay = None,
+                 etapx  = None,  etapy = None,
+                 phix   = None,   phiy = None,
+                 nemitx = None, nemity = None,
+                 sigz   = None,   sigP = None,
+                 pz_cor = None):
 
-        self.alphax = None
-        self.alphay = None
+        self.betax = betax
+        self.betay = betay
 
-        self.etax = None
-        self.etay = None
+        self.alphax = alphax
+        self.alphay = alphay
 
-        self.etapx = None
-        self.etapy = None
+        self.etax = etax
+        self.etay = etay
 
-        self.phix = None
-        self.phiy = None
+        self.etapx = etapx
+        self.etapy = etapy
 
-        self.nemitx = None
-        self.nemity = None
+        self.phix = phix
+        self.phiy = phiy
 
-        self.sigz = None
-        self.sigP = None
-        self.pz_cor = None
+        self.nemitx = nemitx
+        self.nemity = nemity
+
+        self.sigz = sigz
+        self.sigP = sigP
+        self.pz_cor = pz_cor
+
+    def __repr__(self) :
+        pass
 
 # 'Element' superclass, defining common qualities of all elements
 # Also defines CalcRmat for a drift, which will then be overridden
 # in classes where this is not true.
-class Element:
+class Element(object):
     """The Element superclass.  All beamline element classes should
     inherit from this class"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL', 
