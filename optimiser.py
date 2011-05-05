@@ -19,16 +19,7 @@
 #
 '''Classes and functions for accelerator lattice optimisation
 Cass           : Optimiser, controls variables and builds objective function
-variable go    : global optimiser needed to pass complicated structure into objective function
-Def Objective  : function created by Optimiser and passed to Minuit
 Example        :
-py> b = twoQuadExample()
-py> o = Optimiser()
-py> o.AddVariable("lt",10,b.s.beamline[0].GetB,b.s.beamline[0].SetB)
-py> o.AddVariable("lt",10,b.s.beamline[2].GetB,b.s.beamline[2].SetB)
-py> o.AddVariable("lt",1e-5,b.)
-py> o.BuildObjective()
-py> o.Run()
 '''
 
 # used to build objective/merit function
@@ -50,95 +41,91 @@ _go = None
 class Optimiser :
 
     def __init__(self,s) :
-        ''' Class to optimise basic lattive functions based on variable which  can be set via object function methods'''
+        ''' Class to optimise basic lattive functions based on variable which  can be set via object function methods
+        s : Serpentine or beamline (not implemented but quick) object'''
         print 'Optimiser.__init__()'
-        # serpentine object
+        # serpentine object (should this be copied? mmmmm)
         self.s = s
         self.variables   = []
-        self.constraints = []
 
-    def AddVariable(self,name,type,value,getter,setter=None,start=0,step=1.0,max=0,min=0) :
-        ''' Add variable (input/output) with constaint to Optimiser '''
-        v = [name,type,value,getter,setter,start,step,max,min]
+    def AddVariable(self,name,element,className,attrName,type,value,start=0,step=1.0,max=0,min=0) :
+        ''' Add variable (input/output) with constaint to Optimiser 
+        elementName : name within beamline
+        className   : class within element where data is stored, if list can be nested classes
+        attrName    : attribute of class 
+        type        : eq, lt, gt
+        value       : Contraint value (equality or inequality)
+        start       : Parameter start value 
+        step        : Set initial step 
+        max         : Maximum value 
+        min         : Minimum value'''
+        v = [name,element,className,attrName,type,value,start,step,max,min]
         print 'Optimizer.AddVariable',v
-        if setter != None :
-            self.variables.append(v)
-        else :
-            self.constraints.append(v)
+        self.variables.append(v)
+    
+        
+    def TestVariables(self) :
+        for v in self.variables :
+            pass
+
+    def PrintDefinition() :
+        pass
 
     def Run(self) :
         ''' Execute minuit with Objective function '''
         print 'Optimizer.Run'
         
-    def BuildObjectiveFunction(self) :
-        ''' Build function from internal data '''
-
-        # build input line
-        s = "def Objective("
-        i = 0
-        for v in self.variables :
-            s += v[0] 
-            if i < len(self.variables)-1 :
-                s += ","
-            else :
-                s += ") :\n"        
-            i += 1
-
-        # set model parameters
-        i = 0
-        for v in self.variables :            
-            s += '\tgo.variables['+str(i)+'][3](' + v[0] +')\n'
-            i += 1
-
-        # execute track
-        s += "\tgo.s.Track()\n"
-
-        # get constraints
-        i = 0
-        for v in self.constraints :
-            s += '\tc'+str(1)+' = go.constraints['+str(i)+'][3]()'
-            i += 1
-
-        # build objective                    
-
-        print s 
-
-        return 
-
     def Clear() :
         ''' Clear all variables'''
+        self.variables  = []
+
+    def __repr__(self):
         pass
+#        ret = '\n'.join(str(el)+" :: "+str(ele.__class__) for ele in self)        
+#        return ret
 
-    def SetGlobal(self) :
-        global _go 
-        _go = self
 
-class m1 :
-    def __init__(self) :
-        self.v1 = 2.5
-        self.v2 = 1.0
-
-    def get1(self) :
-        return self.v1
-    def set1(self) :
-        self.v1 = v1
-
-    def get2(self) :
-        return self.v2
-    def set2(self) :
-        self.v2 = v2
-
-    def getprod(self) :
-        return v1*v2
-    
 def OptimiserTest() :
-    m = m1()    
+    import elements
+    import beamline 
+    import serpentine 
+    import visualize
+
+    # build simple 2 magnet system
+    qf  = elements.Quad("QF",L=0.25,P=1.25,B=5)
+    dr1 = elements.Drift("D1",L=0.30,P=1.25)
+    qd  = elements.Quad("QD",L=0.25,P=1.25,B=-2.5)
+    dr2 = elements.Drift("D2",L=1.0,P=1.25) 
+    m1  = elements.BasicDiag("M1",L=0.0)
+
+    bl = beamline.Line([qf,dr1,qd,dr2,m1])
+
+    # make simple beam in
+    # set twiss parameters
+    mytwiss = elements.Twiss(betax  = 6.85338806855804,     betay  = 2.94129410712918,
+                             alphax = 1.11230788371885,     alphay = -1.91105724003646,
+                             etax   = 3.89188697330735e-012,etay   = 0,
+                             etapx  = 63.1945125619190e-015,etapy  = 0,
+                             phix   = 0,                    phiy   = 0,
+                             nemitx = 5.08807339588144e-006,nemity = 50.8807339588144e-009,
+                             sigz   = 8.00000000000000e-003,sigP   = 1.03999991965541e-003,
+                             pz_cor = 0)
+
+    print bl
+    s = serpentine.Serpentine(bl,twiss=mytwiss)
+    s.Track(); print '';
+
+    # Visualisation check 
+    visualize.matplotlib2D(s,label=True)
+
+    # optimizer test
     o = Optimiser(s=0)
-    o.AddVariable('v1','lt',20,m.get1,m.set1,m.get1())
-    o.AddVariable('v2','lt',50,m.get2,m.set2,m.get2())
-    o.AddVariable('pr','eq',5,m.getprod)    
-    o.BuildObjectiveFunction()
-    
+    o.AddVariable('qf1b','QF1',[''],'B','lt',50)
+    o.AddVariable('qd1b','QD1',[''],'B','lt',50)
+    o.AddVariable('fbetax','M1',['twiss'],'betax','eq',5)
+    o.TestVariables()
+
+    return bl
 
 
 

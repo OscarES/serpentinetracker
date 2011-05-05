@@ -1,3 +1,5 @@
+import os
+
 class epics :
     def __init__(self, so) :
         # keep local reference of serpentine object
@@ -5,6 +7,11 @@ class epics :
 
         # list of pv and variable associations
         self.ass = []        
+
+    def makeIOC(self) :
+        # 
+        os.mkdir('ioc')
+        os.chdir('ioc')
 
     def buildIOC(self, appName = 'test', iocName='instance') :
         # loop over elements and create cmd files        
