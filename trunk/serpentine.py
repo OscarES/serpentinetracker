@@ -202,10 +202,10 @@ class Serpentine:
             for ind in elelist:
                 self.beamline[ind].mover = EL.Mover(dof)
 
-    def GetBPMReadings(self):
+    def GetBPMReadings(self, classname='BPM'):
         """Return an array of BPM readings from the most recent tracking
         operation"""
-        bpms = self.beamline.GetEleByType('BPM')
+        bpms = self.beamline.GetEleByType(classname)
         S, x, y, xp, yp = [], [], [], [], []
         for ele in bpms:
             if isinstance(ele, dict):
@@ -225,9 +225,9 @@ class Serpentine:
 
         return array([S, x, y, xp, yp])
         
-    def PlotBPMReadings(self, formatstr):
+    def PlotBPMReadings(self, formatstr='', classname='BPM'):
         """Plot the BPM readings from the most recent tracking operation"""
-        readings = self.GetBPMReadings()
+        readings = self.GetBPMReadings(classname)
         subplot(211)
         plot(readings[0, :], readings[1, :], 'x'+formatstr)
         xlabel('S / m')
