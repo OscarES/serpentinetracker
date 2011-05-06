@@ -39,9 +39,9 @@ class AtfExt :
         figure(1)
         self.atfExt.PlotBPMReadings('b')
         figure(2)
-        self.atfExt.PlotTwiss()
+        vis.PlotTwiss(self.atfExt)
         figure(3)
-        vis.matplotlib2D(self.atfExt,label=True)
+        vis.Matplotlib2D(self.atfExt,label=True)
                 
     def setMagnet(self,name, value) :
         ei = self.atfExt.beamline.FindEleByName(name)

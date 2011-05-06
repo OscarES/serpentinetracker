@@ -47,9 +47,10 @@ class Optimiser :
         # serpentine object (should this be copied? mmmmm)
         self.s = s
         self.variables   = []
+        self.constraints = []
 
-    def AddVariable(self,name,element,className,attrName,type,value,start=0,step=1.0,max=0,min=0) :
-        ''' Add variable (input/output) with constaint to Optimiser 
+    def AddVariable(self,name,element,attrName,start=0,step=1.0,min=0,max=0) :
+        ''' Add variable (input/output) with range 
         elementName : name within beamline
         className   : class within element where data is stored, if list can be nested classes
         attrName    : attribute of class 
@@ -59,15 +60,28 @@ class Optimiser :
         step        : Set initial step 
         max         : Maximum value 
         min         : Minimum value'''
-        v = [name,element,className,attrName,type,value,start,step,max,min]
-        print 'Optimizer.AddVariable',v
+        v = {'name':name,'ele':element,'attr':attrName,'start':start,'step':step,'min':min,'max':max}
         self.variables.append(v)
     
-        
-    def TestVariables(self) :
-        for v in self.variables :
-            pass
+    def AddConstraint(self,name,element,attrName,type,value) :
+        ''' Add constraint (output)'''
+        v = {'name':name,'ele':element,'attr':attrName,'type':type,'value':value}
+        self.constraints.append(v)
 
+    def TestVariables(self) :
+        ''' Test we can extract and set variables in the variables list'''
+        e = None 
+        for v in self.variables :
+            print v['ele']
+            
+            e = self.s.beamline.FindEleByName(v['ele'])
+
+            # drill down into element to find correct number
+            for a in v['attr'] :
+                e = e.__getattribute__(a)
+        
+            print v['name'], v['ele'], v['attr'], e
+            
     def PrintDefinition() :
         pass
 
@@ -106,6 +120,7 @@ def OptimiserTest() :
                              alphax = 1.11230788371885,     alphay = -1.91105724003646,
                              etax   = 3.89188697330735e-012,etay   = 0,
                              etapx  = 63.1945125619190e-015,etapy  = 0,
+
                              phix   = 0,                    phiy   = 0,
                              nemitx = 5.08807339588144e-006,nemity = 50.8807339588144e-009,
                              sigz   = 8.00000000000000e-003,sigP   = 1.03999991965541e-003,
@@ -116,16 +131,16 @@ def OptimiserTest() :
     s.Track(); print '';
 
     # Visualisation check 
-    visualize.matplotlib2D(s,label=True)
+    visualize.Matplotlib2D(s,label=True)
 
     # optimizer test
-    o = Optimiser(s=0)
-    o.AddVariable('qf1b','QF1',[''],'B','lt',50)
-    o.AddVariable('qd1b','QD1',[''],'B','lt',50)
-    o.AddVariable('fbetax','M1',['twiss'],'betax','eq',5)
+    o = Optimiser(s)
+    o.AddVariable('qf1b','QF',['B'],25,0.1,0,50)
+    o.AddVariable('qd1b','QD',['B'],25,0.1,0,50)
+    o.AddConstraint('fbetax','M1',['twiss','betax'],'eq',5)
     o.TestVariables()
 
-    return bl
+    return s
 
 
 
