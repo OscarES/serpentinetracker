@@ -21,8 +21,54 @@ from matplotlib.patches import PathPatch
 from matplotlib.patches import Rectangle
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy import interpolate
 
-def matplotlib2D(so, projection='sx', options = '', label = False) :    
+def PlotTwiss(so, betax=True, betay=True, spline=False) :
+    """PlotTwiss(self, betax=True, betay=True, spline=False)
+    Plot the twiss parameters.
+    if betax: plot Beta_x versus S
+    if betay: plot Beta_y versus S"""
+    twiss_dict = so.beamline.GetTwiss()
+    
+    numplots = (betax or betay)
+    for i in range(numplots):
+        xstr = ''
+
+        if (betax or betay):
+            if betax :
+                xarr = np.array(twiss_dict['S'])
+                yarr = np.array(twiss_dict['betax'])
+                plt.subplot(numplots, 1, i+1)
+                if spline == False:
+                    plt.plot(xarr, yarr, '-bx')
+                else :
+                    pass
+                f= interpolate.InterpolatedUnivariateSpline(xarr,yarr,k=3)
+                xarrp = np.linspace(xarr.min(),xarr.max(),1000)
+                plt.plot(xarrp,f(xarrp),'-kx')
+                xstr = 'Beta_x / m  '
+                betax = 0
+            if betay :
+                xarr = np.array(twiss_dict['S'])
+                yarr = np.array(twiss_dict['betay'])
+                plt.subplot(numplots, 1, i+1)
+                if spline == False :
+                    plt.plot(xarr, yarr, '-rx')
+                else :
+                    pass
+                f= interpolate.InterpolatedUnivariateSpline(xarr,yarr,k=3)
+                xarrp = np.linspace(xarr.min(),xarr.max(),1000)
+                plt.plot(xarrp,f(xarrp),'-kx')
+                xstr = xstr + '&  Beta_y / m'
+                betay = 0
+             
+
+            plt.xlabel('S / m')
+            plt.ylabel(xstr)
+            plt.legend(('Beta_x', 'Beta_y'), 0)
+            continue
+
+def Matplotlib2D(so, projection='sx', options = '', label = False) :    
     '''Draw matplotlib representation of beamline.  
     so         : serpentine object (could be beamline)
     projection : 'sx','sy (no implemented yet'
@@ -70,8 +116,6 @@ def matplotlib2D(so, projection='sx', options = '', label = False) :
     axe.set_xlim(xmin-0.05*xdiff,xmax+0.05*xdiff)
     axe.set_ylim(ymin-eheight*4.5,ymax+eheight*4.5)
 
-    plt.show()
-
     #####################################
     # Draw beam elements
     #####################################    
@@ -113,8 +157,6 @@ def matplotlib2D(so, projection='sx', options = '', label = False) :
     # set axis labels etc
     axe.xaxis.set_label_text("S [m]")    
     axe.yaxis.set_ticklabels("")
-    
-    plt.show()
 
     
 def visualizeTest() :
