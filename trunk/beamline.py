@@ -185,12 +185,14 @@ class Line(list):
                 continue
             if sum(offset**2)>0:
                 beam_out.x = self._AdjustBeamByLineOffset(ele, beam_out, offset)
-            if hasattr(ele, 'Mover'):
+            try:
                 beam_out.x = beamadjust.AdjustBeamWithMover(ele, beam_out)
+            except AttributeError: pass
             if sum(ele.offset**2)>0:
                 beam_out.x = beamadjust.AdjustBeamByOffset(ele, beam_out)
-            if ele.is_diag:
+            try:
                 ele.Processor(beam_out)
+            except AttributeError: pass
             beam_out.x[5, :] = (beam_out.x[5, :] - ele.P) / ele.P
             beam_out = ele.TrackThruEle(beam_out)
             beam_out.x[5, :] = (beam_out.x[5, :] * ele.P) + ele.P
