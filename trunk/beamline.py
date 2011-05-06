@@ -30,6 +30,7 @@ from utilities import RotMats
 import beamadjust
 import copy
 from itertools import repeat
+import re
 
 # ===============================================================
 # Lists of beamline components are almost, but not quite, the right
@@ -94,13 +95,14 @@ class Line(list):
     def FindEleByTypeinit(self, classname):
         """A method to help find elements by their type.
         This method is only to be called by FindEleByType()."""
+        p = re.compile("^" + classname + "$")
         indlist = list()
         for i in range(len(self)):
             if self[i].__class__.__name__ == 'Serpentine':
                 intern_list = self[i].beamline.FindEleByTypeinit(classname)
                 for int_i in intern_list:
                     indlist.append([i, int_i])
-            elif self[i].__class__.__name__ == classname:     
+            elif p.match(self[i].__class__.__name__):
                 indlist.append(i)
         return indlist
 
