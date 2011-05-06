@@ -78,17 +78,13 @@ class Twiss(object):
 class Element:
     """The Element superclass.  All beamline element classes should
     inherit from this class"""
-    def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL', 
-        is_diag=False):
+    def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL'):
         self.name = name                                         # Element name
         self.L = L                                               # Element length
         self.P = P                                               # Design momentum 
         self.S = S                                               # S position of start of element
         self.aper = aper
         self.offset = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])   # (x,px,y,py,z,P) 
-        self.is_diag = is_diag
-        if self.is_diag:
-            self.DiagOut = DiagOut()
         self.twiss = Twiss()
         self.R = None
         self.T = None
@@ -178,10 +174,10 @@ class Element:
 class BasicMag(Element):
     """A class describing the operation of magnets.  Inherits from Element."""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL',
-        is_diag=False, B=0, tilt=0):
+        B=0, tilt=0):
         self.B = B
         self.tilt = tilt
-        Element.__init__(self, name, L, P, S, aper, apershape, is_diag)
+        Element.__init__(self, name, L, P, S, aper, apershape)
 
     def SetB(self, B) :
         """Sets the B field of the element"""
@@ -203,8 +199,6 @@ class BasicMag(Element):
         """Tracks a beam through the element"""
         [r_in, r_out] = RotMats(-self.tilt)
         beam_out = deepcopy(beam_in)
-        if self.is_diag:
-            self.DiagOut.centroid = np.mean(beam_out.x, 1)
         beam_out.x = np.dot(r_in, beam_out.x)
         doflist = range(6)
         zeromat = np.zeros((6, 6, 6))
@@ -231,7 +225,7 @@ class BasicMag(Element):
 class BasicCav(Element):
     """A class describing RF cavities.  Inherits from Element"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL', 
-        is_diag=False, phi=0, freq=1e9, numdrift=2, egain=0, designQ=1e9, 
+        phi=0, freq=1e9, numdrift=2, egain=0, designQ=1e9, 
         slices=1, loading=0, restmass=electron_mass):
 
         self.P        = P
@@ -248,12 +242,12 @@ class BasicCav(Element):
         self.designQ  = designQ
         self.slices   = slices
         self.loading  = loading
-        Element.__init__(self, name, L, P, S, aper, apershape, is_diag)
+        Element.__init__(self, name, L, P, S, aper, apershape)
     
 class BasicDiag(Element):
     """A class describing diagnostics .  Inherits from Element"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL',
-        is_diag=True, res=np.array([0, 0])):
+        res=np.array([0, 0])):
 
         self.DiagOut = DiagOut()
 
@@ -261,7 +255,7 @@ class BasicDiag(Element):
             self.res = np.array([res, res])
         else:
             self.res = res
-        Element.__init__(self, name, L, P, S, aper, apershape, is_diag)
+        Element.__init__(self, name, L, P, S, aper, apershape)
     
     def Processor(self, beam_in):
         """The (empty) processor method for BasicDiag"""
@@ -289,8 +283,6 @@ class Xcor(BasicMag):
     def TrackThruEle(self, beam_in):
         """Track a beam through the element"""
         beam_out = deepcopy(beam_in)
-        if self.is_diag:
-            self.DiagOut.centroid = np.mean(beam_out.x, 1)
         beam_out.x = np.dot(DriftRmat(self.L/2.), beam_out.x)
         for partnum in range(beam_in.x.shape[1]):
             momentum = (beam_in.x[5, partnum] * self.P) + self.P
@@ -305,8 +297,6 @@ class Ycor(BasicMag):
     def TrackThruEle(self, beam_in):
         """Track a beam through the element"""
         beam_out = deepcopy(beam_in)
-        if self.is_diag:
-            self.DiagOut.centroid = np.mean(beam_out.x, 1)
         beam_out.x = np.dot(DriftRmat(self.L/2.), beam_out.x)
         for partnum in range(beam_in.x.shape[1]):
             momentum = (beam_in.x[5, partnum] * self.P) + self.P
@@ -434,7 +424,7 @@ class Solenoid(BasicMag):
 class Sbend(BasicMag):
     """Sector bend class"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL',
-        is_diag=False, B=np.array([0, 0]), e_angle=0, e_curve=0, h_gap=0, 
+        B=np.array([0, 0]), e_angle=0, e_curve=0, h_gap=0, 
         h_int=0):
         self.e_angle = SplitParams(e_angle)
         self.e_curve = SplitParams(e_curve)
@@ -442,7 +432,7 @@ class Sbend(BasicMag):
         self.h_int = SplitParams(h_int)
         if np.array(B).size == 1:
             B = np.array([B, 0])
-        BasicMag.__init__(self, name, L, P, S, aper, apershape, is_diag, B)
+        BasicMag.__init__(self, name, L, P, S, aper, apershape, B)
         self.B = B
         #try:
         #    if e_angle.shape[0] == 1:
@@ -610,8 +600,6 @@ class Sbend(BasicMag):
         """Track a beam through the element"""
         [r_in, r_out] = RotMats(-self.tilt)
         beam_out = deepcopy(beam_in)
-        if self.is_diag:
-            self.DiagOut.centroid = np.mean(beam_out.x, 1)
         beam_out.x = np.dot(r_in, beam_out.x)
         doflist = range(6)
         zeromat = np.zeros((6, 6, 6))
