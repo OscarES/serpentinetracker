@@ -70,6 +70,7 @@ class Line(list):
     def _FindEleByName(self, name):
         """A method to help find elements by their name.
         This method is only to be called by FindEleByName()."""
+        p = re.compile("^" + name +"$")
         indlist = list()
         for i in range(len(self)):
             if self[i].__class__.__name__ == 'Serpentine':
@@ -79,9 +80,12 @@ class Line(list):
                         indlist.append([i, int_i])
                 except TypeError:
                     indlist.append(intern_list)
-            elif self[i].name == name:
+            elif p.match(self[i].name):
                 indlist.append(i)
-        return indlist
+        if indlist:
+            return indlist
+        else:
+            raise ValueError(name + ": Not found.")
 
     def FindEleByType(self, classname):
         """Returns the indices at which elements of class 'classtype' can be 
@@ -104,7 +108,10 @@ class Line(list):
                     indlist.append([i, int_i])
             elif p.match(self[i].__class__.__name__):
                 indlist.append(i)
-        return indlist
+        if indlist:
+            return indlist
+        else:
+            raise ValueError(classname + ": Not found.")
 
     def GetEleByType(self, classname):
         """Returns a list of elements of class 'classtype' from self.  This 
