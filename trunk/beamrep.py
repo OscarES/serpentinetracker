@@ -34,7 +34,7 @@ class Beam:
     def __init__(self, P=1, Q=1e-9, chargesign=-1, restmass=electron_mass):
         self.chargesign = chargesign
         self.restmass   = restmass
-        self.x          = np.array([0, 0, 0, 0, 0, P])
+        self.x          = np.array([0., 0., 0., 0., 0., P])
         self.x.shape    = (6, 1)
         self.Q          = Q
 
