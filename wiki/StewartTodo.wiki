@@ -11,7 +11,8 @@ Emailed to Steve
   * Lattice visualisation
 
 Ideas
-  * Run control in serpentine (Track, TwissProp etc)
+  * Run control in serpentine (Track, TwissProp etc) 
+  * VirtualMachine control class?
   * Girders, PowerSupplies?
   * Subbeamline and recursion. beamline should be element? 
   * Orbit structure unrelated to Diag....  
