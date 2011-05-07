@@ -105,18 +105,44 @@ class Optimiser :
             e = e.__getattribute__(a)        
         e.__setattr__(v['attr'][-1],value)
 
+    def EvalConstraint(self, v) :
+        v = self.constraints[v]['data'] 
+
+        val = self.GetValue(v)
+        if v['type'] == 'eq' : 
+            ret = (val - v['value'])**2
+        elif v['type'] == 'lt' :
+            if val > v['value'] :
+                ret = (val - v['value'])**2
+            else :
+                ret = 0 
+        elif v['type'] == 'gt' :
+            if val < v['value'] :
+                ret = (val - v['value'])**2
+            else :
+                ret = 0             
+        
+        return ret
+
     def PrintDefinition() :
         pass
 
     def Run(self) :
         ''' Execute minuit with Objective function '''
         print 'Optimizer.Run>'
+        
+        # check for a system to optimise
+        if len(self.variables) == 0 or len(self.constraints) == 0 :
+            print 'Optimiser.Run> Insufficent variables/constraints'
 
         # make object callable to minuit
         self.func_code = FncClass(len(self.variables),self.variables.keys())
                
-        # create minuit object 
-        self.m = minuit.Minuit(self)
+        # create minuit object
+        try :
+            self.m = minuit.Minuit(self)
+        except MinuitError : 
+            pass
 
         # set starting values and limits 
         for v in self.variables : 
@@ -133,11 +159,28 @@ class Optimiser :
 
     def __call__(self,*args) :
         ''' Objective function''' 
-#        print 'Optimiser.Objective>'
-        return args[0]**2+args[1]**2
+        print 'Optimiser.Objective>',args
 
+        # set variables
+        i = 0
+        for v in self.variables :
+            self.SetValue(v,args[i])
+            i += 1
+
+        # Twiss progagation
+        self.s.TwissProp();
+            
         # Track in serpentine object
-        self.s.Track()
+        self.s.Track(); print '\n'
+
+        # loop constraints 
+        sum = 0 
+        for v in self.constraints :
+            print 'Optimiser.Objective> val=', self.GetValue(v)
+            contrib = self.EvalConstraint(v)
+            sum += contrib
+        print 'Optimiser.Objective> sum=',sum,'\n'
+        return sum
 
     def __repr__(self):
         return ''
@@ -152,7 +195,7 @@ def OptimiserTest() :
     # build simple 2 magnet system
     qf  = elements.Quad("QF",L=0.25,P=1.25,B=5)
     dr1 = elements.Drift("D1",L=0.30,P=1.25)
-    qd  = elements.Quad("QD",L=0.25,P=1.25,B=-2.5)
+    qd  = elements.Quad("QD",L=0.25,P=1.25,B=-5)
     dr2 = elements.Drift("D2",L=1.0,P=1.25) 
     m1  = elements.BasicDiag("M1",L=0.0)
 
@@ -179,13 +222,13 @@ def OptimiserTest() :
 
     # optimizer test
     o = Optimiser(s)
-    o.AddVariable('qf1b','QF',['B'],25,0.1,0,50)
-    o.AddVariable('qd1b','QD',['B'],25,0.1,0,50)
-    o.AddConstraint('fbetax','M1',['twiss','betax'],'eq',0.001)
-    o.AddConstraint('fbetay','M1',['twiss','betay'],'eq',0.001)
+    o.AddVariable('qf1b','QF',['B'],5,0.1,0,250)
+    o.AddVariable('qd1b','QD',['B'],-5,0.1,0,250)
+    o.AddConstraint('fbetax','M1',['twiss','betax'],'lt',0.1)
+    o.AddConstraint('fbetay','M1',['twiss','betay'],'lt',0.1)
     o.TestVariables()
     o.TestConstraints()
-    o.Run()
+#    o.Run()
     
     return [s,o]
 
