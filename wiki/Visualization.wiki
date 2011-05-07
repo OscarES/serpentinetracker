@@ -3,5 +3,5 @@
 = Introduction =
 
 = Function reference = 
-  * Matplotlib2D(serpentine)
-  * PlotTwiss(serpentine)
+  * !Matplotlib2D(serpentine)
+  * !PlotTwiss(serpentine)
