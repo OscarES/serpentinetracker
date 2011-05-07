@@ -115,12 +115,12 @@ class Optimiser :
             if val > v['value'] :
                 ret = (val - v['value'])**2
             else :
-                ret = 0 
+                ret = 0.0
         elif v['type'] == 'gt' :
             if val < v['value'] :
                 ret = (val - v['value'])**2
             else :
-                ret = 0             
+                ret = 0.0             
         
         return ret
 
@@ -168,10 +168,12 @@ class Optimiser :
             i += 1
 
         # Twiss progagation
+        for ele in self.s.beamline:
+            ele.CalcRmat()
         self.s.TwissProp();
             
         # Track in serpentine object
-        self.s.Track(); print '\n'
+        # self.s.Track(); print '\n'
 
         # loop constraints 
         sum = 0 
@@ -207,7 +209,6 @@ def OptimiserTest() :
                              alphax = 1.11230788371885,     alphay = -1.91105724003646,
                              etax   = 3.89188697330735e-012,etay   = 0,
                              etapx  = 63.1945125619190e-015,etapy  = 0,
-
                              phix   = 0,                    phiy   = 0,
                              nemitx = 5.08807339588144e-006,nemity = 50.8807339588144e-009,
                              sigz   = 8.00000000000000e-003,sigP   = 1.03999991965541e-003,
@@ -215,15 +216,14 @@ def OptimiserTest() :
 
     print bl
     s = serpentine.Serpentine(bl,twiss=mytwiss)
-    s.Track(); print '';
-
     # Visualisation check 
-    visualize.Matplotlib2D(s,labelmag=True, labeldiag=True)
+    visualize.PlotTwiss(s)
+#    visualize.Matplotlib2D(s,labelmag=True, labeldiag=True)    
 
     # optimizer test
     o = Optimiser(s)
-    o.AddVariable('qf1b','QF',['B'],5,0.1,0,250)
-    o.AddVariable('qd1b','QD',['B'],-5,0.1,0,250)
+    o.AddVariable('qf1b','QF',['B'],5,0.1,-50,50)
+    o.AddVariable('qd1b','QD',['B'],-5,0.1,-50,50)
     o.AddConstraint('fbetax','M1',['twiss','betax'],'lt',0.1)
     o.AddConstraint('fbetay','M1',['twiss','betay'],'lt',0.1)
     o.TestVariables()
