@@ -8,7 +8,7 @@ Emailed to Steve
   * EPICS interface, so building a EPICS IOC from the serpentine model and then the control system coupled to the simulation
   * Feedback. Design some general feedback controllers that can be implemented 
   * Speed improvements etc (at least testing ideas)
-  * Lattice visualisation
+  * ~~Lattice visualisation~~
 
 Ideas
   * Run control in serpentine (Track, TwissProp etc) 
