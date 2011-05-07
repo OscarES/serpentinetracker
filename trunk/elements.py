@@ -75,7 +75,7 @@ class Twiss(object):
 # 'Element' superclass, defining common qualities of all elements
 # Also defines CalcRmat for a drift, which will then be overridden
 # in classes where this is not true.
-class Element:
+class Element(object):
     """The Element superclass.  All beamline element classes should
     inherit from this class"""
     def __init__(self, name, L=1, P=1, S=0, aper=0, apershape='ELLIPTICAL'):

@@ -374,13 +374,13 @@ class Line(list):
 
     def ZeroCors(self):
         """Sets the field of all correctors in the lattice to zero.
-
         This is useful for reverting to the default lattice after a
         steering operation has been performed."""
+        import elements
         for ele in self:
-            if (str(ele.__class__) == 'elements.Xcor' or 
-                str(ele.__class__) == 'elements.Ycor' or
-                str(ele.__class__) == 'elements.XYcor'):
+            if (type(ele) == elements.Xcor or 
+                type(ele) == elements.Ycor or
+                type(ele) == elements.XYcor):
                 ele.B = 0
 
     def SingleRmat(self, i):
