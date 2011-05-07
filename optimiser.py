@@ -35,8 +35,10 @@ from matplotlib.pylab import *
 # optimization library
 import minuit
 
-# global optimiser 
-_go = None
+class FncClass() :
+    def __init__(self, narg, varnames) :
+        self.co_argcount = narg
+        self.co_varnames = tuple(varnames)
 
 class Optimiser :
 
@@ -46,8 +48,8 @@ class Optimiser :
         print 'Optimiser.__init__()'
         # serpentine object (should this be copied? mmmmm)
         self.s = s
-        self.variables   = []
-        self.constraints = []
+        self.variables   = {}
+        self.constraints = {}
 
     def AddVariable(self,name,element,attrName,start=0,step=1.0,min=0,max=0) :
         ''' Add variable (input/output) with range 
@@ -60,43 +62,85 @@ class Optimiser :
         step        : Set initial step 
         max         : Maximum value 
         min         : Minimum value'''
-        v = {'name':name,'ele':element,'attr':attrName,'start':start,'step':step,'min':min,'max':max}
-        self.variables.append(v)
+        self.variables[name] = {'data':{'ele':element,'attr':attrName,'start':start,'step':step,'min':min,'max':max}}
     
     def AddConstraint(self,name,element,attrName,type,value) :
         ''' Add constraint (output)'''
-        v = {'name':name,'ele':element,'attr':attrName,'type':type,'value':value}
-        self.constraints.append(v)
+#        v = {'name':name, data:{'ele':element,'attr':attrName,'type':type,'value':value}}
+        self.constraints[name] = {'data':{'ele':element,'attr':attrName,'type':type,'value':value}}
 
     def TestVariables(self) :
         ''' Test we can extract and set variables in the variables list'''
         e = None 
         for v in self.variables :
-            print v['ele']
-            
-            e = self.s.beamline.FindEleByName(v['ele'])
+            print 'Optimiser.TestVariables  >',v,self.variables[v],self.GetValue(v)
 
-            # drill down into element to find correct number
-            for a in v['attr'] :
-                e = e.__getattribute__(a)
-        
-            print v['name'], v['ele'], v['attr'], e
-            
+    def TestConstraints(self) :
+        ''' Test if we can extract the output '''
+        for v in self.constraints :
+            print 'Optimiser.TestConstraints>',v,self.constraints[v],self.GetValue(v)
+
+    def GetValue(self,v) :                   
+        if type(v) == str :
+            try :
+                v = self.variables[v]['data']
+            except :
+                v = self.constraints[v]['data']
+                
+        e = self.s.beamline.GetEleByName(v['ele'])[0]
+        for a in v['attr'] :
+            e = e.__getattribute__(a)        
+        return e
+
+    def SetValue(self, v, value) :
+        if type(v) == str :
+            try :
+                v = self.variables[v]['data']
+            except KeyError :
+                print 'Optimiser : no such variables' 
+                return 
+
+        e = self.s.beamline.GetEleByName(v['ele'])[0]
+        for a in v['attr'][:-2] :
+            e = e.__getattribute__(a)        
+        e.__setattr__(v['attr'][-1],value)
+
     def PrintDefinition() :
         pass
 
     def Run(self) :
         ''' Execute minuit with Objective function '''
-        print 'Optimizer.Run'
+        print 'Optimizer.Run>'
+
+        # make object callable to minuit
+        self.func_code = FncClass(len(self.variables),self.variables.keys())
+               
+        # create minuit object 
+        self.m = minuit.Minuit(self)
+
+        # set starting values and limits 
+        for v in self.variables : 
+            self.m.values[v] = self.variables[v]['data']['start']
+            self.m.limits[v] = (self.variables[v]['data']['min'],self.variables[v]['data']['max'])
+        self.m.printMode = 0
+        self.m.migrad()
         
-    def Clear() :
-        ''' Clear all variables'''
+    def Clear(self) :
+        ''' Clear all variables and constraints'''
+        print 'Optimizer.Clear>'
         self.variables  = []
+        self.constaints = []
+
+    def __call__(self,*args) :
+        ''' Objective function''' 
+#        print 'Optimiser.Objective>'
+        return args[0]**2+args[1]**2
+
+        # Track in serpentine object
+        self.s.Track()
 
     def __repr__(self):
-        pass
-#        ret = '\n'.join(str(el)+" :: "+str(ele.__class__) for ele in self)        
-#        return ret
+        return ''
 
 
 def OptimiserTest() :
@@ -131,16 +175,19 @@ def OptimiserTest() :
     s.Track(); print '';
 
     # Visualisation check 
-    visualize.Matplotlib2D(s,label=True)
+    visualize.Matplotlib2D(s,labelmag=True, labeldiag=True)
 
     # optimizer test
     o = Optimiser(s)
     o.AddVariable('qf1b','QF',['B'],25,0.1,0,50)
     o.AddVariable('qd1b','QD',['B'],25,0.1,0,50)
-    o.AddConstraint('fbetax','M1',['twiss','betax'],'eq',5)
+    o.AddConstraint('fbetax','M1',['twiss','betax'],'eq',0.001)
+    o.AddConstraint('fbetay','M1',['twiss','betay'],'eq',0.001)
     o.TestVariables()
-
-    return s
+    o.TestConstraints()
+    o.Run()
+    
+    return [s,o]
 
 
 
