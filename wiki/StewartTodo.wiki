@@ -4,5 +4,5 @@ Ideas
   * Run control in serpentine (Track, TwissProp etc)
   * Girders, PowerSupplies?
   * Subbeamline and recursion. beamline should be element? 
-  * Orbit structure unrelated to Diag.... 
-
+  * Orbit structure unrelated to Diag....  
+  * CalcRMat updates?
