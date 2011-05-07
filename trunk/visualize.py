@@ -45,7 +45,7 @@ def PlotTwiss(so, betax=True, betay=True, spline=False) :
                     pass
                 f= interpolate.InterpolatedUnivariateSpline(xarr,yarr,k=3)
                 xarrp = np.linspace(xarr.min(),xarr.max(),1000)
-                plt.plot(xarrp,f(xarrp),'-kx')
+#                plt.plot(xarrp,f(xarrp),'-kx')
                 xstr = 'Beta_x / m  '
                 betax = 0
             if betay :
@@ -58,7 +58,7 @@ def PlotTwiss(so, betax=True, betay=True, spline=False) :
                     pass
                 f= interpolate.InterpolatedUnivariateSpline(xarr,yarr,k=3)
                 xarrp = np.linspace(xarr.min(),xarr.max(),1000)
-                plt.plot(xarrp,f(xarrp),'-kx')
+#                plt.plot(xarrp,f(xarrp),'-kx')
                 xstr = xstr + '&  Beta_y / m'
                 betay = 0
              
@@ -68,7 +68,7 @@ def PlotTwiss(so, betax=True, betay=True, spline=False) :
             plt.legend(('Beta_x', 'Beta_y'), 0)
             continue
 
-def Matplotlib2D(so, projection='sx', options = '', label = False) :    
+def Matplotlib2D(so, projection='sx', options = '', labelmag = False, labeldiag = False) :    
     '''Draw matplotlib representation of beamline.  
     so         : serpentine object (could be beamline)
     projection : 'sx','sy (no implemented yet'
@@ -125,32 +125,57 @@ def Matplotlib2D(so, projection='sx', options = '', label = False) :
         if   e.__class__.__name__ == "Quad" :
             if e.B > 0 :
                 rect = Rectangle((e.S,0),e.L,eheight)
-                if label : 
+                if labelmag : 
                     plt.text(textsloc,1.75*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
             else :
                 rect = Rectangle((e.S,0),e.L,-eheight)
-                if label : 
+                if labelmag : 
                     plt.text(textsloc,-1.75*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
             axe.add_patch(rect)            
         elif e.__class__.__name__ == "Sext" :
             if e.B > 0 :
                 rect = Rectangle((e.S,0),e.L,eheight,facecolor='green')
-                if label : 
+                if labelmag : 
                     plt.text(textsloc,3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
             else :
                 rect = Rectangle((e.S,0),e.L,-eheight,facecolor='green')
-                if label : 
+                if labelmag : 
                     plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
             axe.add_patch(rect)            
         elif e.__class__.__name__ == "Sbend" :
             rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,facecolor='red')
             axe.add_patch(rect)
-            if label : 
+            if labelmag : 
                 plt.text(textsloc,3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
         elif e.__class__.__name__ == "BasicDiag" :
             rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
             axe.add_patch(rect)            
-            if label : 
+            if labeldiag : 
+                plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
+        elif e.__class__.__name__ == "BPM" :
+            rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
+            axe.add_patch(rect)            
+            if labeldiag : 
+                plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
+        elif e.__class__.__name__ == "Screen" :
+            rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
+            axe.add_patch(rect)            
+            if labeldiag : 
+                plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
+        elif e.__class__.__name__ == "EmitScreen" :
+            rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
+            axe.add_patch(rect)            
+            if labeldiag : 
+                plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
+        elif e.__class__.__name__ == "OTR" :
+            rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
+            axe.add_patch(rect)            
+            if labeldiag : 
+                plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
+        elif e.__class__.__name__ == "ICT" :
+            rect = Rectangle((e.S,-eheight/2.0),e.L,eheight,fill=False,ls='dashed')
+            axe.add_patch(rect)            
+            if labeldiag : 
                 plt.text(textsloc,-3.5*eheight,e.name,size=12, rotation=-90, ha="center",va="center")
 
 
