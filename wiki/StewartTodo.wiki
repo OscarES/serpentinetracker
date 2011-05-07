@@ -16,3 +16,7 @@ Ideas
   * Subbeamline and recursion. beamline should be element? 
   * Orbit structure unrelated to Diag....  
   * CalcRMat updates?
+
+House keeping
+  * Move all plotting to visualise
+  * Start analysis class
