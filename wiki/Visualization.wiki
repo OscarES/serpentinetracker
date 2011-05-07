@@ -2,7 +2,7 @@
 
 = Introduction =
 
-[http://code.google.com/p/serpentinetracker/downloads/detail?name=atfExtVisExample.jpg&can=2&q=]
+[http://code.google.com/p/serpentinetracker/downloads/detail?name=atfExtVisExample.jpg]
 = Function reference = 
   * Matplotlib2D(serpentine)
   * PlotTwiss(serpentine)
