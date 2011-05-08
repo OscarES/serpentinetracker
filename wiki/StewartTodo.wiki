@@ -13,7 +13,7 @@ Emailed to Steve
 Ideas
   * Run control in serpentine (Track, !TwissProp etc) 
   * !VirtualMachine control class?
-  * Girders, PowerSupplies?
+  * Girders, !PowerSupplies?
   * Subbeamline and recursion. beamline should be element? 
   * Orbit structure unrelated to Diag....  
   * !CalcRMat updates?
