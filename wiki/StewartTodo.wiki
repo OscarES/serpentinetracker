@@ -16,7 +16,7 @@ Ideas
   * Girders, !PowerSupplies?
   * Subbeamline and recursion. beamline should be element? 
   * Orbit structure unrelated to Diag....  
-  * !CalcRMat updates?
+  * CalcRMat updates?
   * Aanalysis scan function
 
 House keeping
