@@ -1,7 +1,7 @@
 # Stewart's improvement note page
 
 Emailed to Steve
-  * Do at least a reasonable optimizer of lattice parameters
+  * ~~Do at least a reasonable optimizer of lattice parameters~~ working with quadratic penalty function
   * Put some simple diagnostics in. So my advanced BPM and some simple striplines etc 
   * ATL model for ground motion 
   * Wakefields. So some stuff on the effect of wake-fields. 
