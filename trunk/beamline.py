@@ -253,44 +253,6 @@ class Line(list):
         beam_out.x = np.dot(r_out, beam_out.x)
         return beam_out.x
 
-#    def _AdjustBeamByOffset(self, ele, beam_out):
-#        [r_in, r_out] = RotMats(-ele.offset[5])
-#        beam_out.x[0, :] = beam_out.x[0, :] - ele.offset[0]
-#        beam_out.x[1, :] = beam_out.x[1, :] - ele.offset[1]
-#        beam_out.x[2, :] = beam_out.x[2, :] - ele.offset[2]
-#        beam_out.x[3, :] = beam_out.x[3, :] - ele.offset[3]
-#        beam_out.x = np.dot(r_in, beam_out.x)
-#        return beam_out.x
-#    
-#    def _ReAdjustBeamByOffset(self, ele, beam_out):
-#        [r_in, r_out] = RotMats(-ele.offset[5])
-#        beam_out.x[0, :] = beam_out.x[0, :] + ele.offset[0]
-#        beam_out.x[1, :] = beam_out.x[1, :] + ele.offset[1]
-#        beam_out.x[2, :] = beam_out.x[2, :] + ele.offset[2]
-#        beam_out.x[3, :] = beam_out.x[3, :] + ele.offset[3]
-#        beam_out.x = np.dot(r_out, beam_out.x)
-#        return beam_out.x
-#    
-#    def _AdjustBeamWithMover(self, ele, beam_out):
-#        moverpos = ele.Mover.GetAct()
-#        [r_in, r_out] = RotMats(-moverpos[5])
-#        beam_out.x[0, :] = beam_out.x[0, :] - moverpos[0]
-#        beam_out.x[1, :] = beam_out.x[1, :] - moverpos[1]
-#        beam_out.x[2, :] = beam_out.x[2, :] - moverpos[2]
-#        beam_out.x[3, :] = beam_out.x[3, :] - moverpos[3]
-#        beam_out.x = np.dot(r_in, beam_out.x)
-#        return beam_out.x
-#    
-#    def _ReAdjustBeamWithMover(self, ele, beam_out):
-#        moverpos = ele.Mover.GetAct()
-#        [r_in, r_out] = RotMats(-moverpos[5])
-#        beam_out.x[0, :] = beam_out.x[0, :] + moverpos[0]
-#        beam_out.x[1, :] = beam_out.x[1, :] + moverpos[1]
-#        beam_out.x[2, :] = beam_out.x[2, :] + moverpos[2]
-#        beam_out.x[3, :] = beam_out.x[3, :] + moverpos[3]
-#        beam_out.x = np.dot(r_out, beam_out.x)
-#        return beam_out.x
-    
     def SetSPos(self, ini_s=0):
         """Sets the longitudinal position of each element based on an initial 
         value that defines the location of the upstream end of the first 
