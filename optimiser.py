@@ -42,16 +42,19 @@ class FncClass() :
 
 class Optimiser :
 
-    def __init__(self,s) :
+    def __init__(self,s, debug=False) :
         ''' Class to optimise basic lattive functions based on variable which  can be set via object function methods
         s : Serpentine or beamline (not implemented but quick) object'''
         print 'Optimiser.__init__()'
+        # debug variable for verbose output
+        self.debug = debug
+
         # serpentine object (should this be copied? mmmmm)
         self.s = s
         self.variables   = {}
         self.constraints = {}
 
-    def AddVariable(self,name,element,attrName,start=0,step=1.0,min=0,max=0) :
+    def AddVariable(self,name,element,attrName,step=1.0,min=0,max=0) :
         ''' Add variable (input/output) with range 
         elementName : name within beamline
         className   : class within element where data is stored, if list can be nested classes
@@ -62,12 +65,12 @@ class Optimiser :
         step        : Set initial step 
         max         : Maximum value 
         min         : Minimum value'''
-        self.variables[name] = {'data':{'ele':element,'attr':attrName,'start':start,'step':step,'min':min,'max':max}}
+        self.variables[name] = {'data':{'ele':element,'attr':attrName,'step':step,'min':min,'max':max}}
     
-    def AddConstraint(self,name,element,attrName,type,value) :
+    def AddConstraint(self,name,element,attrName,type,value, weight) :
         ''' Add constraint (output)'''
 #        v = {'name':name, data:{'ele':element,'attr':attrName,'type':type,'value':value}}
-        self.constraints[name] = {'data':{'ele':element,'attr':attrName,'type':type,'value':value}}
+        self.constraints[name] = {'data':{'ele':element,'attr':attrName,'type':type,'value':value,'weight':weight}}
 
     def TestVariables(self) :
         ''' Test we can extract and set variables in the variables list'''
@@ -110,15 +113,15 @@ class Optimiser :
 
         val = self.GetValue(v)
         if v['type'] == 'eq' : 
-            ret = (val - v['value'])**2
+            ret = v['weight']*(val - v['value'])**2
         elif v['type'] == 'lt' :
             if val > v['value'] :
-                ret = (val - v['value'])**2
+                ret = v['weight']*(val - v['value'])**2
             else :
                 ret = 0.0
         elif v['type'] == 'gt' :
             if val < v['value'] :
-                ret = (val - v['value'])**2
+                ret = v['weight']*(val - v['value'])**2
             else :
                 ret = 0.0             
         
@@ -146,10 +149,13 @@ class Optimiser :
 
         # set starting values and limits 
         for v in self.variables : 
-            self.m.values[v] = self.variables[v]['data']['start']
+            self.m.values[v] = self.GetValue(v)
             self.m.limits[v] = (self.variables[v]['data']['min'],self.variables[v]['data']['max'])
         self.m.printMode = 0
         self.m.migrad()
+        print self.m.values        
+        for v in self.constraints :
+            print v,self.GetValue(v)
         
     def Clear(self) :
         ''' Clear all variables and constraints'''
@@ -159,7 +165,8 @@ class Optimiser :
 
     def __call__(self,*args) :
         ''' Objective function''' 
-        print 'Optimiser.Objective>',args
+        if self.debug :
+            print 'Optimiser.Objective>',args
 
         # set variables
         i = 0
@@ -178,10 +185,12 @@ class Optimiser :
         # loop constraints 
         sum = 0 
         for v in self.constraints :
-            print 'Optimiser.Objective> val=', self.GetValue(v)
+            if self.debug : 
+                print 'Optimiser.Objective> val=', self.GetValue(v)
             contrib = self.EvalConstraint(v)
             sum += contrib
-        print 'Optimiser.Objective> sum=',sum,'\n'
+        if self.debug :
+            print 'Optimiser.Objective> sum=',sum,'\n'
         return sum
 
     def __repr__(self):
@@ -189,6 +198,13 @@ class Optimiser :
 
 
 def OptimiserTest() :
+    ''' Simple two magnet focus optimisation :
+    To run 
+    python>import visualize 
+    python>[s,o] = optimiser.OptimiserTest()
+    python>o.Run()'''
+
+
     import elements
     import beamline 
     import serpentine 
@@ -218,17 +234,19 @@ def OptimiserTest() :
     s = serpentine.Serpentine(bl,twiss=mytwiss)
     # Visualisation check 
     visualize.PlotTwiss(s)
-#    visualize.Matplotlib2D(s,labelmag=True, labeldiag=True)    
 
     # optimizer test
     o = Optimiser(s)
-    o.AddVariable('qf1b','QF',['B'],5,0.1,-50,50)
-    o.AddVariable('qd1b','QD',['B'],-5,0.1,-50,50)
-    o.AddConstraint('fbetax','M1',['twiss','betax'],'lt',0.1)
-    o.AddConstraint('fbetay','M1',['twiss','betay'],'lt',0.1)
+    o.AddVariable('qf1b','QF',['B'],0.1,-50,50)
+    o.AddVariable('qd1b','QD',['B'],0.1,-50,50)
+    o.AddConstraint('fbetax','M1',['twiss','betax'],'lt',1.5,1.0)
+    o.AddConstraint('fbetay','M1',['twiss','betay'],'eq',0.3,20.0)
     o.TestVariables()
     o.TestConstraints()
-#    o.Run()
+    o.Run()
+
+    # Visualisation check
+    visualize.PlotTwiss(o.s)
     
     return [s,o]
 

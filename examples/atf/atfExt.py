@@ -41,7 +41,7 @@ class AtfExt :
         figure(2)
         vis.PlotTwiss(self.atfExt)
         figure(3)
-        vis.Matplotlib2D(self.atfExt,label=True)
+        vis.Matplotlib2D(self.atfExt,labelmag=True)
                 
     def setMagnet(self,name, value) :
         ei = self.atfExt.beamline.FindEleByName(name)
