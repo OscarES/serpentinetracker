@@ -17,6 +17,7 @@ Ideas
   * Subbeamline and recursion. beamline should be element? 
   * Orbit structure unrelated to Diag....  
   * CalcRMat updates?
+  * Twiss update?
   * Aanalysis scan function
 
 House keeping
