@@ -30,7 +30,7 @@ from pylab import plot, subplot, figure, xlabel, ylabel
 from globals import electron_mass
 from scipy import sin, sqrt
 
-class Serpentine:
+class Serpentine(object):
     """The primary class for this tracking code"""
     def __init__(self, line, twiss=None, beam=None, ini_mom=None, parttype='ELECTRON'):
         self.offset = zeros(6)
