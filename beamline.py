@@ -55,7 +55,11 @@ class Line(list):
         return new_line
 
     def __repr__(self):
-        ret = '\n'.join(str(ele.name)+" :: "+str(ele.__class__) for ele in self)
+        def namecatch(inst):
+            try: return str(inst.name)
+            except AttributeError: return "No name attr"
+
+        ret = '\n'.join(namecatch(ele)+" :: "+str(ele.__class__) for ele in self)
         return ret
 
     def FindEleByName(self, name):
