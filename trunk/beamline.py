@@ -107,9 +107,10 @@ class Line(list):
         indlist = list()
         for i in range(len(self)):
             if self[i].__class__.__name__ == 'Serpentine':
-                intern_list = self[i].beamline.FindEleByTypeinit(classname)
-                for int_i in intern_list:
-                    indlist.append([i, int_i])
+                try: intern_list = self[i].beamline.FindEleByTypeinit(classname)
+                except ValueError: pass
+                try: [indlist.append([i, int_i]) for int_i in intern_list]
+                except UnboundLocalError: pass
             elif p.match(self[i].__class__.__name__):
                 indlist.append(i)
         if indlist:
