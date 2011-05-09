@@ -149,18 +149,19 @@ class Line(list):
     def GetEleByType(self, classname):
         """Returns a list of elements of class 'classtype' from self.  This 
         returns the elements themselves, not their indices."""
-        elems = list() 
+        def extractele(beamline, i, elelist):
+            if type(i)==int:
+                elelist.append(beamline[i])
+            elif type(i[1])==int:
+                elelist.append(beamline[i[0]].beamline[i[1]])
+            else:
+                extractele(beamline[i[0]].beamline, i[1], elelist)
+
+        elelist = list()
         indlist = self.FindEleByType(classname)
         for i in indlist:
-            if not isinstance(i, list):
-                elems.append(self[i])
-            else:
-                obj = self
-                for depth in xrange(len(i)-1):
-                    obj = obj[i[depth]].beamline
-                obj = obj[i[-1]]
-                elems.append(obj)
-        return elems
+            extractele(self, i, elelist)
+        return elelist
             
     def FindEleByObj(self, obj):
         """Returns the index at which the object 'obj' can be found in self."""
@@ -177,17 +178,18 @@ class Line(list):
     def GetEleByName(self, name):
         """Returns a list of elements named 'name' from self.  This returns 
         the elements themselves, not their indices."""
+        def extractele(beamline, i, elelist):
+            if type(i)==int:
+                elelist.append(beamline[i])
+            elif type(i[1])==int:
+                elelist.append(beamline[i[0]].beamline[i[1]])
+            else:
+                extractele(beamline[i[0]].beamline, i[1], elelist)
+
         elems = list() 
         indlist = self.FindEleByName(name)
         for i in indlist:
-            if not isinstance(i, list):
-                elems.append(self[i])
-            else:
-                obj = self
-                for depth in xrange(len(i)-1):
-                    obj = obj[i[depth]].beamline
-                obj = obj[i[-1]]
-                elems.append(obj)
+            extractele(self, i, elems)
         return elems
 
     def RmatAtoB(self, first, last):
