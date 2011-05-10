@@ -62,33 +62,6 @@ class Line(list):
         ret = '\n'.join(namecatch(ele)+" :: "+str(ele.__class__) for ele in self)
         return ret
 
-#    def FindEleByName(self, name):
-#        """Returns the indices at which elements named 'name' can be found in 
-#        self."""
-#        borkedlist = self._FindEleByName(name)
-#        fixedlist = list()
-#        for i in borkedlist:
-#            fixedlist.append(fixborkedlist(i))
-#        return fixedlist
-#
-#    def _FindEleByName(self, name):
-#        """A method to help find elements by their name.
-#        This method is only to be called by FindEleByName()."""
-#        p = re.compile("^" + name +"$")
-#        indlist = list()
-#        for i in range(len(self)):
-#            if self[i].__class__.__name__ == 'Serpentine':
-#                try: 
-#                    intern_list = self[i].beamline.FindEleByName(name)
-#                    [indlist.append([i, int_i]) for int_i in intern_list]
-#                except ValueError, UnboundLocalError: pass
-#            elif p.match(self[i].name):
-#                indlist.append(i)
-#        if indlist:
-#            return indlist
-#        else:
-#            raise ValueError(name + ": Not found.")
-
     def FindEleByName(self, name):
         from serpentine import Serpentine
         p = re.compile("^" + name + "$")
@@ -118,33 +91,6 @@ class Line(list):
                 indlist.append(i)
         if indlist: return indlist
         else:       raise ValueError(classname + ": Not found.")
-
-#    def FindEleByType(self, classname):
-#        """Returns the indices at which elements of class 'classname' can be 
-#        found in self."""
-#        borkedlist = self.FindEleByTypeinit(classname)
-#        fixedlist = list()
-#        for i in borkedlist:
-#            fixedlist.append(fixborkedlist(i))
-#        return fixedlist
-#
-#    def FindEleByTypeinit(self, classname):
-#        """A method to help find elements by their type.
-#        This method is only to be called by FindEleByType()."""
-#        p = re.compile("^" + classname + "$")
-#        indlist = list()
-#        for i in range(len(self)):
-#            if self[i].__class__.__name__ == 'Serpentine':
-#                try: intern_list = self[i].beamline.FindEleByTypeinit(classname)
-#                except ValueError: pass
-#                try: [indlist.append([i, int_i]) for int_i in intern_list]
-#                except UnboundLocalError: pass
-#            elif p.match(self[i].__class__.__name__):
-#                indlist.append(i)
-#        if indlist:
-#            return indlist
-#        else:
-#            raise ValueError(classname + ": Not found.")
 
     def GetEleByType(self, classname):
         """Returns a list of elements of class 'classtype' from self.  This 
