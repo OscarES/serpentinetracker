@@ -15,14 +15,15 @@ def printres(beamline, inds):
     for i in inds:
         printele(beamline, i)
 
-def printbeamline(beamline):
+def printbeamline(beamline, level=0):
+    print "Level %i:" % level
     for ele in beamline:
         if type(ele)==st.Serpentine:
-            print "Going down a level..."
-            printbeamline(ele.beamline)
+            level = printbeamline(ele.beamline, level=level-1)
         else:
-            print ele.name
-    print "Going up..."
+            print "    " + ele.name
+    print "Level %i:" % (level+1)
+    return level+1
 
 bl = beamline.Line()
 bl.append(Drift(name='drift0', L=1))
@@ -30,6 +31,7 @@ ind = 1
 bpmgrd0 = beamline.Line()
 bpmgrd1 = beamline.Line()
 bpmgrd2 = beamline.Line()
+bpmgrd3 = beamline.Line()
 for d in range(3):
     bpmgrd0.append(BPM(name='bpm'+str(ind),L=0,res=1e-7))
     bpmgrd0.append(Drift(name='drift'+str(ind),L=1))
@@ -45,6 +47,13 @@ for d in range(3):
     bpmgrd2.append(Drift(name='drift'+str(ind),L=1))
     ind += 1
 
+for d in range(3):
+    bpmgrd3.append(BPM(name='bpm'+str(ind),L=0,res=1e-7))
+    bpmgrd3.append(Drift(name='drift'+str(ind),L=1))
+    ind += 1
+
+bpmgrd2.append(st.Serpentine(line=bpmgrd3))
+bpmgrd2.append(BPM(name='bpmtmp', L=0., res=1e-7))
 bpmgrd1.append(st.Serpentine(line=bpmgrd2))
 
 bl.append(st.Serpentine(line=bpmgrd0))
@@ -57,9 +66,14 @@ s = st.Serpentine(line=bl,beam=bm)
 printbeamline(s.beamline)
 print " "
 
-qind = s.beamline.FindEleByName('drift7')
+qind = s.beamline.FindEleByName('drift11')
+print qind
+printres(s.beamline, qind)
+
+qind = s.beamline.FindEleByName('bpmtmp')
 print qind
 printres(s.beamline, qind)
 
 print s.beamline.GetEleByName('drift7')
+print s.beamline.GetEleByName('bpmtmp')
 
