@@ -72,6 +72,18 @@ class Twiss(object):
     def __repr__(self) :
         pass
 
+class Sigma(object) :
+    """Beam sigma matrix"""
+    
+    def __init__(self) :
+        pass
+
+class Orbit(object) :
+    """6 dimensional beam"""
+    
+    def __init__(self) :
+        pass
+
 # 'Element' superclass, defining common qualities of all elements
 # Also defines CalcRmat for a drift, which will then be overridden
 # in classes where this is not true.
@@ -128,6 +140,20 @@ class Element(object):
         """Return the S location of the element"""
         return self.S
  
+    def Set(self, va, value) :
+        """Set an element attribute value using a list of strings"""
+        e = self
+        for a in va[:-2] :
+            e = e.__getattribute__(a)        
+        e.__setattr__(v['attr'][-1],value)
+
+    def Get(self, va) :
+        """Get an element attribute value using a list of string"""
+        e = self
+        for a in va :
+            e = e.__getattribute__(a)        
+        return e
+
     def __str__(self):
         retstr = ""
         methodwrappertype = type(object().__hash__)
@@ -167,6 +193,7 @@ class Element(object):
         beam_out = deepcopy(beam_in)
         beam_out.x = np.dot(self.R, beam_in.x)
         return beam_out
+
 
 # ===============================================================
 # 'Element' has a subclass for each of the main element types

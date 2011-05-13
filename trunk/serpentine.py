@@ -225,18 +225,6 @@ class Serpentine(object):
 
         return array([S, x, y, xp, yp])
         
-    def PlotBPMReadings(self, formatstr='', classname='BPM'):
-        """Plot the BPM readings from the most recent tracking operation"""
-        readings = self.GetBPMReadings(classname)
-        subplot(211)
-        plot(readings[0, :], readings[1, :], 'x'+formatstr)
-        xlabel('S / m')
-        ylabel('x / m')
-        subplot(212)
-        plot(readings[0, :], readings[2, :], 'x'+formatstr)
-        xlabel('S / m')
-        ylabel('y / m')
-
     def GetScreenReadings(self):
         """Return Screen() data from the most recent tracking operation"""
         screens = self.beamline.GetEleByType('Screen')

@@ -35,12 +35,12 @@ from matplotlib.pylab import *
 # optimization library
 import minuit
 
-class FncClass() :
+class FncClass(object) :
     def __init__(self, narg, varnames) :
         self.co_argcount = narg
         self.co_varnames = tuple(varnames)
 
-class Optimiser :
+class Optimiser(object) :
 
     def __init__(self,s, debug=False) :
         ''' Class to optimise basic lattive functions based on variable which  can be set via object function methods
