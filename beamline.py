@@ -331,50 +331,23 @@ class Line(list):
         i.e. it returns beamline[i].R."""
         return self[i].R
 
-    def PlotRparam(self, param1=1, param2=1):
-        """Plots the value of the R matrix element R[param1,param2] vs S 
-        
-        Note that param1 and param2 use 'Matlab-style' indexing, rather 
-        than 'Python-style'. i.e. they can be any integer between 1 and 
-        6 inclusive."""
-        spos = np.zeros(len(self))
-        rparam = np.ones(len(self))
-        for ele in self:
-            spos[self.index(ele)] = ele.S
-            rparam[self.index(ele)] = ele.R[param1-1, param2-1]
-        plot(spos, rparam, '-x')
-
     def GetMomProfile(self):
         """Returns the momentum profile of the reference particle"""
         spos = [ele.S for ele in self]
         mom  = [ele.P for ele in self]
         return (spos, mom)
     
-    def PlotMomProfile(self, formatstr='-x'):
-        """Plots the momentum profile of the reference particle"""
-        spos, mom = self.GetMomProfile()
-        plot(spos, mom, formatstr)
-
     def GetEkProfile(self, restmass):
         """Returns the kinetic energy profile of the reference particle"""
         spos    = [ele.S for ele in self]
         kenergy = [np.sqrt(ele.P**2+restmass**2)-restmass for ele in self]
         return (spos, kenergy)
 
-    def PlotEkProfile(self, restmass, formatstr='-x'):
-        """Plots the kinetic energy profile of the reference particle"""
-        spos, kenergy = self.GetEkProfile(restmass)
-        plot(spos, kenergy, formatstr)
-
     def GetRFPhases(self):
         """Returns the RF phases of the AccCav objects in beamline."""
         acccavs = self.GetEleByType('AccCav')
         return [ele.phi for ele in acccavs]
         
-    def PlotRFPhases(self):
-        """Plots the RF phases of the AccCav objects in beamline."""
-        plot(self.GetRFPhases(), 'x')
-
     def XRmat(self, ind=0):
         """Print the 2x2 block of the R matrix corresponding to the 
         horizontal transverse space. 'ind' is the element for which the 
@@ -438,32 +411,6 @@ class Line(list):
                 twiss_dict['etapx'].append(ele.twiss.etapx)
                 twiss_dict['etapy'].append(ele.twiss.etapy)
         return twiss_dict
-
-    def PlotTwiss(self, betax=1, betay=1):
-        """PlotTwiss(self, betax=1, betay=1)
-        Plot the twiss parameters.
-        if betax: plot Beta_x versus S
-        if betay: plot Beta_y versus S"""
-        twiss_dict = self.GetTwiss()
-
-        numplots = (betax or betay)
-        for i in range(numplots):
-            xstr = ''
-            if (betax or betay):
-                if betax:
-                    subplot(numplots, 1, i+1)
-                    plot(twiss_dict['S'], twiss_dict['betax'], '-bx')
-                    xstr = 'Beta_x / m  '
-                    betax = 0
-                if betay:
-                    subplot(numplots, 1, i+1)
-                    plot(twiss_dict['S'], twiss_dict['betay'], '-rx')
-                    xstr = xstr + '&  Beta_y / m'
-                    betay = 0
-                xlabel('S / m')
-                ylabel(xstr)
-                legend(('Beta_x', 'Beta_y'), 0)
-                continue
 
 class ProgressBar:
     """A class to display a progress bar when tracking through a beamline."""

@@ -4,6 +4,7 @@ from serpentine import *
 import numpy as np
 from scipy import optimize
 from pylab import figure, plot, title, show, ylim, xlabel, ylabel
+import visualize
 
 # A function to scan a corrector, and record BPM readings
 class CorSweep:
@@ -85,17 +86,19 @@ ext_start = fullATF2.beamline.FindEleByName('KEX1A')
 ATF2ext = Serpentine(line=beamline.Line(fullATF2.beamline[ext_start[0]:]),twiss=mytwiss)
 
 # Plot the Twiss parameters
-figure(10);ATF2ext.PlotTwiss()
+vis = visualize.Visualize()
+figure(10);vis.PlotTwiss(ATF2ext)
+vis.ObserveAxes()
 
 # Zero all correctors to nominal, track a single particle, and plot results
 ATF2ext.beamline.ZeroCors()
 ATF2ext.Track()
-figure(1); ATF2ext.PlotBPMReadings('b')
+figure(1); vis.PlotBPMReadings(ATF2ext,'b')
 
 # Add an offset in 'x' to a quad, re-track, and re-plot
 ATF2ext.beamline[194].SetOffset([0.1e-3,0,0,0,0,0])
 ATF2ext.Track()
-figure(1); ATF2ext.PlotBPMReadings('r')
+figure(1); vis.PlotBPMReadings(ATF2ext,'r')
 
 # Generate new CorSweep and BBA objects
 cor_currs = np.arange(-2e-3,2e-3,step=0.25e-3)

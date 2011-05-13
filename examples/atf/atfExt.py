@@ -3,7 +3,7 @@ import scipy as sp
 
 from serpentine import *
 from elements import *
-import visualize as vis
+import visualize
 
 class AtfExt :
     def __init__(self) :
@@ -36,13 +36,18 @@ class AtfExt :
         self.atfExt.Track()
         readings = self.atfExt.GetBPMReadings()
         
-        figure(1)
-        self.atfExt.PlotBPMReadings('b')
-        figure(2)
-        vis.PlotTwiss(self.atfExt)
-        figure(3)
-        vis.Matplotlib2D(self.atfExt,labelmag=True)
-                
+    def moverCalibration(self, mag, bpms) :
+        pass
+
+    def correctorCalibration(self, corr, bpms) :
+        pass
+
+    def bba(self, mag, bpm) :
+        pass
+
+    def magMoverCalibration(self, mag, bpm) :
+        pass
+    
     def setMagnet(self,name, value) :
         ei = self.atfExt.beamline.FindEleByName(name)
         print ei

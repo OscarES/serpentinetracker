@@ -206,9 +206,9 @@ def make_element(node, mom, beamline, parttype):
             elif child.getAttribute('type') == 'PROF':
                 beamline.append(elements.Screen(name=elename, L=length, P=mom))
             elif child.getAttribute('type') == 'WIRE':
-                beamline.append(
-                    elements.WireScanner(name=elename, L=length, P=mom)
-                    )
+                beamline.append(elements.WireScanner(name=elename, L=length, P=mom))
+            else :
+                print 'latticeloader.make_element>',elename
     
     # If we haven't assigned anything yet, assign a drift
     if len(beamline) == numeles:
