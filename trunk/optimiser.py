@@ -233,7 +233,9 @@ def OptimiserTest() :
     print bl
     s = serpentine.Serpentine(bl,twiss=mytwiss)
     # Visualisation check 
-    visualize.PlotTwiss(s)
+    vis = visualize.Visualize()
+    figure(1)
+    vis.PlotTwiss(s)
 
     # optimizer test
     o = Optimiser(s)
@@ -246,7 +248,7 @@ def OptimiserTest() :
     o.Run()
 
     # Visualisation check
-    visualize.PlotTwiss(o.s)
+    vis.PlotTwiss(o.s)
     
     return [s,o]
 
