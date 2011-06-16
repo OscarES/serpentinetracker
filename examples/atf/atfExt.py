@@ -35,6 +35,9 @@ class AtfExt :
         # Track 
         self.atfExt.Track()
         readings = self.atfExt.GetBPMReadings()
+
+        # Visualisation 
+        self.v = visualize.Visualize()
         
     def moverCalibration(self, mag, bpms) :
         pass
@@ -55,10 +58,10 @@ class AtfExt :
         e.B = value
         
     def plotOrbit(self) :
-        self.atfExt.PlotBPMReadings()
+        self.v.PlotBPMReadings(self.atfExt)
 
     def plotTwiss(self) :
-        self.atfExt.PlotTwiss()
+        self.v.PlotTwiss(self.atfExt)
         
     def run(self) :
         self.atfExt.Track()

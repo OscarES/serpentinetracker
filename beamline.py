@@ -48,10 +48,10 @@ class Line(list):
         order to easily define a repeated section"""
         new_line = Line()
         copyfunc = lambda x: new_line.extend(copy.deepcopy(x))
-        for rep in repeat(copyfunc, rep):
+        for rep in repeat(copyfunc, fact):
             rep(self)
-        #for rep in range(fact):
-        #    new_line.extend(copy.deepcopy(self))
+#        for rep in range(fact):
+#            new_line.extend(copy.deepcopy(self))
         return new_line
 
     def __repr__(self):
