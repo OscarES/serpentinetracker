@@ -31,7 +31,9 @@ class Visualize(object) :
     def __init__(self) :
         '''Class to visualize numerical data as function of beamline distance "S" '''
         self.xlim = None
+        self.plotNames = []
         self.axes = []
+        self.acb  = None
 
     # from serpentine
     def PlotBPMReadings(self,so, formatstr='', classname='BPM'):
@@ -41,10 +43,7 @@ class Visualize(object) :
         plt.plot(readings[0, :], readings[2, :], '-xb')
         plt.ylabel('x/y / m')
 
-        if self.xlim == None : 
-            self.UpdateLimits()        
-        self.SetLimits()
-        self.AddAxes()
+        self.PostPlot("PlotBPMReadings")
         
     # From beamline 
     def PlotRparam(self, so, param1=1, param2=1):
@@ -61,10 +60,7 @@ class Visualize(object) :
         plt.plot(spos, rparam, '-x')
         plt.ylabel('R_'+str(param1)+str(param2))
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.SetLimits()
-        self.AddAxes()
+        self.PostPlot("PlotRParam")
 
     # From beamline 
     def PlotMomProfile(self, so, formatstr='-x'):
@@ -73,10 +69,7 @@ class Visualize(object) :
         plt.plot(spos, mom, formatstr)
         plt.ylabel('P / GeV/c')
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.SetLimits()
-        self.AddAxes()
+        self.PostPlot("PlotMomProfile")
 
     # From beamline (get data from serpentine and beam line... )
     def PlotEkProfile(self, so, formatstr='-x'):
@@ -84,19 +77,13 @@ class Visualize(object) :
         spos, kenergy = so.beamline.GetEkProfile(so.beam_in.restmass)
         plt.plot(spos, kenergy, formatstr)
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.SetLimits()
-        self.AddAxes()
+        self.PostPlot("PlotEkProfile")
 
     def PlotRFPhases(self, so):
         """Plots the RF phases of the AccCav objects in beamline."""
         so.plot(so.beamline.GetRFPhases(), 'x')
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.SetLimits()
-        self.AddAxes()
+        self.PostPlot("PlotRFPhases")
 
     # From beamline 
     def PlotTwiss(self,so, betax=True, betay=True, spline=False) :
@@ -134,11 +121,7 @@ class Visualize(object) :
         plt.ylabel('beta_{x,y}')
         plt.legend(('Beta_x', 'Beta_y'), 0)
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.UpdateLimits()
-        self.AddAxes()
-
+        self.PostPlot("PlotTwiss")
 
     def Matplotlib2D(self,so, projection='sx', options = '', labelmag = False, labeldiag = False) :    
         '''Draw matplotlib representation of beamline.  
@@ -257,10 +240,7 @@ class Visualize(object) :
         # set axis labels etc
         axe.yaxis.set_ticklabels("")
 
-        if self.xlim == None : 
-            self.UpdateLimits()
-        self.UpdateLimits()
-        self.AddAxes()
+        self.PostPlot("Matplotlib2D")
 
     def XAxesLabel(self) :
         plt.xlabel('S / m')
@@ -285,10 +265,25 @@ class Visualize(object) :
                     # remove callback make the change and then reinstall callback.
 #                    pass 
             
+    def PostPlot(self, plotName = '') :
+        # keep list of plots
+        self.plotNames.append(plotName)
+
+        # if no limits set some    
+        if self.xlim == None : 
+            self.UpdateLimits()        
+        # apply consistent limits
+        self.SetLimits()
+        # keep axes for redrawing later
+        self.AddAxes()
+        # update all plots 
+        self.Update()        
+
     def UpdateLimits(self) : 
         """Get current plot limits and store locally"""
         a = plt.gca()
         self.xlim = a.get_xlim()
+        print self.xlim
 
     def SetLimits(self) :
         """Set the visualisation limits from the current axis"""
@@ -307,13 +302,56 @@ class Visualize(object) :
         self.xlim  = self.acb.get_xlim()
         self.Update(True)
 
+def VisualizeTestRecursion() :
+    import visualize
+    import elements
+    import serpentine
+    import beamline 
+
+    print 'visualize.VisualizeTestRecursion'
+    
+    # set twiss parameters
+    mytwiss = elements.Twiss()
+    mytwiss.betax  = 6.85338806855804
+    mytwiss.alphax = 1.11230788371885
+    mytwiss.etax   = 3.89188697330735e-012
+    mytwiss.etaxp  = 63.1945125619190e-015
+    mytwiss.betay  = 2.94129410712918
+    mytwiss.alphay = -1.91105724003646
+    mytwiss.etay   = 0
+    mytwiss.etayp  = 0
+    mytwiss.nemitx = 5.08807339588144e-006
+    mytwiss.nemity = 50.8807339588144e-009
+    mytwiss.sigz   = 8.00000000000000e-003
+    mytwiss.sigP   = 1.03999991965541e-003
+    mytwiss.pz_cor = 0
+    
+    qf  = elements.Quad("QF",L=0.25,P=1.25,B=5)
+    dr1 = elements.Drift("D1",L=0.50,P=1.25)
+    qd  = elements.Quad("QD",L=0.25,P=1.25,B=-5)
+    dr2 = elements.Drift("D2",L=0.5,P=1.25) 
+    m1  = elements.BasicDiag("M1",L=0.0)    
+
+    fodo = beamline.Line([qf,dr1,qd,dr2,m1])
+    fodo_sim = serpentine.Serpentine(line=fodo,twiss=mytwiss)
+    
+    vis = visualize.Visualize()
+    plt.figure(1)
+    plt.subplot(3,1,1)
+    vis.Matplotlib2D(fodo_sim,labelmag=False, labeldiag=False)    
+    vis.ObserveAxes()
+    plt.subplot(3,1,2)
+    vis.PlotTwiss(fodo_sim)    
+
+    return fodo
+
 def VisualizeTestATF2() :
     import visualize
     import elements
     import serpentine
     import beamline
 
-    print 'AtfExt:__init__'
+    print 'visualize.VisualizeTestATF2()'
     
     # set twiss parameters
     mytwiss = elements.Twiss()
