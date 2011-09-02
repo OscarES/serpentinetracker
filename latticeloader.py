@@ -133,9 +133,9 @@ def make_element(node, mom, beamline, parttype):
                 elements.Quad(name=elename, L=length, P=mom, B=bfield*length)
                 )
         elif child.localName == 'bend':
-            bfield = extract_sbend(child, mom)
+            bfield,e_angle,h_int,h_gap = extract_sbend(child, mom)
             beamline.append(
-                elements.Sbend(name=elename, L=length, P=mom, B=bfield*length)
+                elements.Sbend(name=elename, L=length, P=mom, B=bfield*length, e_angle=e_angle, h_gap=h_gap, h_int=h_int)
                 )
         elif child.localName == 'kicker':
             xnode, ynode = None, None
@@ -260,7 +260,21 @@ def extract_sbend(node, mom):
         bfield[1] = float(k_coef) * bfield[0]
     except IndexError:
         pass
-    return bfield
+
+    edgeparams = array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+    edgekeys = ['e1','e2','f_int1','f_int2','h_gap1','h_gap2']
+    for (i,e) in enumerate(edgekeys):
+        e_node = node.getElementsByTagName(e)
+        try:
+            edgeparams[i] = e_node[-1].getAttribute('design')
+        except IndexError:
+            pass
+    edgeparams = edgeparams.reshape((3,2))
+    e_angle = edgeparams[0]
+    h_int = edgeparams[1]
+    h_gap = edgeparams[2]
+
+    return bfield, e_angle, h_int, h_gap
 
 def get_design(elename, node):
     """Returns the design attribute from an element."""
