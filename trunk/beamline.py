@@ -242,6 +242,8 @@ class Line(list):
         for i in self:
             if i.__class__.__name__ == 'Serpentine':
                 i.beamline.SetSPos(ini_s=cum_s)
+                if i.beamline[-1].__class__.__name__ != 'Serpentine':
+                    cum_s = i.beamline[-1].S+i.beamline[-1].L
                 continue
             i.S = cum_s
             cum_s += i.L
@@ -268,10 +270,10 @@ class Line(list):
             det_x = np.linalg.det(ele.R[0:2, 0:2])
             det_y = np.linalg.det(ele.R[2:4, 2:4])
 
-            deltaphix = np.arctan(ele.R[0, 1] / \
+            deltaphix = np.arctan2(ele.R[0, 1] , \
                 (final_twiss.betax*ele.R[0, 0] - 
                     final_twiss.alphax*ele.R[0, 1]))
-            deltaphiy = np.arctan(ele.R[2, 3] / \
+            deltaphiy = np.arctan2(ele.R[2, 3] , \
                 (final_twiss.betay*ele.R[2, 2] - 
                     final_twiss.alphay*ele.R[2, 3]))
             sum_phix += deltaphix
@@ -309,6 +311,16 @@ class Line(list):
                 (-ele.R[2, 3]*ele.R[3, 3] * gammay)
                 )  /  det_y
             finalgammay = (1 + final_twiss.alphay**2) / final_twiss.betay
+            
+            etax = final_twiss.etax
+            etapx = final_twiss.etapx
+            etay = final_twiss.etay
+            etapy = final_twiss.etapy
+
+            final_twiss.etax = ele.R[0,0]*etax+ele.R[0,1]*etapx+ele.R[0,5]
+            final_twiss.etapx = ele.R[1,0]*etax+ele.R[1,1]*etapx+ele.R[1,5]
+            final_twiss.etay = ele.R[2,2]*etay+ele.R[2,3]*etapy+ele.R[2,5]
+            final_twiss.etapy = ele.R[3,2]*etay+ele.R[3,3]*etapy+ele.R[3,5]
 
             final_twiss.phix = sum_phix
             final_twiss.phiy = sum_phiy

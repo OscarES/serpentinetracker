@@ -461,26 +461,26 @@ class Sbend(BasicMag):
             B = np.array([B, 0])
         BasicMag.__init__(self, name, L, P, S, aper, apershape, B)
         self.B = B
-        #try:
-        #    if e_angle.shape[0] == 1:
-        #        e_angle = np.array([e_angle, e_angle])
-        #except AttributeError:
-        #    e_angle = np.array([e_angle, e_angle])
-        #try:
-        #    if e_curve.shape[0] == 1:
-        #        e_curve = np.array([e_curve, e_curve])
-        #except AttributeError:
-        #    e_curve = np.array([e_curve, e_curve])
-        #try:
-        #    if h_gap.shape[0] == 1:
-        #        h_gap = np.array([h_gap, h_gap])
-        #except AttributeError:
-        #    h_gap = np.array([h_gap, h_gap])
-        #try:
-        #    if h_int.shape[0] == 1:
-        #        h_int = np.array([h_int, h_int])
-        #except AttributeError:
-        #    h_int = np.array([h_int, h_int])
+        try:
+            if e_angle.shape[0] == 1:
+                e_angle = np.array([e_angle, e_angle])
+        except AttributeError:
+            e_angle = np.array([e_angle, e_angle])
+        try:
+            if e_curve.shape[0] == 1:
+                e_curve = np.array([e_curve, e_curve])
+        except AttributeError:
+            e_curve = np.array([e_curve, e_curve])
+        try:
+            if h_gap.shape[0] == 1:
+                h_gap = np.array([h_gap, h_gap])
+        except AttributeError:
+            h_gap = np.array([h_gap, h_gap])
+        try:
+            if h_int.shape[0] == 1:
+                h_int = np.array([h_int, h_int])
+        except AttributeError:
+            h_int = np.array([h_int, h_int])
 
     def CalcRmat(self, P=-1):
         """Calculate the R matrix for the element"""
@@ -488,7 +488,8 @@ class Sbend(BasicMag):
             P = self.P
         rho = Brho1GeV * P * self.L / self.B[0]
         h = 1 / rho
-        n = -(self.B[1]/self.L) / (h*(self.B[0]/self.L))
+        if h != 0: n = -(self.B[1]/self.L) / (h*(self.B[0]/self.L))
+        else: n=0.0
         kxsq = (1-n)*h**2
         kysq = n*h**2
         kx = np.sqrt( abs(kxsq) )
@@ -508,6 +509,7 @@ class Sbend(BasicMag):
             Sx = 0
             Sxoverkx = self.L
             signkx = 0
+            kx = 1
 
         if kysq > 0:
             Cy = np.cos(ky * self.L)
@@ -545,11 +547,11 @@ class Sbend(BasicMag):
             ])
         phi_in = \
             self.h_int[0] * \
-            self.h_gap[0] * h * \
+            2*self.h_gap[0] * h * \
             (1+(np.sin(self.e_angle[0])**2)) / np.cos(self.e_angle[0])
         phi_out = \
             self.h_int[1] * \
-            self.h_gap[1] * h * \
+            2*self.h_gap[1] * h * \
             (1+(np.sin(self.e_angle[1])**2)) / np.cos(self.e_angle[1])
         edge_rin = np.eye(6)
         edge_rin[1, 0] = h * np.tan(self.e_angle[0])
@@ -813,17 +815,17 @@ class BPM(BasicDiag):
             self.DiagOut.y_centroid  = np.mean(beam_in.x[2, :])
         else:
             self.DiagOut.x_centroid = \
-                np.mean(beam_in.x[0, :]) + normal(scale=self.res[0], size=1)
+                np.mean(beam_in.x[0, :]) + normal(scale=self.res[0])
             self.DiagOut.y_centroid = \
-                np.mean(beam_in.x[2, :]) + normal(scale=self.res[0], size=1)
+                np.mean(beam_in.x[2, :]) + normal(scale=self.res[0])
         if self.res[1] == 0:
             self.DiagOut.xp_centroid = np.mean(beam_in.x[1, :])
             self.DiagOut.yp_centroid = np.mean(beam_in.x[3, :])
         else:
             self.DiagOut.xp_centroid = \
-                np.mean(beam_in.x[1, :]) + normal(scale=self.res[1], size=1)
+                np.mean(beam_in.x[1, :]) + normal(scale=self.res[1])
             self.DiagOut.yp_centroid = \
-                np.mean(beam_in.x[3, :]) + normal(scale=self.res[1], size=1)
+                np.mean(beam_in.x[3, :]) + normal(scale=self.res[1])
 
 class Screen(BasicDiag):
     """Screen class"""
