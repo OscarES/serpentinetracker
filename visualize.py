@@ -104,7 +104,7 @@ class Visualize(object) :
             xarrp = np.linspace(xarr.min(),xarr.max(),1000)
         #                plt.plot(xarrp,f(xarrp),'-kx')
             xstr = 'Beta_x / m  '
-            plt.plot(xarr,yarr,'-rx')
+            plt.plot(xarr,yarr,'-bx',label='Beta_x')
         if betay :
             xarr = np.array(twiss_dict['S'])
             yarr = np.array(twiss_dict['betay'])
@@ -116,10 +116,10 @@ class Visualize(object) :
             xarrp = np.linspace(xarr.min(),xarr.max(),1000)
         #                plt.plot(xarrp,f(xarrp),'-kx')
             xstr = xstr + '&  Beta_y / m'
-            plt.plot(xarr,yarr,'-bx')
+            plt.plot(xarr,yarr,'-rx',label='Beta_y')
              
         plt.ylabel('beta_{x,y}')
-        plt.legend(('Beta_x', 'Beta_y'), 0)
+        plt.legend(loc=0)
 
         self.PostPlot("PlotTwiss")
 

@@ -363,6 +363,8 @@ class Quad(BasicMag):
                 self.R[2, 3] = S/K
                 self.R[3, 2] = -K*S
                 self.R[3, 3] = C
+                self.R[4, 4] = 1
+                self.R[5, 5] = 1
             else:
                 self.R = np.array([
                     [CH, SH/K, 0, 0, 0, 0],
@@ -389,6 +391,8 @@ class Quad(BasicMag):
                 self.R[2, 3] = SH/K
                 self.R[3, 2] = K*SH
                 self.R[3, 3] = CH
+                self.R[4, 4] = 1
+                self.R[5, 5] = 1
             else:
                 self.R = np.array([
                     [C, S/K, 0, 0, 0, 0],
