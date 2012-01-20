@@ -224,7 +224,7 @@ def OptimiserTest() :
     mytwiss = elements.Twiss(betax  = 6.85338806855804,     betay  = 2.94129410712918,
                              alphax = 1.11230788371885,     alphay = -1.91105724003646,
                              etax   = 3.89188697330735e-012,etay   = 0,
-                             etapx  = 63.1945125619190e-015,etapy  = 0,
+                             etaxp  = 63.1945125619190e-015,etayp  = 0,
                              phix   = 0,                    phiy   = 0,
                              nemitx = 5.08807339588144e-006,nemity = 50.8807339588144e-009,
                              sigz   = 8.00000000000000e-003,sigP   = 1.03999991965541e-003,
