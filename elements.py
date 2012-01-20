@@ -41,7 +41,7 @@ class Twiss(object):
                  betax  = None,  betay = None, 
                  alphax = None, alphay = None,
                  etax   = None,   etay = None,
-                 etapx  = None,  etapy = None,
+                 etaxp  = None,  etayp = None,
                  phix   = None,   phiy = None,
                  nemitx = None, nemity = None,
                  sigz   = None,   sigP = None,
@@ -56,8 +56,8 @@ class Twiss(object):
         self.etax = etax
         self.etay = etay
 
-        self.etapx = etapx
-        self.etapy = etapy
+        self.etaxp = etaxp
+        self.etayp = etayp
 
         self.phix = phix
         self.phiy = phiy

@@ -313,14 +313,14 @@ class Line(list):
             finalgammay = (1 + final_twiss.alphay**2) / final_twiss.betay
             
             etax = final_twiss.etax
-            etapx = final_twiss.etapx
+            etaxp = final_twiss.etaxp
             etay = final_twiss.etay
-            etapy = final_twiss.etapy
+            etayp = final_twiss.etayp
 
-            final_twiss.etax = ele.R[0,0]*etax+ele.R[0,1]*etapx+ele.R[0,5]
-            final_twiss.etapx = ele.R[1,0]*etax+ele.R[1,1]*etapx+ele.R[1,5]
-            final_twiss.etay = ele.R[2,2]*etay+ele.R[2,3]*etapy+ele.R[2,5]
-            final_twiss.etapy = ele.R[3,2]*etay+ele.R[3,3]*etapy+ele.R[3,5]
+            final_twiss.etax = ele.R[0,0]*etax+ele.R[0,1]*etaxp+ele.R[0,5]
+            final_twiss.etaxp = ele.R[1,0]*etax+ele.R[1,1]*etaxp+ele.R[1,5]
+            final_twiss.etay = ele.R[2,2]*etay+ele.R[2,3]*etayp+ele.R[2,5]
+            final_twiss.etayp = ele.R[3,2]*etay+ele.R[3,3]*etayp+ele.R[3,5]
 
             final_twiss.phix = sum_phix
             final_twiss.phiy = sum_phiy
@@ -394,8 +394,8 @@ class Line(list):
         twiss_dict['phiy'] = []
         twiss_dict['etax'] = []
         twiss_dict['etay'] = []
-        twiss_dict['etapx'] = []
-        twiss_dict['etapy'] = []
+        twiss_dict['etaxp'] = []
+        twiss_dict['etayp'] = []
         for ele in self:
             if ele.__class__.__name__ == 'Serpentine':
                 subtwiss_dict = ele.beamline.GetTwiss()
@@ -408,8 +408,8 @@ class Line(list):
                 twiss_dict['phiy'].extend(subtwiss_dict['phiy'])
                 twiss_dict['etax'].extend(subtwiss_dict['etax'])
                 twiss_dict['etay'].extend(subtwiss_dict['etay'])
-                twiss_dict['etapx'].extend(subtwiss_dict['etapx'])
-                twiss_dict['etapy'].extend(subtwiss_dict['etapy'])
+                twiss_dict['etaxp'].extend(subtwiss_dict['etaxp'])
+                twiss_dict['etayp'].extend(subtwiss_dict['etayp'])
             else:
                 twiss_dict['S'].append(ele.S)
                 twiss_dict['betax'].append(ele.twiss.betax)
@@ -420,8 +420,8 @@ class Line(list):
                 twiss_dict['phiy'].append(ele.twiss.phiy)
                 twiss_dict['etax'].append(ele.twiss.etax)
                 twiss_dict['etay'].append(ele.twiss.etay)
-                twiss_dict['etapx'].append(ele.twiss.etapx)
-                twiss_dict['etapy'].append(ele.twiss.etapy)
+                twiss_dict['etaxp'].append(ele.twiss.etaxp)
+                twiss_dict['etayp'].append(ele.twiss.etayp)
         return twiss_dict
 
 class ProgressBar:
