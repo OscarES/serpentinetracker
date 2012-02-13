@@ -72,6 +72,22 @@ class Twiss(object):
     def __repr__(self) :
         pass
 
+class Jitter(object):
+    """Beam jitter as a fraction of the beam size in the horizontal and vertical
+    spatial dimensions and as a percentage of the design momentum"""
+
+    def __init__(self,xjit=0,yjit=0,zjit=0,ejit=0):
+        """Jitter.__init__
+        *xjit* - horizontal position jitter as fraction of beam size
+        *yjit* - vertical position jitter as fraction of beam size
+        *zjit* - longitudinal position jitter as fraction of beam size
+        *ejit* - horizontal jitter as fraction of beam size"""
+    
+        self.xjit = xjit
+        self.yjit = yjit
+        self.zjit = zjit
+        self.ejit = ejit
+
 class Sigma(object) :
     """Beam sigma matrix"""
     
@@ -96,7 +112,8 @@ class Element(object):
         self.P = P                                               # Design momentum 
         self.S = S                                               # S position of start of element
         self.aper = aper
-        self.offset = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])   # (x,px,y,py,z,P) 
+        self.offset = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])   # (x,px,y,py,z,P)
+        self.x = np.zeros(6)
         self.twiss = Twiss()
         self.R = None
         self.T = None
@@ -192,6 +209,7 @@ class Element(object):
         output bea,."""
         beam_out = deepcopy(beam_in)
         beam_out.x = np.dot(self.R, beam_in.x)
+        self.x = 1*beam_out.x
         return beam_out
 
 
@@ -247,6 +265,7 @@ class BasicMag(Element):
         self.CalcRmat()
         self.CalcTmat()
         beam_out.x = np.dot(r_out, beam_out.x)
+        self.x = 1*beam_out.x
         return beam_out
 
 class BasicCav(Element):
@@ -317,6 +336,7 @@ class Xcor(BasicMag):
             theta = self.B / Brho
             beam_out.x[1, partnum] += theta
         beam_out.x = np.dot(DriftRmat(self.L/2.), beam_out.x)
+        self.x = 1*beam_out.x
         return beam_out
 
 class Ycor(BasicMag):
@@ -331,6 +351,7 @@ class Ycor(BasicMag):
             theta = self.B / Brho
             beam_out.x[3, partnum] += theta
         beam_out.x = np.dot(DriftRmat(self.L/2.), beam_out.x)
+        self.x = 1*beam_out.x
         return beam_out
 
 class XYcor(BasicMag):
@@ -666,7 +687,7 @@ class Sbend(BasicMag):
         self.CalcRmat()
         self.CalcTmat()
         beam_out.x = np.dot(r_out, beam_out.x)
-
+        self.x = 1*beam_out.x
         return beam_out
 
 # ===============================================================
@@ -800,7 +821,7 @@ class AccCav(BasicCav):
             beam_out = self.DriftMap(beam_out, DistDrift[N], P)
             N += 1
             M += 1
-    
+        self.x = 1*beam_out.x
         return beam_out
 
 class TCav(BasicCav):

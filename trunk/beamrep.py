@@ -168,6 +168,42 @@ class TwissGaussBeam(GaussBeam):
         self.x[4, :] -= np.mean(self.x[4, :]) - pos[4]
         self.x[5, :] -= np.mean(self.x[5, :]) - pos[5]
 
+class JitterBeam(GaussBeam):
+    """Create a beam with centroid jitter as a fraction of the
+    beam size.""" 
+
+    def __init__(self, twiss, jitter, N=1, pos=np.array([0, 0, 0, 0, 0, 1]), 
+        Q=1e-9, chargesign=-1, restmass=electron_mass):
+
+        P = pos[5]
+        gammasquared = ( (P*1e9)**2 + restmass**2 ) / restmass**2
+        betagamma = np.sqrt(gammasquared - 1)
+        sig = np.zeros(6)
+        sig[0] = jitter.xjit*np.sqrt((twiss.nemitx/betagamma) * twiss.betax)
+        sig[1] = jitter.xjit*np.sqrt((twiss.nemitx/betagamma) / twiss.betax)
+        sig[2] = jitter.yjit*np.sqrt((twiss.nemity/betagamma) * twiss.betay)
+        sig[3] = jitter.yjit*np.sqrt((twiss.nemity/betagamma) / twiss.betay)
+        sig[4] = jitter.zjit*twiss.sigz
+        sig[5] = jitter.ejit
+
+        Beam.__init__(self, chargesign, restmass)
+        self.x = np.zeros((6,1))
+        for (i,s) in enumerate(sig):
+            if s!=0: self.x[i] = pos[i]+normal(loc=pos[i], scale=s, size=N)
+            else: self.x[i] = pos[i]
+
+class TwoParticleJitterBeam(JitterBeam):
+    """Create a beam with centroid jitter as a fraction of the beam size"""
+
+    def __init__(self, twiss, jitter, pos=np.array([0, 0, 0, 0, 0, 1]), 
+        Q=1e-9, chargesign=-1, restmass=electron_mass):
+
+        JitterBeam.__init__(self, twiss, jitter, 2, Q, pos, sig, chargesign, restmass)        
+
+        self.x[5] = jitter.ejit*self.x[5]
+        self.x[4,0] += twiss.sigz/2.
+        self.x[4,1] -= twiss.sigz/2.
+
 if __name__ == '__main__':
     mytwiss = {}
     mytwiss.betax = 6.85338806855804

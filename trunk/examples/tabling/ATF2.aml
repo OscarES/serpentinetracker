@@ -1,0 +1,6539 @@
+<?xml version="1.0" ?>
+<laboratory>
+	<lattice>
+		<pc design="1300000000.0"/>
+	</lattice>
+	<sector name="L000001">
+		<element ref="KEX1A"/>
+		<element ref="IP01"/>
+		<element ref="KEX1B"/>
+		<element ref="L001"/>
+		<element ref="QM6RX"/>
+		<element ref="QM6RX"/>
+		<element ref="L002A"/>
+		<element ref="ZH100RX"/>
+		<element ref="L002B"/>
+		<element ref="ZH101RX"/>
+		<element ref="L002C"/>
+		<element ref="ZV100RX"/>
+		<element ref="L002D"/>
+		<element ref="MB1X"/>
+		<element ref="L002E"/>
+		<element ref="QM7RX"/>
+		<element ref="QM7RX"/>
+		<element ref="L003"/>
+		<element ref="BS1XA"/>
+		<element ref="BS1XB"/>
+		<element ref="L004"/>
+		<element ref="BS2XA"/>
+		<element ref="BS2XB"/>
+		<element ref="L005A"/>
+		<element ref="MB2X"/>
+		<element ref="L005B"/>
+		<element ref="BS3XA"/>
+		<element ref="BS3XB"/>
+		<element ref="L006A"/>
+		<element ref="ZV1X"/>
+		<element ref="L006B"/>
+		<element ref="QS1X"/>
+		<element ref="QS1X"/>
+		<element ref="L006C"/>
+		<element ref="QF1X"/>
+		<element ref="QF1X"/>
+		<element ref="L007A"/>
+		<element ref="MQF1X"/>
+		<element ref="L007B"/>
+		<element ref="MS1X"/>
+		<element ref="L007C"/>
+		<element ref="BH1XA"/>
+		<element ref="ZX1X"/>
+		<element ref="BH1XB"/>
+		<element ref="L008A"/>
+		<element ref="ZV2X"/>
+		<element ref="L008B"/>
+		<element ref="QD2X"/>
+		<element ref="QD2X"/>
+		<element ref="L009A"/>
+		<element ref="MQD2X"/>
+		<element ref="L009B"/>
+		<element ref="QF3X"/>
+		<element ref="QF3X"/>
+		<element ref="L010A"/>
+		<element ref="MQF3X"/>
+		<element ref="L010B"/>
+		<element ref="ZH1X"/>
+		<element ref="L010C"/>
+		<element ref="ZV3X"/>
+		<element ref="L010D"/>
+		<element ref="MID"/>
+		<element ref="L010E"/>
+		<element ref="QF4X"/>
+		<element ref="QF4X"/>
+		<element ref="L011A"/>
+		<element ref="MQF4X"/>
+		<element ref="L011B"/>
+		<element ref="ZH2X"/>
+		<element ref="L011C"/>
+		<element ref="MQD5X"/>
+		<element ref="L011D"/>
+		<element ref="QD5X"/>
+		<element ref="QD5X"/>
+		<element ref="L012A"/>
+		<element ref="ZV4X"/>
+		<element ref="L012B"/>
+		<element ref="BH2XA"/>
+		<element ref="ZX2X"/>
+		<element ref="BH2XB"/>
+		<element ref="L013A"/>
+		<element ref="ZV5X"/>
+		<element ref="L013B"/>
+		<element ref="MQF6X"/>
+		<element ref="L013C"/>
+		<element ref="QF6X"/>
+		<element ref="QF6X"/>
+		<element ref="L014A"/>
+		<element ref="QS2X"/>
+		<element ref="QS2X"/>
+		<element ref="L014B"/>
+		<element ref="UDDX1"/>
+		<element ref="L014C"/>
+		<element ref="BH3XA"/>
+		<element ref="BH3XB"/>
+		<element ref="L015"/>
+		<element ref="QF7X"/>
+		<element ref="QF7X"/>
+		<element ref="L016A"/>
+		<element ref="MQF7X"/>
+		<element ref="L016B"/>
+		<element ref="ZH3X"/>
+		<element ref="L016C"/>
+		<element ref="QD8X"/>
+		<element ref="QD8X"/>
+		<element ref="L017A"/>
+		<element ref="MQD8X"/>
+		<element ref="L017B"/>
+		<element ref="ZV6X"/>
+		<element ref="L017C"/>
+		<element ref="KEX2A"/>
+		<element ref="IP02"/>
+		<element ref="KEX2B"/>
+		<element ref="MDISP"/>
+		<element ref="L101A"/>
+		<element ref="ZH100X"/>
+		<element ref="L101B"/>
+		<element ref="MQF9X"/>
+		<element ref="L101C"/>
+		<element ref="QF9X"/>
+		<element ref="QF9X"/>
+		<element ref="L102A"/>
+		<element ref="ZH4X"/>
+		<element ref="L102B"/>
+		<element ref="FONTK1"/>
+		<element ref="L102C"/>
+		<element ref="ZV7X"/>
+		<element ref="L102D"/>
+		<element ref="FONTP1"/>
+		<element ref="L102E"/>
+		<element ref="QK1X"/>
+		<element ref="QK1X"/>
+		<element ref="L102F"/>
+		<element ref="QD10X"/>
+		<element ref="QD10X"/>
+		<element ref="L103A"/>
+		<element ref="MQD10X"/>
+		<element ref="L103B"/>
+		<element ref="ZH5X"/>
+		<element ref="L103C"/>
+		<element ref="QF11X"/>
+		<element ref="MSKEW"/>
+		<element ref="QF11X"/>
+		<element ref="L104A"/>
+		<element ref="MQF11X"/>
+		<element ref="L104B"/>
+		<element ref="FONTK2"/>
+		<element ref="L104C"/>
+		<element ref="ZV8X"/>
+		<element ref="L104D"/>
+		<element ref="FONTP2"/>
+		<element ref="L104F"/>
+		<element ref="QK2X"/>
+		<element ref="QK2X"/>
+		<element ref="L104G"/>
+		<element ref="QD12X"/>
+		<element ref="QD12X"/>
+		<element ref="L105A"/>
+		<element ref="MQD12X"/>
+		<element ref="L105B"/>
+		<element ref="ZH6X"/>
+		<element ref="L105C"/>
+		<element ref="QF13X"/>
+		<element ref="QF13X"/>
+		<element ref="L106A"/>
+		<element ref="MQF13X"/>
+		<element ref="L106B"/>
+		<element ref="QD14X"/>
+		<element ref="FIT180"/>
+		<element ref="QD14X"/>
+		<element ref="L107A"/>
+		<element ref="MQD14X"/>
+		<element ref="L107B"/>
+		<element ref="FONTP3"/>
+		<element ref="L107C"/>
+		<element ref="ZH7X"/>
+		<element ref="L107D"/>
+		<element ref="QF15X"/>
+		<element ref="QF15X"/>
+		<element ref="L108A"/>
+		<element ref="MQF15X"/>
+		<element ref="L108B"/>
+		<element ref="ZV9X"/>
+		<element ref="L108D"/>
+		<element ref="QK3X"/>
+		<element ref="QK3X"/>
+		<element ref="L108E"/>
+		<element ref="QD16X"/>
+		<element ref="QD16X"/>
+		<element ref="L109A"/>
+		<element ref="MQD16X"/>
+		<element ref="L109B"/>
+		<element ref="ZH8X"/>
+		<element ref="L109C"/>
+		<element ref="QF17X"/>
+		<element ref="QF17X"/>
+		<element ref="L110A"/>
+		<element ref="MQF17X"/>
+		<element ref="L110B"/>
+		<element ref="MREF1X"/>
+		<element ref="L110C"/>
+		<element ref="QK4X"/>
+		<element ref="QK4X"/>
+	</sector>
+	<sector name="L000002">
+		<element ref="L110D"/>
+		<element ref="ZV10X"/>
+		<element ref="L110E"/>
+		<element ref="QD18X"/>
+		<element ref="QD18X"/>
+		<element ref="L111A"/>
+		<element ref="MQD18X"/>
+		<element ref="L111B"/>
+		<element ref="MW0X"/>
+		<element ref="L111C"/>
+		<element ref="OTR0X"/>
+		<element ref="L111D"/>
+		<element ref="ZH9X"/>
+		<element ref="L111E"/>
+		<element ref="QF19X"/>
+		<element ref="QF19X"/>
+		<element ref="L112A"/>
+		<element ref="MQF19X"/>
+		<element ref="L112B"/>
+		<element ref="MW1X"/>
+		<element ref="L112C"/>
+		<element ref="OTR1X"/>
+		<element ref="L112D"/>
+		<element ref="WCM"/>
+		<element ref="L112E"/>
+		<element ref="ZV11X"/>
+		<element ref="L112F"/>
+		<element ref="LWML1"/>
+		<element ref="L112G"/>
+		<element ref="LW1X"/>
+		<element ref="L112H"/>
+		<element ref="LWML2"/>
+		<element ref="L112I"/>
+		<element ref="PPMW"/>
+		<element ref="L112J"/>
+		<element ref="MW2X"/>
+		<element ref="L112K"/>
+		<element ref="MQD20X"/>
+		<element ref="L112L"/>
+		<element ref="QD20X"/>
+		<element ref="MEMIT"/>
+		<element ref="QD20X"/>
+		<element ref="L113A"/>
+		<element ref="OTR2X"/>
+		<element ref="L113B"/>
+		<element ref="ZH10X"/>
+		<element ref="L113C"/>
+		<element ref="ICT1X"/>
+		<element ref="L113D"/>
+		<element ref="QF21X"/>
+		<element ref="QF21X"/>
+		<element ref="L114A"/>
+		<element ref="MQF21X"/>
+		<element ref="L114B"/>
+		<element ref="MW3X"/>
+		<element ref="L114C"/>
+		<element ref="OTR3X"/>
+		<element ref="L114D"/>
+		<element ref="TILTM"/>
+		<element ref="L114E"/>
+		<element ref="IPBPM"/>
+		<element ref="L114F"/>
+		<element ref="MW4X"/>
+		<element ref="L114G"/>
+		<element ref="BEGFF"/>
+		<element ref="MQM16FF"/>
+		<element ref="L200"/>
+		<element ref="QM16FF"/>
+		<element ref="AQM16FF"/>
+		<element ref="QM16FF"/>
+		<element ref="L201A"/>
+		<element ref="ZH1FF"/>
+		<element ref="L201B"/>
+		<element ref="ZV1FF"/>
+		<element ref="L201C"/>
+		<element ref="QM15FF"/>
+		<element ref="AQM15FF"/>
+		<element ref="QM15FF"/>
+		<element ref="L202A"/>
+		<element ref="MQM15FF"/>
+		<element ref="L202B"/>
+		<element ref="QM14FF"/>
+		<element ref="AQM14FF"/>
+		<element ref="QM14FF"/>
+		<element ref="L203A"/>
+		<element ref="MQM14FF"/>
+		<element ref="L203B"/>
+		<element ref="MFB2FF"/>
+		<element ref="AFB2FF"/>
+		<element ref="L203C"/>
+		<element ref="QM13FF"/>
+		<element ref="AQM13FF"/>
+		<element ref="QM13FF"/>
+		<element ref="L204A"/>
+		<element ref="MQM13FF"/>
+		<element ref="L204B"/>
+		<element ref="QM12FF"/>
+		<element ref="AQM12FF"/>
+		<element ref="QM12FF"/>
+		<element ref="L205A"/>
+		<element ref="MQM12FF"/>
+		<element ref="L205B"/>
+		<element ref="MFB1FF"/>
+		<element ref="L205C"/>
+		<element ref="QM11FF"/>
+		<element ref="AQM11FF"/>
+		<element ref="QM11FF"/>
+		<element ref="L206A"/>
+		<element ref="MQM11FF"/>
+		<element ref="L206B"/>
+		<element ref="QD10BFF"/>
+		<element ref="AQD10BFF"/>
+		<element ref="QD10BFF"/>
+		<element ref="L207A"/>
+		<element ref="MQD10BFF"/>
+		<element ref="L207B"/>
+		<element ref="MREF3FF"/>
+		<element ref="L207C"/>
+		<element ref="QD10AFF"/>
+		<element ref="AQD10AFF"/>
+		<element ref="QD10AFF"/>
+		<element ref="L208A"/>
+		<element ref="MQD10AFF"/>
+		<element ref="L208B"/>
+		<element ref="MS1FF"/>
+		<element ref="L208C"/>
+		<element ref="QF9BFF"/>
+		<element ref="AQF9BFF"/>
+		<element ref="QF9BFF"/>
+		<element ref="L209A"/>
+		<element ref="MQF9BFF"/>
+		<element ref="L209B"/>
+		<element ref="SF6FF"/>
+		<element ref="ASF6FF"/>
+		<element ref="SF6FF"/>
+		<element ref="L210A"/>
+		<element ref="MSF6FF"/>
+		<element ref="L210B"/>
+		<element ref="QF9AFF"/>
+		<element ref="AQF9AFF"/>
+		<element ref="QF9AFF"/>
+		<element ref="L211A"/>
+		<element ref="MQF9AFF"/>
+		<element ref="L211B"/>
+		<element ref="QD8FF"/>
+		<element ref="AQD8FF"/>
+		<element ref="QD8FF"/>
+		<element ref="L212A"/>
+		<element ref="MQD8FF"/>
+		<element ref="L212B"/>
+		<element ref="QF7FF"/>
+		<element ref="AQF7FF"/>
+		<element ref="QF7FF"/>
+		<element ref="L213A"/>
+		<element ref="MQF7FF"/>
+		<element ref="L213B"/>
+		<element ref="B5FFA"/>
+		<element ref="B5FFB"/>
+		<element ref="L214"/>
+		<element ref="QD6FF"/>
+		<element ref="AQD6FF"/>
+		<element ref="QD6FF"/>
+		<element ref="L215A"/>
+		<element ref="MQD6FF"/>
+		<element ref="L215B"/>
+		<element ref="SK1FF"/>
+		<element ref="SK1FF"/>
+		<element ref="L215C"/>
+		<element ref="QF5BFF"/>
+		<element ref="AQF5BFF"/>
+		<element ref="QF5BFF"/>
+		<element ref="L216A"/>
+		<element ref="MQF5BFF"/>
+		<element ref="L216B"/>
+		<element ref="SF5FF"/>
+		<element ref="ASF5FF"/>
+		<element ref="SF5FF"/>
+		<element ref="L217A"/>
+		<element ref="MSF5FF"/>
+		<element ref="L217B"/>
+		<element ref="QF5AFF"/>
+		<element ref="AQF5AFF"/>
+		<element ref="QF5AFF"/>
+		<element ref="L218A"/>
+		<element ref="MQF5AFF"/>
+		<element ref="L218B"/>
+		<element ref="MREF2FF"/>
+		<element ref="L218C"/>
+		<element ref="QD4BFF"/>
+		<element ref="AQD4BFF"/>
+		<element ref="QD4BFF"/>
+		<element ref="L219A"/>
+		<element ref="MQD4BFF"/>
+		<element ref="L219B"/>
+		<element ref="SD4FF"/>
+		<element ref="ASD4FF"/>
+		<element ref="SD4FF"/>
+		<element ref="L220A"/>
+		<element ref="MSD4FF"/>
+		<element ref="L220B"/>
+	</sector>
+	<sector name="L000003">
+		<element ref="QD4AFF"/>
+		<element ref="AQD4AFF"/>
+		<element ref="QD4AFF"/>
+		<element ref="L221A"/>
+		<element ref="MQD4AFF"/>
+		<element ref="L221B"/>
+		<element ref="B2FFA"/>
+		<element ref="B2FFB"/>
+		<element ref="L222"/>
+		<element ref="QF3FF"/>
+		<element ref="AQF3FF"/>
+		<element ref="QF3FF"/>
+		<element ref="L223A"/>
+		<element ref="MQF3FF"/>
+		<element ref="L223B"/>
+		<element ref="B1FFA"/>
+		<element ref="B1FFB"/>
+		<element ref="L224A"/>
+		<element ref="MREF1FF"/>
+		<element ref="L224B"/>
+		<element ref="QD2BFF"/>
+		<element ref="AQD2BFF"/>
+		<element ref="QD2BFF"/>
+		<element ref="L225A"/>
+		<element ref="MQD2BFF"/>
+		<element ref="L225B"/>
+		<element ref="MT1X"/>
+		<element ref="L225C"/>
+		<element ref="FFML1"/>
+		<element ref="L225D"/>
+		<element ref="MREFIPFF"/>
+		<element ref="L225E"/>
+		<element ref="QD2AFF"/>
+		<element ref="AQD2AFF"/>
+		<element ref="QD2AFF"/>
+		<element ref="L226A"/>
+		<element ref="MQD2AFF"/>
+		<element ref="L226B"/>
+		<element ref="MREFSFF"/>
+		<element ref="L226C"/>
+		<element ref="MS2FF"/>
+		<element ref="L226D"/>
+		<element ref="MSF1FF"/>
+		<element ref="L226E"/>
+		<element ref="SF1FF"/>
+		<element ref="ASF1FF"/>
+		<element ref="SF1FF"/>
+		<element ref="L227"/>
+		<element ref="QF1FF"/>
+		<element ref="AQF1FF"/>
+		<element ref="QF1FF"/>
+		<element ref="L228A"/>
+		<element ref="MQF1FF"/>
+		<element ref="L228B"/>
+		<element ref="MSD0FF"/>
+		<element ref="L228C"/>
+		<element ref="SD0FF"/>
+		<element ref="ASD0FF"/>
+		<element ref="SD0FF"/>
+		<element ref="L229"/>
+		<element ref="QD0FF"/>
+		<element ref="AQD0FF"/>
+		<element ref="QD0FF"/>
+		<element ref="L230A"/>
+		<element ref="MQD0FF"/>
+		<element ref="L230B"/>
+		<element ref="MPREIP"/>
+		<element ref="L230C"/>
+		<element ref="IPBPMA"/>
+		<element ref="L230D"/>
+		<element ref="IPBPMB"/>
+		<element ref="L230E"/>
+		<element ref="MS1IP"/>
+		<element ref="MBS1IP"/>
+		<element ref="IP"/>
+		<element ref="ENDFF"/>
+		<element ref="L301A"/>
+		<element ref="MW1IP"/>
+		<element ref="L301B"/>
+		<element ref="MPIP"/>
+		<element ref="L301C"/>
+		<element ref="MSPIP"/>
+		<element ref="L301D"/>
+		<element ref="BDUMPA"/>
+		<element ref="BDUMPB"/>
+		<element ref="L302A"/>
+		<element ref="MDUMP"/>
+		<element ref="L302B"/>
+		<element ref="ICTDUMP"/>
+		<element ref="L302C"/>
+		<element ref="DUMPH"/>
+		<element ref="DUMPH"/>
+	</sector>
+	<machine>
+		<sector name = "ATF2">
+			<sector ref="L000001"/>
+			<sector ref="L000002"/>
+			<sector ref="L000003"/>
+		</sector>
+	</machine>
+	<element name="BH1R1A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R1B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R2A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R2B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R3A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R3B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R4A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R4B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R5A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R5B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R6A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R6B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R7A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R7B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R8A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R8B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R9A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R9B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R10A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R10B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R11A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R11B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R12A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R12B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R13A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R13B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R14A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R14B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R15A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R15B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R16A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R16B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R17A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R17B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R18A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R18B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R19A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R19B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R20A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R20B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R21A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R21B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R22A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R22B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R23A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R23B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R24A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R24B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R25A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R25B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R26A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R26B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R27A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.25"/>
+	</element>
+	<element name="BH1R27B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.75"/>
+	</element>
+	<element name="BH1R28A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R28B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R29A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R29B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R30A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R30B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R31A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R31B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R32A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R32B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R33A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R33B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R34A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R34B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R35A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R35B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R36A">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1R36B">
+		<bend>
+			<g design="-0.1745329252"/>
+			<scaled_multipole>
+				<k_coef design="6.64304456406" n="2"/>
+			</scaled_multipole>
+			<e1 design="0.0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.0"/>
+			<h_gap2 design="0.0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="QF1R1">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R2">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R3">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R4">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R5">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R6">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R7">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R8">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R9">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R10">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R11">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R12">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R13">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R14">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R15">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R16">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R17">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R18">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R19">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R20">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R21">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R22">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R23">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R24">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R25">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R26">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R27">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF1R28">
+		<quadrupole>
+			<k design="0.398063303528" err="0"/>
+		</quadrupole>
+		<length design="0.0394"/>
+	</element>
+	<element name="QF2R1">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R2">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R3">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R4">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R5">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R6">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R7">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R8">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R9">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R10">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R11">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R12">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R13">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R14">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R15">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R16">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R17">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R18">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R19">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R20">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R21">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R22">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R23">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R24">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R25">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QF2R26">
+		<quadrupole>
+			<k design="8.253561223973" err="0"/>
+		</quadrupole>
+		<length design="0.0993"/>
+	</element>
+	<element name="QM1R1">
+		<quadrupole>
+			<k design="7.598215072781" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM1R2">
+		<quadrupole>
+			<k design="7.598215072781" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM2R1">
+		<quadrupole>
+			<k design="1.032728382962" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM2R2">
+		<quadrupole>
+			<k design="1.032728382962" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM3R1">
+		<quadrupole>
+			<k design="-3.876547587468" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM3R2">
+		<quadrupole>
+			<k design="-3.876547587468" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM4R1">
+		<quadrupole>
+			<k design="10.165848786005" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM4R2">
+		<quadrupole>
+			<k design="10.165848786005" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM5R1">
+		<quadrupole>
+			<k design="5.111858049346" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM5R2">
+		<quadrupole>
+			<k design="5.111858049346" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM6R1">
+		<quadrupole>
+			<k design="-3.668156069336" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM6R2">
+		<quadrupole>
+			<k design="-3.668156069336" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM7R1">
+		<quadrupole>
+			<k design="4.840228126964" err="0"/>
+		</quadrupole>
+		<length design="0.0421695"/>
+	</element>
+	<element name="QM7R2">
+		<quadrupole>
+			<k design="5.173891001267" err="0"/>
+		</quadrupole>
+		<length design="0.03945"/>
+	</element>
+	<element name="QM8R1">
+		<quadrupole>
+			<k design="2.830163325864" err="0"/>
+		</quadrupole>
+		<length design="0.03945"/>
+	</element>
+	<element name="QM8R2">
+		<quadrupole>
+			<k design="2.830163325864" err="0"/>
+		</quadrupole>
+		<length design="0.03945"/>
+	</element>
+	<element name="QM9R1">
+		<quadrupole>
+			<k design="-4.254485447288" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM9R2">
+		<quadrupole>
+			<k design="-4.254485447288" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM10R1">
+		<quadrupole>
+			<k design="4.983342625203" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM10R2">
+		<quadrupole>
+			<k design="4.983342625203" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM11R1">
+		<quadrupole>
+			<k design="-6.581632871728" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM11R2">
+		<quadrupole>
+			<k design="-6.581632871728" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM12R1">
+		<quadrupole>
+			<k design="2.345350404145" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM12R2">
+		<quadrupole>
+			<k design="2.345350404145" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM13R1">
+		<quadrupole>
+			<k design="-2.563602903041" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM13R2">
+		<quadrupole>
+			<k design="-2.563602903041" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM14R1">
+		<quadrupole>
+			<k design="2.501878461711" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM14R2">
+		<quadrupole>
+			<k design="2.501878461711" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM15R1">
+		<quadrupole>
+			<k design="-5.500880402914" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM15R2">
+		<quadrupole>
+			<k design="-5.500880402914" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM16R1">
+		<quadrupole>
+			<k design="4.887084791505" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM16R2">
+		<quadrupole>
+			<k design="4.887084791505" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM17R1">
+		<quadrupole>
+			<k design="-5.123165781424" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM17R2">
+		<quadrupole>
+			<k design="-5.123165781424" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM18R1">
+		<quadrupole>
+			<k design="-3.069743408369" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM18R2">
+		<quadrupole>
+			<k design="-3.069743408369" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM19R1">
+		<quadrupole>
+			<k design="7.573398491812" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM19R2">
+		<quadrupole>
+			<k design="7.573398491812" err="0"/>
+		</quadrupole>
+		<length design="0.09935"/>
+	</element>
+	<element name="QM20R1">
+		<quadrupole>
+			<k design="10.831021005109" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM20R2">
+		<quadrupole>
+			<k design="10.831021005109" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM21R1">
+		<quadrupole>
+			<k design="-5.375512409586" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM21R2">
+		<quadrupole>
+			<k design="-5.375512409586" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM22R1">
+		<quadrupole>
+			<k design="-3.630694852354" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM22R2">
+		<quadrupole>
+			<k design="-3.630694852354" err="0"/>
+		</quadrupole>
+		<length design="0.0395"/>
+	</element>
+	<element name="QM23R1">
+		<quadrupole>
+			<k design="8.462213453783" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="QM23R2">
+		<quadrupole>
+			<k design="8.462213453783" err="0"/>
+		</quadrupole>
+		<length design="0.09925"/>
+	</element>
+	<element name="SF1R1">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R2">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R3">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R4">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R5">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R6">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R7">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R8">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R9">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R10">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R11">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R12">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R13">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R14">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R15">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R16">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R17">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R18">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R19">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R20">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R21">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R22">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R23">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R24">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R25">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R26">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R27">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R28">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R29">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R30">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R31">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R32">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R33">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SF1R34">
+		<sextupole>
+			<k design="-6.849757808041E2" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R1">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R2">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R3">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R4">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R5">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R6">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R7">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R8">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R9">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R10">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R11">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R12">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R13">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R14">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R15">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R16">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R17">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R18">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R19">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R20">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R21">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R22">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R23">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R24">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R25">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R26">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R27">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R28">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R29">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R30">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R31">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R32">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R33">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SD1R34">
+		<sextupole>
+			<k design="1.068379715593E3" err="0"/>
+		</sextupole>
+		<length design="0.03"/>
+	</element>
+	<element name="SQSF1">
+		<length design="0"/>
+	</element>
+	<element name="SQSF2">
+		<length design="0"/>
+	</element>
+	<element name="SQSF3">
+		<length design="0"/>
+	</element>
+	<element name="SQSF4">
+		<length design="0"/>
+	</element>
+	<element name="SQSF5">
+		<length design="0"/>
+	</element>
+	<element name="SQSF6">
+		<length design="0"/>
+	</element>
+	<element name="SQSF7">
+		<length design="0"/>
+	</element>
+	<element name="SQSF8">
+		<length design="0"/>
+	</element>
+	<element name="SQSF9">
+		<length design="0"/>
+	</element>
+	<element name="SQSF10">
+		<length design="0"/>
+	</element>
+	<element name="SQSF11">
+		<length design="0"/>
+	</element>
+	<element name="SQSF12">
+		<length design="0"/>
+	</element>
+	<element name="SQSF13">
+		<length design="0"/>
+	</element>
+	<element name="SQSF14">
+		<length design="0"/>
+	</element>
+	<element name="SQSF15">
+		<length design="0"/>
+	</element>
+	<element name="SQSF16">
+		<length design="0"/>
+	</element>
+	<element name="SQSF17">
+		<length design="0"/>
+	</element>
+	<element name="SQSF18">
+		<length design="0"/>
+	</element>
+	<element name="SQSF19">
+		<length design="0"/>
+	</element>
+	<element name="SQSF20">
+		<length design="0"/>
+	</element>
+	<element name="SQSF21">
+		<length design="0"/>
+	</element>
+	<element name="SQSF22">
+		<length design="0"/>
+	</element>
+	<element name="SQSF23">
+		<length design="0"/>
+	</element>
+	<element name="SQSF24">
+		<length design="0"/>
+	</element>
+	<element name="SQSF25">
+		<length design="0"/>
+	</element>
+	<element name="SQSF26">
+		<length design="0"/>
+	</element>
+	<element name="SQSF27">
+		<length design="0"/>
+	</element>
+	<element name="SQSF28">
+		<length design="0"/>
+	</element>
+	<element name="SQSF29">
+		<length design="0"/>
+	</element>
+	<element name="SQSF30">
+		<length design="0"/>
+	</element>
+	<element name="SQSF31">
+		<length design="0"/>
+	</element>
+	<element name="SQSF32">
+		<length design="0"/>
+	</element>
+	<element name="SQSF33">
+		<length design="0"/>
+	</element>
+	<element name="SQSF34">
+		<length design="0"/>
+	</element>
+	<element name="SQSD1">
+		<length design="0"/>
+	</element>
+	<element name="SQSD2">
+		<length design="0"/>
+	</element>
+	<element name="SQSD3">
+		<length design="0"/>
+	</element>
+	<element name="SQSD4">
+		<length design="0"/>
+	</element>
+	<element name="SQSD5">
+		<length design="0"/>
+	</element>
+	<element name="SQSD6">
+		<length design="0"/>
+	</element>
+	<element name="SQSD7">
+		<length design="0"/>
+	</element>
+	<element name="SQSD8">
+		<length design="0"/>
+	</element>
+	<element name="SQSD9">
+		<length design="0"/>
+	</element>
+	<element name="SQSD10">
+		<length design="0"/>
+	</element>
+	<element name="SQSD11">
+		<length design="0"/>
+	</element>
+	<element name="SQSD12">
+		<length design="0"/>
+	</element>
+	<element name="SQSD13">
+		<length design="0"/>
+	</element>
+	<element name="SQSD14">
+		<length design="0"/>
+	</element>
+	<element name="SQSD15">
+		<length design="0"/>
+	</element>
+	<element name="SQSD16">
+		<length design="0"/>
+	</element>
+	<element name="SQSD17">
+		<length design="0"/>
+	</element>
+	<element name="SQSD18">
+		<length design="0"/>
+	</element>
+	<element name="SQSD19">
+		<length design="0"/>
+	</element>
+	<element name="SQSD20">
+		<length design="0"/>
+	</element>
+	<element name="SQSD21">
+		<length design="0"/>
+	</element>
+	<element name="SQSD22">
+		<length design="0"/>
+	</element>
+	<element name="SQSD23">
+		<length design="0"/>
+	</element>
+	<element name="SQSD24">
+		<length design="0"/>
+	</element>
+	<element name="SQSD25">
+		<length design="0"/>
+	</element>
+	<element name="SQSD26">
+		<length design="0"/>
+	</element>
+	<element name="SQSD27">
+		<length design="0"/>
+	</element>
+	<element name="SQSD28">
+		<length design="0"/>
+	</element>
+	<element name="SQSD29">
+		<length design="0"/>
+	</element>
+	<element name="SQSD30">
+		<length design="0"/>
+	</element>
+	<element name="SQSD31">
+		<length design="0"/>
+	</element>
+	<element name="SQSD32">
+		<length design="0"/>
+	</element>
+	<element name="SQSD33">
+		<length design="0"/>
+	</element>
+	<element name="SQSD34">
+		<length design="0"/>
+	</element>
+	<element name="QM12R1MULT">
+		<length design="0"/>
+	</element>
+	<element name="QM13R1MULT">
+		<length design="0"/>
+	</element>
+	<element name="QM14R1MULT">
+		<length design="0"/>
+	</element>
+	<element name="QM12R2MULT">
+		<length design="0"/>
+	</element>
+	<element name="QM13R2MULT">
+		<length design="0"/>
+	</element>
+	<element name="QM14R2MULT">
+		<length design="0"/>
+	</element>
+	<element name="CAVD">
+		<length design="0.0"/>
+	</element>
+	<element name="BHE">
+		<length design="0.011"/>
+	</element>
+	<element name="KIX">
+		<length design="0.25"/>
+	</element>
+	<element name="KII">
+		<length design="0.25"/>
+	</element>
+	<element name="LBPM1A">
+		<length design="0.0477"/>
+	</element>
+	<element name="LBPM2">
+		<length design="0.043"/>
+	</element>
+	<element name="LB">
+		<length design="0.3"/>
+	</element>
+	<element name="LBPM3">
+		<length design="0.048"/>
+	</element>
+	<element name="LBPM4">
+		<length design="0.041"/>
+	</element>
+	<element name="LDF1A">
+		<length design="0.0796"/>
+	</element>
+	<element name="LDF1">
+		<length design="0.0906"/>
+	</element>
+	<element name="L">
+		<length design="0.14"/>
+	</element>
+	<element name="LF">
+		<length design="0.0907"/>
+	</element>
+	<element name="LQ1">
+		<length design="0.09075"/>
+	</element>
+	<element name="LBPM1B">
+		<length design="0.04775"/>
+	</element>
+	<element name="LQ2">
+		<length design="0.1305"/>
+	</element>
+	<element name="LDF4">
+		<length design="0.0905"/>
+	</element>
+	<element name="LDF5A">
+		<length design="0.0795"/>
+	</element>
+	<element name="LDF5">
+		<length design="0.0905"/>
+	</element>
+	<element name="LZV8">
+		<length design="0.06"/>
+	</element>
+	<element name="LZH8">
+		<length design="0.04"/>
+	</element>
+	<element name="LBPM1Q4">
+		<length design="0.04775"/>
+	</element>
+	<element name="LQ4">
+		<length design="0.09075"/>
+	</element>
+	<element name="LDF">
+		<length design="0.1"/>
+	</element>
+	<element name="LQ5">
+		<length design="0.219"/>
+	</element>
+	<element name="LBPM1Q5">
+		<length design="0.04765"/>
+	</element>
+	<element name="LKX1">
+		<length design="0.39065"/>
+	</element>
+	<element name="LKX2A">
+		<length design="0.5625"/>
+	</element>
+	<element name="LZV">
+		<length design="0.06"/>
+	</element>
+	<element name="LZH100R">
+		<length design="0.2"/>
+	</element>
+	<element name="LKX2B">
+		<length design="0.01"/>
+	</element>
+	<element name="LDF6">
+		<length design="0.09065"/>
+	</element>
+	<element name="LQ61A">
+		<length design="0.07065"/>
+	</element>
+	<element name="LQ61C">
+		<length design="0.265"/>
+	</element>
+	<element name="LQ61B">
+		<length design="0.315"/>
+	</element>
+	<element name="LZH">
+		<length design="0.06"/>
+	</element>
+	<element name="LQ62A">
+		<length design="0.15"/>
+	</element>
+	<element name="LQ62B">
+		<length design="0.0775"/>
+	</element>
+	<element name="LBPM5">
+		<length design="0.5E-2"/>
+	</element>
+	<element name="LBPM8">
+		<length design="0.085"/>
+	</element>
+	<element name="LBPM6">
+		<length design="0.5E-2"/>
+	</element>
+	<element name="LM20">
+		<length design="0.1378305"/>
+	</element>
+	<element name="LQ7">
+		<length design="0.0478305"/>
+	</element>
+	<element name="LSEP">
+		<length design="1.4"/>
+	</element>
+	<element name="LQ8">
+		<length design="0.05055"/>
+	</element>
+	<element name="LBPM6Q8">
+		<length design="0.08555"/>
+	</element>
+	<element name="LM21">
+		<length design="0.39"/>
+	</element>
+	<element name="LQ8N">
+		<length design="0.80815"/>
+	</element>
+	<element name="LDF7">
+		<length design="0.09065"/>
+	</element>
+	<element name="LK">
+		<length design="0.58625"/>
+	</element>
+	<element name="LKQ10">
+		<length design="0.5769"/>
+	</element>
+	<element name="LBPM12Q10">
+		<length design="0.05065"/>
+	</element>
+	<element name="LBPM13">
+		<length design="0.04"/>
+	</element>
+	<element name="LQ10">
+		<length design="0.42"/>
+	</element>
+	<element name="LBPM7">
+		<length design="0.04"/>
+	</element>
+	<element name="LBPM7Q11">
+		<length design="0.05065"/>
+	</element>
+	<element name="LQ11">
+		<length design="0.13965"/>
+	</element>
+	<element name="LWIGGLER">
+		<length design="2.022"/>
+	</element>
+	<element name="LWGL1">
+		<length design="0.099"/>
+	</element>
+	<element name="LZH11MR">
+		<length design="0.08"/>
+	</element>
+	<element name="LMQM12R">
+		<length design="0.100755"/>
+	</element>
+	<element name="LQM12ZV11R">
+		<length design="0.130755"/>
+	</element>
+	<element name="LZV11QM13R">
+		<length design="2.250755"/>
+	</element>
+	<element name="LQM13MR">
+		<length design="0.050755"/>
+	</element>
+	<element name="LMZH12R1">
+		<length design="1.13067"/>
+	</element>
+	<element name="LMZH12R2">
+		<length design="1.06933"/>
+	</element>
+	<element name="LZH12MR">
+		<length design="0.08"/>
+	</element>
+	<element name="LMQM14R">
+		<length design="0.050755"/>
+	</element>
+	<element name="LQM14ZV12R">
+		<length design="0.130755"/>
+	</element>
+	<element name="LDF3">
+		<length design="0.11"/>
+	</element>
+	<element name="LDF2">
+		<length design="0.039"/>
+	</element>
+	<element name="LBPM16">
+		<length design="0.089"/>
+	</element>
+	<element name="LBPM17Q15">
+		<length design="0.05065"/>
+	</element>
+	<element name="LDF8">
+		<length design="0.09065"/>
+	</element>
+	<element name="LQ15">
+		<length design="1.209905"/>
+	</element>
+	<element name="LBPM12Q16">
+		<length design="0.05065"/>
+	</element>
+	<element name="LQ16">
+		<length design="0.09065"/>
+	</element>
+	<element name="LZH13">
+		<length design="0.26"/>
+	</element>
+	<element name="LBPM12Q17">
+		<length design="0.05065"/>
+	</element>
+	<element name="LQ17">
+		<length design="0.09065"/>
+	</element>
+	<element name="LZV15">
+		<length design="0.56"/>
+	</element>
+	<element name="LBPM12Q18">
+		<length design="0.05065"/>
+	</element>
+	<element name="LQ18">
+		<length design="0.07065"/>
+	</element>
+	<element name="LZH14">
+		<length design="0.64065"/>
+	</element>
+	<element name="LDF9">
+		<length design="0.09065"/>
+	</element>
+	<element name="LQ19">
+		<length design="0.13"/>
+	</element>
+	<element name="LDFA">
+		<length design="0.089"/>
+	</element>
+	<element name="LZV16">
+		<length design="0.06"/>
+	</element>
+	<element name="LZH15">
+		<length design="0.06"/>
+	</element>
+	<element name="LQ20">
+		<length design="0.09075"/>
+	</element>
+	<element name="LBPM1C">
+		<length design="0.04775"/>
+	</element>
+	<element name="LQ21">
+		<length design="0.0905"/>
+	</element>
+	<element name="LDF10">
+		<length design="0.0905"/>
+	</element>
+	<element name="LDF11A">
+		<length design="0.0795"/>
+	</element>
+	<element name="LDF11">
+		<length design="0.0905"/>
+	</element>
+	<element name="LQ23">
+		<length design="0.09075"/>
+	</element>
+	<element name="LBPM1D">
+		<length design="0.04775"/>
+	</element>
+	<element name="LA">
+		<length design="0.06"/>
+	</element>
+	<element name="LZV33">
+		<length design="0.06"/>
+	</element>
+	<element name="LZH31">
+		<length design="0.04"/>
+	</element>
+	<element name="LQ4C">
+		<length design="0.09075"/>
+	</element>
+	<element name="LQ5C">
+		<length design="0.21215"/>
+	</element>
+	<element name="LZV34">
+		<length design="0.1185"/>
+	</element>
+	<element name="LKIX">
+		<length design="0.5"/>
+	</element>
+	<element name="LKX2">
+		<length design="0.7525"/>
+	</element>
+	<element name="LZV35">
+		<length design="0.11065"/>
+	</element>
+	<element name="LBPM12Q6">
+		<length design="0.05065"/>
+	</element>
+	<element name="LQ6C">
+		<length design="1.2475"/>
+	</element>
+	<element name="LZH33">
+		<length design="0.15055"/>
+	</element>
+	<element name="LQ7C">
+		<length design="0.09055"/>
+	</element>
+	<element name="LBPM10">
+		<length design="0.02"/>
+	</element>
+	<element name="LBPM11">
+		<length design="0.08"/>
+	</element>
+	<element name="LM68">
+		<length design="1.36"/>
+	</element>
+	<element name="LCAV">
+		<length design="1.55055"/>
+	</element>
+	<element name="LQ8C">
+		<length design="0.09055"/>
+	</element>
+	<element name="LM69">
+		<length design="0.065"/>
+	</element>
+	<element name="LZV36">
+		<length design="1.03315"/>
+	</element>
+	<element name="LQ9C">
+		<length design="0.03065"/>
+	</element>
+	<element name="LZV37">
+		<length design="0.54625"/>
+	</element>
+	<element name="LKII">
+		<length design="0.5"/>
+	</element>
+	<element name="LQ11C">
+		<length design="0.13965"/>
+	</element>
+	<element name="LWGL1C">
+		<length design="0.099"/>
+	</element>
+	<element name="LZH36MR">
+		<length design="0.08"/>
+	</element>
+	<element name="LQM12ZV38R">
+		<length design="0.130755"/>
+	</element>
+	<element name="LZV38QM13R">
+		<length design="2.250755"/>
+	</element>
+	<element name="LMZH37R">
+		<length design="2.2"/>
+	</element>
+	<element name="LZH37MR">
+		<length design="0.08"/>
+	</element>
+	<element name="LQM14ZV39R">
+		<length design="0.130755"/>
+	</element>
+	<element name="LZV42">
+		<length design="1.209905"/>
+	</element>
+	<element name="LQ16C">
+		<length design="0.09065"/>
+	</element>
+	<element name="LZH38">
+		<length design="0.26"/>
+	</element>
+	<element name="LQ17C">
+		<length design="0.09065"/>
+	</element>
+	<element name="LZV43">
+		<length design="0.56"/>
+	</element>
+	<element name="LQ18C">
+		<length design="0.07065"/>
+	</element>
+	<element name="LZH39">
+		<length design="0.64065"/>
+	</element>
+	<element name="MB1R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB2R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB3R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB4R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB5R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB6R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB7R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB8R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB9R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB10R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB11R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB12R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB13R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB14R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB15R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB16R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB17R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB18R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB19R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB20R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB21R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB22R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB23R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB24R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB25R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB26R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB27R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB28R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB29R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB30R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB31R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB32R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB33R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB34R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB35R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB36R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB37R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB38R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB39R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB40R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB41R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB42R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB43R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB44R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB45R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB46R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB47R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB48R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB49R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB50R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB51R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB52R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB53R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB54R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB55R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB56R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB57R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB58R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB59R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB60R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB61R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB62R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB63R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB64R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB65R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB66R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB67R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB68R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB69R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB70R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB71R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB72R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB73R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB74R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB75R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB76R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB77R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB78R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB79R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB80R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB81R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB82R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB83R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB84R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB85R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB86R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB87R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB88R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB89R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB90R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB91R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB92R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB93R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB94R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB95R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB96R">
+		<instrument type="MONI"/>
+	</element>
+	<element name="ZH1R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH2R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH3R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH4R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH5R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH6R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH7R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH8R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH9R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH100R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.2"/>
+	</element>
+	<element name="ZH101R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.12"/>
+	</element>
+	<element name="ZH102R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH10R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH11R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH12R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH13R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH14R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH16R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH17R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH18R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH19R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH20R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH21R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH22R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH23R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH24R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH25R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH26R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH27R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH28R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH29R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH30R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH31R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH32R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH33R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH34R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH35R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH36R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH37R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH38R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH39R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH40R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH41R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH42R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH43R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH44R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH45R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH46R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH47R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZH48R">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV1R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV2R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV3R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV4R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV5R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV6R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV7R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV8R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV9R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV100R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV10R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV11R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV12R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV13R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV14R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV15R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV17R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV18R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV19R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV20R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV21R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV22R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV23R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV24R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV25R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV26R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV27R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV28R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV29R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV30R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV31R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV32R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV33R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV34R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV35R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV36R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV37R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV38R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV39R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV40R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV41R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV42R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV43R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV44R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV45R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV46R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV47R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV48R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV49R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV50R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="ZV51R">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.06"/>
+	</element>
+	<element name="R">
+		<instrument type="INST"/>
+	</element>
+	<element name="CAVITYCOMP">
+		<instrument type="INST"/>
+	</element>
+	<element name="IA">
+		<marker/>
+	</element>
+	<element name="IDUM">
+		<marker/>
+	</element>
+	<element name="IEX">
+		<marker/>
+	</element>
+	<element name="IC">
+		<marker/>
+	</element>
+	<element name="IIN">
+		<marker/>
+	</element>
+	<element name="IB">
+		<marker/>
+	</element>
+	<element name="IRING2">
+		<marker/>
+	</element>
+	<element name="IS">
+		<marker/>
+	</element>
+	<element name="XSR">
+		<marker/>
+	</element>
+	<element name="MRDISP">
+		<marker/>
+	</element>
+	<element name="MFOBO">
+		<marker/>
+	</element>
+	<element name="MREXT">
+		<marker/>
+	</element>
+	<element name="MIDARC">
+		<marker/>
+	</element>
+	<element name="MBQM17">
+		<marker/>
+	</element>
+	<element name="MBQM18">
+		<marker/>
+	</element>
+	<element name="KEX1A">
+		<bend>
+			<g design="0.00999995833337"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.635E-2"/>
+			<h_gap2 design="0.635E-2"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.25000104167"/>
+	</element>
+	<element name="KEX1B">
+		<bend>
+			<g design="0.00999995833337"/>
+			<e1 design="0"/>
+			<e2 design="0.5E-2"/>
+			<h_gap1 design="0.635E-2"/>
+			<h_gap2 design="0.635E-2"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.25000104167"/>
+	</element>
+	<element name="KEX2A">
+		<bend>
+			<g design="0.00999995833337"/>
+			<e1 design="0.5E-2"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.635E-2"/>
+			<h_gap2 design="0.635E-2"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.25000104167"/>
+	</element>
+	<element name="KEX2B">
+		<bend>
+			<g design="0.00999995833337"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.635E-2"/>
+			<h_gap2 design="0.635E-2"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.25000104167"/>
+	</element>
+	<element name="QM6RX">
+		<bend>
+			<g design="0.0232550970628"/>
+			<scaled_multipole>
+				<k_coef design="-157.696544561" n="2"/>
+			</scaled_multipole>
+			<e1 design="0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0"/>
+			<h_gap2 design="0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.099374588451"/>
+	</element>
+	<element name="QM7RX">
+		<bend>
+			<g design="-0.108779216085"/>
+			<scaled_multipole>
+				<k_coef design="-44.4936245781" n="2"/>
+			</scaled_multipole>
+			<e1 design="0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0"/>
+			<h_gap2 design="0"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.042171647904"/>
+	</element>
+	<element name="BS1XA">
+		<bend>
+			<g design="0.0467261090333"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.3"/>
+	</element>
+	<element name="BS1XB">
+		<bend>
+			<g design="0.0467261090333"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.3"/>
+	</element>
+	<element name="BS2XA">
+		<bend>
+			<g design="0.092929207665"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BS2XB">
+		<bend>
+			<g design="0.092929207665"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BS3XA">
+		<bend>
+			<g design="0.235022025816"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BS3XB">
+		<bend>
+			<g design="0.235022025816"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.5"/>
+	</element>
+	<element name="BH1XA">
+		<bend>
+			<g design="0.23549919525"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BH1XB">
+		<bend>
+			<g design="0.23549919525"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BH2XA">
+		<bend>
+			<g design="-0.23549919525"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BH2XB">
+		<bend>
+			<g design="-0.23549919525"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.4"/>
+	</element>
+	<element name="BH3XA">
+		<bend>
+			<g design="-0.253961623087"/>
+			<e1 design="0.0"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.675"/>
+	</element>
+	<element name="BH3XB">
+		<bend>
+			<g design="-0.253961623087"/>
+			<e1 design="0"/>
+			<e2 design="0.0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.675"/>
+	</element>
+	<element name="QF1X">
+		<quadrupole>
+			<k design="5.403554388102" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QD2X">
+		<quadrupole>
+			<k design="-4.74047903591" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QF3X">
+		<quadrupole>
+			<k design="3.377447791743" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QF4X">
+		<quadrupole>
+			<k design="3.418612469538" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QD5X">
+		<quadrupole>
+			<k design="-4.62395066117" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QF6X">
+		<quadrupole>
+			<k design="5.676264604602" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QF7X">
+		<quadrupole>
+			<k design="4.797751496225" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+	</element>
+	<element name="QD8X">
+		<quadrupole>
+			<k design="-2.867721470621" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QF90X">
+		<quadrupole>
+			<k design="5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD90X">
+		<quadrupole>
+			<k design="-5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF180X">
+		<quadrupole>
+			<k design="6.884394059347" err="0"/>
+		</quadrupole>
+		<length design="0.0993725"/>
+	</element>
+	<element name="QD180X">
+		<quadrupole>
+			<k design="-5.109242848434" err="0"/>
+		</quadrupole>
+		<length design="0.0993725"/>
+	</element>
+	<element name="QFWX">
+		<quadrupole>
+			<k design="3.878951293492" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+	</element>
+	<element name="QDWX">
+		<quadrupole>
+			<k design="-3.878951293492" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+	</element>
+	<element name="QF9X">
+		<quadrupole>
+			<k design="3.994438329988" err="0"/>
+		</quadrupole>
+		<length design="0.099305"/>
+	</element>
+	<element name="QD10X">
+		<quadrupole>
+			<k design="-6.257405611416" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF11X">
+		<quadrupole>
+			<k design="5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD12X">
+		<quadrupole>
+			<k design="-5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF13X">
+		<quadrupole>
+			<k design="6.884394059347" err="0"/>
+		</quadrupole>
+		<length design="0.0993725"/>
+	</element>
+	<element name="QD14X">
+		<quadrupole>
+			<k design="-5.109242848434" err="0"/>
+		</quadrupole>
+		<length design="0.0993725"/>
+	</element>
+	<element name="QF15X">
+		<quadrupole>
+			<k design="6.884394059347" err="0"/>
+		</quadrupole>
+		<length design="0.0993725"/>
+	</element>
+	<element name="QD16X">
+		<quadrupole>
+			<k design="-5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF17X">
+		<quadrupole>
+			<k design="5.155581408635" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD18X">
+		<quadrupole>
+			<k design="-3.45645692786" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF19X">
+		<quadrupole>
+			<k design="3.300750873812" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD20X">
+		<quadrupole>
+			<k design="-3.842248994738" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+	</element>
+	<element name="QF21X">
+		<quadrupole>
+			<k design="3.831521869798" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+	</element>
+	<element name="QS1X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="QS2X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="QK1X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="QK2X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="QK3X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="QK4X">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.039335"/>
+		<tilt design="0.785398163397"/>
+	</element>
+	<element name="KEX1MULT">
+		<length design="0"/>
+	</element>
+	<element name="KEX2MULT">
+		<length design="0"/>
+	</element>
+	<element name="BH1XMULT">
+		<length design="0"/>
+	</element>
+	<element name="BH2XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD10XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF11XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD12XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD16XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF17XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD18XMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF19XMULT">
+		<length design="0"/>
+	</element>
+	<element name="L001">
+		<length design="0.923139039214"/>
+	</element>
+	<element name="L002">
+		<length design="1.546029682371"/>
+	</element>
+	<element name="L003">
+		<length design="0.147830505778"/>
+	</element>
+	<element name="L004">
+		<length design="0.2"/>
+	</element>
+	<element name="L005">
+		<length design="0.2"/>
+	</element>
+	<element name="L006">
+		<length design="0.8"/>
+	</element>
+	<element name="L007">
+		<length design="0.5"/>
+	</element>
+	<element name="L008">
+		<length design="0.5"/>
+	</element>
+	<element name="L009">
+		<length design="0.772500080767"/>
+	</element>
+	<element name="L010">
+		<length design="4.106858752466"/>
+	</element>
+	<element name="L011">
+		<length design="0.772500080767"/>
+	</element>
+	<element name="L012">
+		<length design="0.5"/>
+	</element>
+	<element name="L013">
+		<length design="0.5"/>
+	</element>
+	<element name="L014">
+		<length design="1.006202919594"/>
+	</element>
+	<element name="L015">
+		<length design="0.765038241929"/>
+	</element>
+	<element name="L016">
+		<length design="2.071881207043"/>
+	</element>
+	<element name="L017">
+		<length design="0.967326240834"/>
+	</element>
+	<element name="L90X">
+		<length design="1.25151"/>
+	</element>
+	<element name="L180AX">
+		<length design="0.834780651873"/>
+	</element>
+	<element name="L180BX">
+		<length design="0.836794578106"/>
+	</element>
+	<element name="LWX">
+		<length design="3.8"/>
+	</element>
+	<element name="L101">
+		<length design="0.480970499736"/>
+	</element>
+	<element name="L102">
+		<length design="2.466201477446"/>
+	</element>
+	<element name="L103">
+		<length design="1.25151"/>
+	</element>
+	<element name="L104">
+		<length design="1.25151"/>
+	</element>
+	<element name="L105">
+		<length design="0.834780651873"/>
+	</element>
+	<element name="L106">
+		<length design="0.836794578106"/>
+	</element>
+	<element name="L107">
+		<length design="0.836794578106"/>
+	</element>
+	<element name="L108">
+		<length design="0.834780651873"/>
+	</element>
+	<element name="L109">
+		<length design="1.25151"/>
+	</element>
+	<element name="L110">
+		<length design="2.18400999586"/>
+	</element>
+	<element name="L111">
+		<length design="1.246159895242"/>
+	</element>
+	<element name="L112">
+		<length design="3.800755"/>
+	</element>
+	<element name="L113">
+		<length design="3.8"/>
+	</element>
+	<element name="L114">
+		<length design="3.800755"/>
+	</element>
+	<element name="L010H">
+		<length design="2.053429376233"/>
+	</element>
+	<element name="L114S">
+		<length design="3.781"/>
+	</element>
+	<element name="L002E">
+		<length design="0.189469270613"/>
+	</element>
+	<element name="L002D">
+		<length design="0.0"/>
+	</element>
+	<element name="L002C">
+		<length design="0.050682346107"/>
+	</element>
+	<element name="L002A">
+		<length design="0.046854668923"/>
+	</element>
+	<element name="L002B">
+		<length design="0.702833396728"/>
+	</element>
+	<element name="L005A">
+		<length design="0.1"/>
+	</element>
+	<element name="L005B">
+		<length design="0.1"/>
+	</element>
+	<element name="L006B">
+		<length design="0.0335945"/>
+	</element>
+	<element name="L006C">
+		<length design="0.08136"/>
+	</element>
+	<element name="L006A">
+		<length design="0.4782345"/>
+	</element>
+	<element name="L007A">
+		<length design="0.014695"/>
+	</element>
+	<element name="L007B">
+		<length design="0.214"/>
+	</element>
+	<element name="L007C">
+		<length design="0.271305"/>
+	</element>
+	<element name="L008B">
+		<length design="0.1586245"/>
+	</element>
+	<element name="L008A">
+		<length design="0.2132345"/>
+	</element>
+	<element name="L009A">
+		<length design="0.014695"/>
+	</element>
+	<element name="L009B">
+		<length design="0.757805080767"/>
+	</element>
+	<element name="L010A">
+		<length design="0.026695"/>
+	</element>
+	<element name="L010B">
+		<length design="0.138725"/>
+	</element>
+	<element name="L010C">
+		<length design="0.1396545"/>
+	</element>
+	<element name="L010D">
+		<length design="1.505663876233"/>
+	</element>
+	<element name="L010E">
+		<length design="2.053429376233"/>
+	</element>
+	<element name="L011A">
+		<length design="0.026695"/>
+	</element>
+	<element name="L011B">
+		<length design="0.134725"/>
+	</element>
+	<element name="L011D">
+		<length design="0.026695"/>
+	</element>
+	<element name="L011C">
+		<length design="0.469835080767"/>
+	</element>
+	<element name="L012A">
+		<length design="0.1576245"/>
+	</element>
+	<element name="L012B">
+		<length design="0.2142345"/>
+	</element>
+	<element name="L013C">
+		<length design="0.014695"/>
+	</element>
+	<element name="L013B">
+		<length design="0.1429295"/>
+	</element>
+	<element name="L013A">
+		<length design="0.2142345"/>
+	</element>
+	<element name="L014A">
+		<length design="0.536E-2"/>
+	</element>
+	<element name="L014B">
+		<length design="0.334665"/>
+	</element>
+	<element name="L014C">
+		<length design="0.587507919594"/>
+	</element>
+	<element name="L016A">
+		<length design="0.026665"/>
+	</element>
+	<element name="L016C">
+		<length design="0.16342"/>
+	</element>
+	<element name="L016B">
+		<length design="1.767246207043"/>
+	</element>
+	<element name="L017A">
+		<length design="0.014695"/>
+	</element>
+	<element name="L017B">
+		<length design="0.1389295"/>
+	</element>
+	<element name="L017C">
+		<length design="0.685560740834"/>
+	</element>
+	<element name="L101C">
+		<length design="0.054695"/>
+	</element>
+	<element name="L101B">
+		<length design="0.107"/>
+	</element>
+	<element name="L101A">
+		<length design="0.119275499736"/>
+	</element>
+	<element name="L102F">
+		<length design="0.10242"/>
+	</element>
+	<element name="L102E">
+		<length design="0.125665"/>
+	</element>
+	<element name="L102D">
+		<length design="0.0859295"/>
+	</element>
+	<element name="L102C">
+		<length design="0.3339295"/>
+	</element>
+	<element name="L102A">
+		<length design="0.15742"/>
+	</element>
+	<element name="L102B">
+		<length design="1.339476477446"/>
+	</element>
+	<element name="L103A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L103C">
+		<length design="0.150355"/>
+	</element>
+	<element name="L103B">
+		<length design="0.9566"/>
+	</element>
+	<element name="L104A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L104B">
+		<length design="0.403"/>
+	</element>
+	<element name="L104E">
+		<length design="0.303755"/>
+	</element>
+	<element name="L104D">
+		<length design="0.0899295"/>
+	</element>
+	<element name="L104C">
+		<length design="0.3069295"/>
+	</element>
+	<element name="L104G">
+		<length design="0.100755"/>
+	</element>
+	<element name="L104F">
+		<length design="0.12433"/>
+	</element>
+	<element name="L105A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L105C">
+		<length design="0.1653525"/>
+	</element>
+	<element name="L105B">
+		<length design="0.535123151873"/>
+	</element>
+	<element name="L106A">
+		<length design="0.0546275"/>
+	</element>
+	<element name="L106B">
+		<length design="0.782167078106"/>
+	</element>
+	<element name="L107A">
+		<length design="0.0546275"/>
+	</element>
+	<element name="L107B">
+		<length design="0.276"/>
+	</element>
+	<element name="L107D">
+		<length design="0.1633525"/>
+	</element>
+	<element name="L107C">
+		<length design="0.228264578106"/>
+	</element>
+	<element name="L108A">
+		<length design="0.0546275"/>
+	</element>
+	<element name="L108B">
+		<length design="0.3156"/>
+	</element>
+	<element name="L108C">
+		<length design="0.339753151873"/>
+	</element>
+	<element name="L108E">
+		<length design="0.100755"/>
+	</element>
+	<element name="L108D">
+		<length design="0.160328151873"/>
+	</element>
+	<element name="L109A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L109C">
+		<length design="0.152355"/>
+	</element>
+	<element name="L109B">
+		<length design="0.9546"/>
+	</element>
+	<element name="L110A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L110B">
+		<length design="0.211"/>
+	</element>
+	<element name="L110E">
+		<length design="0.2486845"/>
+	</element>
+	<element name="L110D">
+		<length design="0.6575945"/>
+	</element>
+	<element name="L110C">
+		<length design="0.84016499586"/>
+	</element>
+	<element name="L111A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L111B">
+		<length design="0.276"/>
+	</element>
+	<element name="L111D">
+		<length design="0.2716"/>
+	</element>
+	<element name="L111E">
+		<length design="0.149355"/>
+	</element>
+	<element name="L111C">
+		<length design="0.404649895242"/>
+	</element>
+	<element name="L112A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L112B">
+		<length design="0.265"/>
+	</element>
+	<element name="L112C">
+		<length design="0.386"/>
+	</element>
+	<element name="L112D">
+		<length design="0.309"/>
+	</element>
+	<element name="L112E">
+		<length design="0.4849295"/>
+	</element>
+	<element name="L112F">
+		<length design="0.6309295"/>
+	</element>
+	<element name="L112G">
+		<length design="0.0215"/>
+	</element>
+	<element name="L112H">
+		<length design="0.0215"/>
+	</element>
+	<element name="L112I">
+		<length design="0.763335"/>
+	</element>
+	<element name="L112J">
+		<length design="0.469"/>
+	</element>
+	<element name="L112K">
+		<length design="0.282"/>
+	</element>
+	<element name="L112L">
+		<length design="0.019665"/>
+	</element>
+	<element name="L113A">
+		<length design="0.466665"/>
+	</element>
+	<element name="L113C">
+		<length design="0.937395"/>
+	</element>
+	<element name="L113D">
+		<length design="0.415665"/>
+	</element>
+	<element name="L113B">
+		<length design="1.861065"/>
+	</element>
+	<element name="L114A">
+		<length design="0.019665"/>
+	</element>
+	<element name="L114B">
+		<length design="0.274"/>
+	</element>
+	<element name="L114C">
+		<length design="0.502"/>
+	</element>
+	<element name="L114D">
+		<length design="0.35"/>
+	</element>
+	<element name="L114E">
+		<length design="0.54"/>
+	</element>
+	<element name="L114G">
+		<length design="0.282"/>
+	</element>
+	<element name="L114F">
+		<length design="1.813335"/>
+	</element>
+	<element name="ZH100RX">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.24955"/>
+	</element>
+	<element name="ZH101RX">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.1679"/>
+	</element>
+	<element name="ZV100RX">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.13874"/>
+	</element>
+	<element name="ZH1X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH2X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH3X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH100X">
+		<length design="0.2"/>
+	</element>
+	<element name="ZH4X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH5X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.1248"/>
+	</element>
+	<element name="ZH6X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH7X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11455"/>
+	</element>
+	<element name="ZH8X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.1248"/>
+	</element>
+	<element name="ZH9X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.1248"/>
+	</element>
+	<element name="ZH10X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11921"/>
+	</element>
+	<element name="ZX1X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0"/>
+	</element>
+	<element name="ZX2X">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0"/>
+	</element>
+	<element name="ZV1X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV2X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV3X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV4X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV5X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV6X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV7X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV8X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV9X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.1248"/>
+	</element>
+	<element name="ZV10X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="ZV11X">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="MB1X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MB2X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF1X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD2X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF3X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF4X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD5X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF6X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF7X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD8X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF9X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF13X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD14X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF15X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="LWML1">
+		<marker/>
+	</element>
+	<element name="LWML2">
+		<marker/>
+	</element>
+	<element name="MQD10X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF11X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD12X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD16X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF17X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD18X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF19X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD20X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF21X">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MREF1X">
+		<marker/>
+	</element>
+	<element name="MS1X">
+		<instrument type="PROF"/>
+	</element>
+	<element name="MW0X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="PPMW">
+		<marker/>
+	</element>
+	<element name="MW1X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="MW2X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="MW3X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="MW4X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="OTR0X">
+		<instrument type="PROF"/>
+	</element>
+	<element name="OTR1X">
+		<instrument type="PROF"/>
+	</element>
+	<element name="OTR2X">
+		<instrument type="PROF"/>
+	</element>
+	<element name="OTR3X">
+		<instrument type="PROF"/>
+	</element>
+	<element name="LW1X">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="WCM">
+		<marker/>
+	</element>
+	<element name="ICT1X">
+		<marker/>
+	</element>
+	<element name="FONTK1">
+		<marker/>
+	</element>
+	<element name="FONTP1">
+		<instrument type="MONI"/>
+	</element>
+	<element name="FONTK2">
+		<marker/>
+	</element>
+	<element name="FONTP2">
+		<instrument type="MONI"/>
+	</element>
+	<element name="FONTP3">
+		<instrument type="MONI"/>
+	</element>
+	<element name="UDDX1">
+		<marker/>
+	</element>
+	<element name="IP01">
+		<marker/>
+	</element>
+	<element name="COLL">
+		<marker/>
+	</element>
+	<element name="MID">
+		<marker/>
+	</element>
+	<element name="IP02">
+		<marker/>
+	</element>
+	<element name="MDISP">
+		<marker/>
+	</element>
+	<element name="MSKEW">
+		<marker/>
+	</element>
+	<element name="MEMIT">
+		<marker/>
+	</element>
+	<element name="FIT180">
+		<marker/>
+	</element>
+	<element name="TILTM">
+		<marker/>
+	</element>
+	<element name="IPBPM">
+		<marker/>
+	</element>
+	<element name="B5FFA">
+		<bend>
+			<g design="-0.0814144214997"/>
+			<e1 design="-0.024947966607"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306431786254"/>
+	</element>
+	<element name="B5FFB">
+		<bend>
+			<g design="-0.0814144214997"/>
+			<e1 design="0"/>
+			<e2 design="-0.024947966607"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306431786254"/>
+	</element>
+	<element name="B2FFA">
+		<bend>
+			<g design="-0.0492407469956"/>
+			<e1 design="-0.015087937324"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306411625424"/>
+	</element>
+	<element name="B2FFB">
+		<bend>
+			<g design="-0.0492407469956"/>
+			<e1 design="0"/>
+			<e2 design="-0.015087937324"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306411625424"/>
+	</element>
+	<element name="B1FFA">
+		<bend>
+			<g design="-0.0877899658818"/>
+			<e1 design="-0.02690209037"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306436961215"/>
+	</element>
+	<element name="B1FFB">
+		<bend>
+			<g design="-0.0877899658818"/>
+			<e1 design="0"/>
+			<e2 design="-0.02690209037"/>
+			<h_gap1 design="0.01905"/>
+			<h_gap2 design="0.01905"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.306436961215"/>
+	</element>
+	<element name="BDUMPA">
+		<bend>
+			<g design="0.257256559506"/>
+			<e1 design="0.174532925199"/>
+			<e2 design="0"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.5"/>
+			<f_int2 design="0.0"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.678439164133"/>
+	</element>
+	<element name="BDUMPB">
+		<bend>
+			<g design="0.257256559506"/>
+			<e1 design="0"/>
+			<e2 design="0.174532925199"/>
+			<h_gap1 design="0.016"/>
+			<h_gap2 design="0.016"/>
+			<f_int1 design="0.0"/>
+			<f_int2 design="0.5"/>
+			<h1 design="0"/>
+			<h2 design="0"/>
+		</bend>
+		<length design="0.678439164133"/>
+	</element>
+	<element name="QM16FF">
+		<quadrupole>
+			<k design="2.932571135805" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM15FF">
+		<quadrupole>
+			<k design="-1.610536431548" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM14FF">
+		<quadrupole>
+			<k design="-5.64260161589" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM13FF">
+		<quadrupole>
+			<k design="4.587472589153" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM12FF">
+		<quadrupole>
+			<k design="1.692297489944" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QM11FF">
+		<quadrupole>
+			<k design="0.0" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD10BFF">
+		<quadrupole>
+			<k design="-1.461128174991" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD10AFF">
+		<quadrupole>
+			<k design="-1.461128174991" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF9BFF">
+		<quadrupole>
+			<k design="1.907652615915" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF9AFF">
+		<quadrupole>
+			<k design="1.907652615915" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD8FF">
+		<quadrupole>
+			<k design="-3.044764968558" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF7FF">
+		<quadrupole>
+			<k design="2.771735789763" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD6FF">
+		<quadrupole>
+			<k design="-3.034546888634" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF5BFF">
+		<quadrupole>
+			<k design="1.894587305708" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF5AFF">
+		<quadrupole>
+			<k design="1.894587305708" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD4BFF">
+		<quadrupole>
+			<k design="-1.495250509431" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD4AFF">
+		<quadrupole>
+			<k design="-1.495250509431" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF3FF">
+		<quadrupole>
+			<k design="2.78462327415" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD2BFF">
+		<quadrupole>
+			<k design="-1.001123325704" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QD2AFF">
+		<quadrupole>
+			<k design="-1.459660920908" err="0"/>
+		</quadrupole>
+		<length design="0.099245"/>
+	</element>
+	<element name="QF1FF">
+		<quadrupole>
+			<k design="1.561658636118" err="0"/>
+		</quadrupole>
+		<length design="0.2375"/>
+	</element>
+	<element name="QD0FF">
+		<quadrupole>
+			<k design="-2.871511593537" err="0"/>
+		</quadrupole>
+		<length design="0.2375"/>
+	</element>
+	<element name="SF6FF">
+		<sextupole>
+			<k design="85.579046502253" err="0"/>
+		</sextupole>
+		<length design="0.050039016"/>
+		<tilt design="0.0"/>
+	</element>
+	<element name="SF5FF">
+		<sextupole>
+			<k design="-7.902516359594" err="0"/>
+		</sextupole>
+		<length design="0.050039016"/>
+		<tilt design="0.0"/>
+	</element>
+	<element name="SD4FF">
+		<sextupole>
+			<k design="1.489846047804E2" err="0"/>
+		</sextupole>
+		<length design="0.050039016"/>
+		<tilt design="0.0"/>
+	</element>
+	<element name="SF1FF">
+		<sextupole>
+			<k design="-25.78005437993" err="0"/>
+		</sextupole>
+		<length design="0.05"/>
+		<tilt design="0.0"/>
+	</element>
+	<element name="SD0FF">
+		<sextupole>
+			<k design="43.11874995178" err="0"/>
+		</sextupole>
+		<length design="0.05"/>
+		<tilt design="0.0"/>
+	</element>
+	<element name="SK1FF">
+		<sextupole>
+			<k design="0.0" err="0"/>
+		</sextupole>
+		<length design="0.115"/>
+		<tilt design="0.523598775598"/>
+	</element>
+	<element name="B5FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="B2FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="B1FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM16FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM15FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM14FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM13FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM12FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QM11FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD10BFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD10AFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF9BFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF9AFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD8FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF7FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD6FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF5BFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF5AFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD4BFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD4AFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF3FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD2BFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD2AFFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QF1FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="QD0FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="SF6FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="SF5FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="SD4FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="SF1FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="SD0FFMULT">
+		<length design="0"/>
+	</element>
+	<element name="L200">
+		<length design="0.019755"/>
+	</element>
+	<element name="L201">
+		<length design="1.30151"/>
+	</element>
+	<element name="L202">
+		<length design="1.30151"/>
+	</element>
+	<element name="L203">
+		<length design="1.30151"/>
+	</element>
+	<element name="L204">
+		<length design="1.30151"/>
+	</element>
+	<element name="L205">
+		<length design="1.40151"/>
+	</element>
+	<element name="L206">
+		<length design="1.30151"/>
+	</element>
+	<element name="L207">
+		<length design="0.70151"/>
+	</element>
+	<element name="L208">
+		<length design="1.10151"/>
+	</element>
+	<element name="L209">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L210">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L211">
+		<length design="1.60151"/>
+	</element>
+	<element name="L212">
+		<length design="1.70151"/>
+	</element>
+	<element name="L213">
+		<length design="0.444364710161"/>
+	</element>
+	<element name="L214">
+		<length design="0.644364710161"/>
+	</element>
+	<element name="L215">
+		<length design="1.60151"/>
+	</element>
+	<element name="L216">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L217">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L218">
+		<length design="1.10151"/>
+	</element>
+	<element name="L219">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L220">
+		<length design="0.410715984"/>
+	</element>
+	<element name="L221">
+		<length design="1.544384870992"/>
+	</element>
+	<element name="L222">
+		<length design="0.444384870992"/>
+	</element>
+	<element name="L223">
+		<length design="0.444359535201"/>
+	</element>
+	<element name="L224">
+		<length design="0.444359535201"/>
+	</element>
+	<element name="L225">
+		<length design="1.50151"/>
+	</element>
+	<element name="L226">
+		<length design="4.725755"/>
+	</element>
+	<element name="L227">
+		<length design="0.2875"/>
+	</element>
+	<element name="L228">
+		<length design="0.5025"/>
+	</element>
+	<element name="L229">
+		<length design="0.2875"/>
+	</element>
+	<element name="L230">
+		<length design="0.9875"/>
+	</element>
+	<element name="L301">
+		<length design="1.5"/>
+	</element>
+	<element name="L302">
+		<length design="2.0"/>
+	</element>
+	<element name="DUMPH">
+		<length design="1.15"/>
+	</element>
+	<element name="L201C">
+		<length design="0.1556845"/>
+	</element>
+	<element name="L201B">
+		<length design="0.1353245"/>
+	</element>
+	<element name="L201A">
+		<length design="0.76315"/>
+	</element>
+	<element name="L202A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L202B">
+		<length design="1.281755"/>
+	</element>
+	<element name="L203A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L203C">
+		<length design="0.448755"/>
+	</element>
+	<element name="L203B">
+		<length design="0.833"/>
+	</element>
+	<element name="L204A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L204B">
+		<length design="1.281755"/>
+	</element>
+	<element name="L205A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L205C">
+		<length design="0.666"/>
+	</element>
+	<element name="L205B">
+		<length design="0.715755"/>
+	</element>
+	<element name="L206A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L206B">
+		<length design="1.281755"/>
+	</element>
+	<element name="L207C">
+		<length design="0.204755"/>
+	</element>
+	<element name="L207A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L207B">
+		<length design="0.477"/>
+	</element>
+	<element name="L208A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L208B">
+		<length design="0.289"/>
+	</element>
+	<element name="L208C">
+		<length design="0.792755"/>
+	</element>
+	<element name="L209A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L209B">
+		<length design="0.390960984"/>
+	</element>
+	<element name="L210A">
+		<length design="0.099791984"/>
+	</element>
+	<element name="L210B">
+		<length design="0.310924"/>
+	</element>
+	<element name="L211A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L211B">
+		<length design="1.581755"/>
+	</element>
+	<element name="L212A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L212B">
+		<length design="1.681755"/>
+	</element>
+	<element name="L213A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L213B">
+		<length design="0.424609710161"/>
+	</element>
+	<element name="L215A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L215C">
+		<length design="0.189755"/>
+	</element>
+	<element name="L215B">
+		<length design="1.162"/>
+	</element>
+	<element name="L216A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L216B">
+		<length design="0.390960984"/>
+	</element>
+	<element name="L217A">
+		<length design="0.099791984"/>
+	</element>
+	<element name="L217B">
+		<length design="0.310924"/>
+	</element>
+	<element name="L218A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L218B">
+		<length design="0.223"/>
+	</element>
+	<element name="L218C">
+		<length design="0.858755"/>
+	</element>
+	<element name="L219A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L219B">
+		<length design="0.390960984"/>
+	</element>
+	<element name="L220A">
+		<length design="0.099791984"/>
+	</element>
+	<element name="L220B">
+		<length design="0.310924"/>
+	</element>
+	<element name="L221A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L221B">
+		<length design="1.524629870992"/>
+	</element>
+	<element name="L223A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L223B">
+		<length design="0.424604535201"/>
+	</element>
+	<element name="L224B">
+		<length design="0.203755"/>
+	</element>
+	<element name="L224A">
+		<length design="0.240604535201"/>
+	</element>
+	<element name="L225A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L225B">
+		<length design="0.354"/>
+	</element>
+	<element name="L225C">
+		<length design="0.137"/>
+	</element>
+	<element name="L225D">
+		<length design="0.147"/>
+	</element>
+	<element name="L225E">
+		<length design="0.843755"/>
+	</element>
+	<element name="L226A">
+		<length design="0.019755"/>
+	</element>
+	<element name="L226E">
+		<length design="0.099"/>
+	</element>
+	<element name="L226D">
+		<length design="0.645"/>
+	</element>
+	<element name="L226C">
+		<length design="0.149"/>
+	</element>
+	<element name="L226B">
+		<length design="3.813"/>
+	</element>
+	<element name="L228A">
+		<length design="0.1065"/>
+	</element>
+	<element name="L228C">
+		<length design="0.099"/>
+	</element>
+	<element name="L228B">
+		<length design="0.297"/>
+	</element>
+	<element name="L230A">
+		<length design="0.1065"/>
+	</element>
+	<element name="L230B">
+		<length design="0.454"/>
+	</element>
+	<element name="L230D">
+		<length design="0.081"/>
+	</element>
+	<element name="L230E">
+		<length design="0.0702"/>
+	</element>
+	<element name="L230C">
+		<length design="0.2758"/>
+	</element>
+	<element name="L301A">
+		<length design="0.422"/>
+	</element>
+	<element name="L301B">
+		<length design="0.203"/>
+	</element>
+	<element name="L301C">
+		<length design="0.302"/>
+	</element>
+	<element name="L301D">
+		<length design="0.573"/>
+	</element>
+	<element name="L302A">
+		<length design="0.634560835867"/>
+	</element>
+	<element name="L302B">
+		<length design="0.146"/>
+	</element>
+	<element name="L302C">
+		<length design="1.219439164133"/>
+	</element>
+	<element name="ZH1FF">
+		<kicker>
+			<x_kick design="0.0"/>
+		</kicker>
+		<length design="0.11921"/>
+	</element>
+	<element name="ZV1FF">
+		<kicker>
+			<y_kick design="0.0"/>
+		</kicker>
+		<length design="0.128141"/>
+	</element>
+	<element name="AQM16FF">
+		<marker/>
+	</element>
+	<element name="AQM15FF">
+		<marker/>
+	</element>
+	<element name="AQM14FF">
+		<marker/>
+	</element>
+	<element name="AFB2FF">
+		<marker/>
+	</element>
+	<element name="AQM13FF">
+		<marker/>
+	</element>
+	<element name="AQM12FF">
+		<marker/>
+	</element>
+	<element name="AQM11FF">
+		<marker/>
+	</element>
+	<element name="AQD10BFF">
+		<marker/>
+	</element>
+	<element name="AQD10AFF">
+		<marker/>
+	</element>
+	<element name="AQF9BFF">
+		<marker/>
+	</element>
+	<element name="ASF6FF">
+		<marker/>
+	</element>
+	<element name="AQF9AFF">
+		<marker/>
+	</element>
+	<element name="AQD8FF">
+		<marker/>
+	</element>
+	<element name="AQF7FF">
+		<marker/>
+	</element>
+	<element name="AQD6FF">
+		<marker/>
+	</element>
+	<element name="AQF5BFF">
+		<marker/>
+	</element>
+	<element name="ASF5FF">
+		<marker/>
+	</element>
+	<element name="AQF5AFF">
+		<marker/>
+	</element>
+	<element name="AQD4BFF">
+		<marker/>
+	</element>
+	<element name="ASD4FF">
+		<marker/>
+	</element>
+	<element name="AQD4AFF">
+		<marker/>
+	</element>
+	<element name="AQF3FF">
+		<marker/>
+	</element>
+	<element name="AQD2BFF">
+		<marker/>
+	</element>
+	<element name="AQD2AFF">
+		<marker/>
+	</element>
+	<element name="ASF1FF">
+		<marker/>
+	</element>
+	<element name="AQF1FF">
+		<marker/>
+	</element>
+	<element name="ASD0FF">
+		<marker/>
+	</element>
+	<element name="AQD0FF">
+		<marker/>
+	</element>
+	<element name="MFB1FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="FFML1">
+		<marker/>
+	</element>
+	<element name="MDUMP">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM16FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM15FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM14FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MFB2FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM13FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM12FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQM11FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD10BFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD10AFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF9BFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MSF6FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF9AFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD8FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF7FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD6FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF5BFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MSF5FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF5AFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD4BFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MSD4FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD4AFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF3FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD2BFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD2AFF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="QBPM24FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MSF1FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQF1FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MSD0FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MQD0FF">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MPREIP">
+		<instrument type="MONI"/>
+	</element>
+	<element name="IPBPMA">
+		<instrument type="MONI"/>
+	</element>
+	<element name="IPBPMB">
+		<instrument type="MONI"/>
+	</element>
+	<element name="IP">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MPIP">
+		<instrument type="MONI"/>
+	</element>
+	<element name="MREF3FF">
+		<marker/>
+	</element>
+	<element name="MREF2FF">
+		<marker/>
+	</element>
+	<element name="MREF1FF">
+		<marker/>
+	</element>
+	<element name="MREFIPFF">
+		<marker/>
+	</element>
+	<element name="MREFSFF">
+		<marker/>
+	</element>
+	<element name="MS2FF">
+		<instrument type="PROF"/>
+	</element>
+	<element name="MS1FF">
+		<instrument type="PROF"/>
+	</element>
+	<element name="MS1IP">
+		<instrument type="PROF"/>
+	</element>
+	<element name="MSPIP">
+		<instrument type="PROF"/>
+	</element>
+	<element name="MW1IP">
+		<instrument type="WIRE"/>
+	</element>
+	<element name="MWIP">
+		<marker/>
+	</element>
+	<element name="MBS1IP">
+		<marker/>
+	</element>
+	<element name="MT1X">
+		<marker/>
+	</element>
+	<element name="ICTDUMP">
+		<marker/>
+	</element>
+	<element name="BEGFF">
+		<marker/>
+	</element>
+	<element name="ENDFF">
+		<marker/>
+	</element>
+</laboratory>
