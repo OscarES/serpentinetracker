@@ -25,6 +25,7 @@ import elements as EL
 import beamline
 import beamrep
 import latticeloader as LL
+import configloader as CL
 from numpy import array, zeros, std, concatenate, loadtxt
 from pylab import plot, subplot, figure, xlabel, ylabel
 from globals import electron_mass
@@ -55,6 +56,11 @@ class Serpentine(object):
             self.twiss_out = self.beamline.TwissProp(twiss)
             self.SingleParticle(P=self.beamline[0].P)
             self.beam_out = None
+        elif isinstance(twiss, basestring):
+            self.twiss, self.jitter = CL.laodConfig(twiss)
+            self.twiss_out = self.beamline.TwissProp(self.twiss)
+            self.MakeJitterBeam()
+            self.beam_out = None
         elif isinstance(beam, beamrep.Beam):
             self.beam_in = beam
             self.beam_out = None
@@ -77,11 +83,28 @@ class Serpentine(object):
 
         self.mover = EL.Mover()
 
+    def RefreshBeam(self):
+        """Return the input beam to it's state at initialisation"""
+        if isinstance(self.beam_in,beamrep.JitterBeam):
+            self.MakeJitterBeam()
+        elif isinstance(self.beam_in,beamrep.GaussBeam):
+            self.MakeGaussBeam()
+        elif isinstance(self.beam_in,beamrep.TwissGaussBeam):
+            self.TwissGaussBeam()
+
     def SingleParticle(self, P=1, Q=1e-9, chargesign=-1, 
         restmass=electron_mass):
         """Create a single particle beam as an attribute of the
         Serpentine class."""
         self.beam_in = beamrep.Beam(P, Q, chargesign, restmass)
+
+    def MakeJitterBeam(self, N=1, Q=1e-9, chargesign=-1, 
+        restmass=electron_mass):
+        """Create a multi-particle beam with a Gaussian spread in each
+        degree of freedom.  The statistics """
+        pos = array([0, 0, 0, 0, 0, self.beamline[0].P])
+        self.beam_in = beamrep.JitterBeam(self.twiss,self.jitter,
+            N, pos, Q, chargesign, restmass)
 
     def MakeGaussBeam(self, N=10000, Q=1e-9, pos=array([0, 0, 0, 0, 0, 1]),
         sig=array([1e-3, 1e-3, 1e-3, 1e-3, 1e-3, 0.01]), chargesign=-1,
