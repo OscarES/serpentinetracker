@@ -505,7 +505,7 @@
 		<element ref="DUMPH"/>
 	</sector>
 	<machine>
-		<sector name = "ATF2">
+		<sector name="ATF2">
 			<sector ref="L000001"/>
 			<sector ref="L000002"/>
 			<sector ref="L000003"/>
@@ -5483,7 +5483,7 @@
 		<instrument type="MONI"/>
 	</element>
 	<element name="MREF1X">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MS1X">
 		<instrument type="PROF"/>
@@ -6489,19 +6489,19 @@
 		<instrument type="MONI"/>
 	</element>
 	<element name="MREF3FF">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MREF2FF">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MREF1FF">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MREFIPFF">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MREFSFF">
-		<marker/>
+		<instrument type="IMON"/>
 	</element>
 	<element name="MS2FF">
 		<instrument type="PROF"/>

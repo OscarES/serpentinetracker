@@ -1,8 +1,10 @@
 import tablewriter
 import beamline
 from serpentine import Serpentine
+from copy import copy
 from elements import BPM
 from elements import Drift
+from elements import REF
 
 # Create the Serpentine object for entire ATF2
 fullATF2 = Serpentine(line='ATF2.aml',twiss='atftwiss.txt')
@@ -11,6 +13,12 @@ fullATF2 = Serpentine(line='ATF2.aml',twiss='atftwiss.txt')
 # and create a new Serpentine object
 ext_start = fullATF2.beamline.FindEleByName('KEX1A')
 ATF2ext = Serpentine(line=beamline.Line(fullATF2.beamline[ext_start[0]:]),twiss='atftwiss.txt')
+
+# Replace all ICTs with REFs
+for n in ATF2ext.beamline.GetEleByType('ICT'):
+    index = ATF2ext.beamline.index(n)
+    if 'REF' not in n.name: continue
+    ATF2ext.beamline[index] = REF(name=n.name,L=n.L,P=n.P)
 
 # Make drift smaller, Add IPBPMs, Add new drifts
 idrift = ATF2ext.beamline.FindEleByName('L114C')[0]
@@ -36,6 +44,6 @@ ATF2ext.beamline.insert(idrift+1, ipT1)
 ATF2ext.beamline.SetSPos()
 ATF2ext.TwissProp()
 
-table = tablewriter.TableWriter(ATF2ext,eltlist=['BPM'],pramlist=['name','S','x','xp','y','yp','sigz','betax'])
+table = tablewriter.TableWriter(ATF2ext,eltlist=['REF','BPM'],pramlist=['name','S','x','xp','y','yp','sigz','betax'])
 table.fill()
 table.writeData('atf2res.dat')
