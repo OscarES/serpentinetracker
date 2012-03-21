@@ -886,6 +886,9 @@ class ICT(BasicDiag):
                 numparts += 1
         self.DiagOut.charge = beam_in.Q * (numparts / origparts )
 
+class REF(ICT):
+    """Monopole reference cavity"""
+    pass
 
 # ===============================================================
 # Each drift/collimator type is a subclass of BasicDrift
