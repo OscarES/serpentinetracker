@@ -11,7 +11,9 @@ class TableWriter:
     *pramlist* - list of parameters to record every pulse. These can be twiss 
                  parameters, coordinates or any attribute of the element class.
                  'offset_[a]' will give the elements offset in the coordinate 
-                 labelled a, eg. 'offset_x'.
+                 labelled a, eg. 'offset_x'. 'DiagOut.[a]' will give the output 
+                 for the parameter labelled a for each diagnostic that measures
+                 that parameter, 'None' for Diagnostics and 'N/A' for other elements.
     *eltlist* - type of element for which to record the parameters in pramlist
     *pulses* - number of pulses"""
 
@@ -53,6 +55,13 @@ class TableWriter:
                             l += '\t'+str(e.twiss.__getattribute__(p))
                         elif p.startswith('offset'):
                             l += '\t'+str(e.offset[self.xdict[p[-1]]])
+                        elif p.startswith('DiagOut'):
+                            p = p.split('.')
+                            try:
+                                isinst = hasattr(e.DiagOut,p[1])
+                            except AttributeError: 
+                                l += '\tN/A'
+                            else: l += '\t'+str(e.DiagOut.__getattribute__(p[1]))
                         else: 
                             l += '\t'+str(e.__getattribute__(p)) 
                     l += '\n'
