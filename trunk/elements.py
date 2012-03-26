@@ -307,7 +307,7 @@ class BasicDiag(Element):
         """The (empty) processor method for BasicDiag"""
         pass
 
-class DiagOut:
+class DiagOut(object):
     """A class to gather all the diagnostics data"""
     def __init__(self):
         self.x_centroid, self.xp_centroid = None, None

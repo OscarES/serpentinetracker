@@ -37,7 +37,7 @@ class MoverCalibration:
     def calibrate(self):
 
         table = tablewriter.TableWriter(ATF2ext,eltlist=['REF','BPM'],
-                                        pramlist=['name','S','x','xp','y','yp','sigz','betax','offset_x','offset_y'],
+                                        pramlist=['name','S','x','xp','y','yp','sigz','betax','offset_x','offset_y','DiagOut.x_centroid','DiagOut.y_centroid'],
                                         pulses = self.steps*self.pulses)
         self.makeMove()
         table.fill(self.makeMove)
@@ -92,4 +92,3 @@ ATF2ext.TwissProp()
 
 mc = MoverCalibration(ATF2ext.beamline,'MQM16FF','y')
 mc.calibrate()
-
