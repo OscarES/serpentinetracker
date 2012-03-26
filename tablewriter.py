@@ -8,7 +8,10 @@ class TableWriter:
     *sp* - Serpentine object
     
     keyword arguments
-    *pramlist* - list of parameters to record every pulse
+    *pramlist* - list of parameters to record every pulse. These can be twiss 
+                 parameters, coordinates or any attribute of the element class.
+                 'offset_[a]' will give the elements offset in the coordinate 
+                 labelled a, eg. 'offset_x'.
     *eltlist* - type of element for which to record the parameters in pramlist
     *pulses* - number of pulses"""
 
@@ -29,7 +32,9 @@ class TableWriter:
             self.eles[i] = self.serp.beamline[s]
 
     def fill(self,callback=lambda:None):
-        """Class method: perform tracking and collect data"""
+        """Class method: perform tracking and collect data
+        
+        *callback* - A callback function can be provided that is called between pulses"""
 
         l = '# N_train\tN_bunch\tindex\ttype'
         for p in self.params: l += '\t'+p
@@ -46,6 +51,8 @@ class TableWriter:
                             l += '\t'+str(e.x[self.xdict[p]][b])
                         elif p in self.tlist:
                             l += '\t'+str(e.twiss.__getattribute__(p))
+                        elif p.startswith('offset'):
+                            l += '\t'+str(e.offset[self.xdict[p[-1]]])
                         else: 
                             l += '\t'+str(e.__getattribute__(p)) 
                     l += '\n'

@@ -44,6 +44,6 @@ ATF2ext.beamline.insert(idrift+1, ipT1)
 ATF2ext.beamline.SetSPos()
 ATF2ext.TwissProp()
 
-table = tablewriter.TableWriter(ATF2ext,eltlist=['REF','BPM'],pramlist=['name','S','x','xp','y','yp','sigz','betax'])
+table = tablewriter.TableWriter(ATF2ext,eltlist=['REF','BPM'],pramlist=['name','S','x','xp','y','yp','sigz','betax','offset_x'])
 table.fill()
 table.writeData('atf2res.dat')
